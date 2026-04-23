@@ -1,0 +1,22 @@
+{
+  "name": "asaan-digital",
+  "version": "1.0.0",
+  "description": "Digital literacy platform for Pakistan",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "db:seed": "node scripts/seed_data.js",
+    "db:test-data": "node scripts/generate_test_data.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
