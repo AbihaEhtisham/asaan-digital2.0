@@ -1,0 +1,71 @@
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.dashboard-stat-card {
+  background: var(--white);
+  border: 2px solid var(--black);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  box-shadow: 4px 4px 0 var(--black);
+  transition: all 0.2s;
+}
+
+.dashboard-stat-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 7px 7px 0 var(--green);
+}
+
+.dashboard-stat-icon {
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--black);
+  font-size: 1.3rem;
+}
+
+.dashboard-stat-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.dashboard-stat-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--green);
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+
+.dashboard-stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dashboard-stat-change {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+}
+
+.dashboard-stat-change.positive { color: #28a745; }
+.dashboard-stat-change.negative { color: #dc3545; }
+.dashboard-stat-change.neutral { color: #6c757d; }
+
+@media (max-width: 576px) {
+  .dashboard-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}

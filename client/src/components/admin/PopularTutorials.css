@@ -1,0 +1,203 @@
+.popular-tutorials {
+  background: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid var(--black);
+  background: var(--off-white);
+}
+
+.section-header h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.view-all-link {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--green);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: gap 0.2s;
+}
+
+.view-all-link:hover {
+  gap: 0.5rem;
+  color: var(--green);
+}
+
+.empty-list {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--text-soft);
+}
+
+/* Skeleton Loading */
+.skeleton-list {
+  padding: 1rem 1.5rem;
+}
+
+.skeleton-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Popular List */
+.popular-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.popular-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+
+.popular-item:last-child {
+  border-bottom: none;
+}
+
+.popular-item:hover {
+  background: var(--cream);
+}
+
+.popular-rank {
+  min-width: 36px;
+  text-align: center;
+}
+
+.popular-medal {
+  font-size: 1.3rem;
+}
+
+.popular-number {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  color: var(--text-soft);
+  font-size: 0.8rem;
+}
+
+.popular-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.popular-title {
+  display: block;
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--green);
+  text-decoration: none;
+  margin-bottom: 0.15rem;
+}
+
+.popular-title:hover {
+  text-decoration: underline;
+}
+
+.popular-subtitle {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  margin-bottom: 0.3rem;
+}
+
+.popular-meta {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.popular-category {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.popular-level {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text-soft);
+}
+
+.popular-stats {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.popular-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popular-stat-value {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--green);
+}
+
+.popular-stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+
+.popular-activity {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.activity-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.activity-dot.active { background: #28a745; }
+.activity-dot.recent { background: #ffc107; }
+.activity-dot.inactive { background: #95a5a6; }
+
+.activity-text {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--text-soft);
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .popular-item {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .popular-stats {
+    width: 100%;
+    justify-content: space-around;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+}

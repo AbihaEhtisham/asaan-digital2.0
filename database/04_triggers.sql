@@ -35,22 +35,12 @@ BEGIN
   IF NEW.matched_tutorial_id IS NOT NULL THEN
     -- Update last searched timestamp in metadata
     UPDATE tutorials 
-    SET metadata = jsonb_set(
-      COALESCE(metadata, '{}'),
-      '{last_searched}',
-      to_jsonb(NOW())
-    ),
-    updated_at = NOW()
-    WHERE id = NEW.matched_tutorial_id;
-    
-    -- Update search count in metadata
-    UPDATE tutorials 
-    SET metadata = jsonb_set(
-      metadata,
-      '{search_count}',
-      to_jsonb(COALESCE((metadata->>'search_count')::int, 0) + 1)
-    )
-    WHERE id = NEW.matched_tutorial_id;
+SET metadata = metadata || jsonb_build_object(
+  'last_searched', NOW()::text,
+  'search_count', (COALESCE((metadata->>'search_count')::int, 0) + 1)
+),
+updated_at = NOW()
+WHERE id = NEW.matched_tutorial_id;
   END IF;
   
   RETURN NEW;

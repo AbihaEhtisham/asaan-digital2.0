@@ -1,0 +1,27 @@
+.footer {
+  background: var(--black);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 2.2rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  position: relative;
+  margin-top: 0;
+  border-top: 3px solid var(--green);
+}
+
+.footer a {
+  color: var(--gold);
+  text-decoration: none;
+  margin: 0 6px;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+
+.footer a:hover {
+  color: var(--white);
+}
+
+.footer hr {
+  border-color: rgba(255, 255, 255, 0.15);
+  margin: 1rem 0;
+}

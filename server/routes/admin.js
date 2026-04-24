@@ -4,7 +4,6 @@ const { query, transaction } = require('../config/database');
 
 // Middleware for admin authentication (simplified - add proper auth later)
 const adminAuth = (req, res, next) => {
-  // For demo purposes, check a simple header
   // In production, use proper JWT verification
   const adminKey = req.headers['x-admin-key'];
   
@@ -178,6 +177,39 @@ router.post('/tutorials', async (req, res, next) => {
           }
         }
       }
+    }
+    else { // AUTO-GENERATE DEFAULT INTENT + KEYWORDS
+
+      const title = title_english.toLowerCase();
+
+      const intentResult = await query(
+        `INSERT INTO intents (tutorial_id, intent_name, description)
+         VALUES ($1, $2, $3)
+         RETURNING id`,
+        [
+          tutorialId,
+          title.replace(/\s+/g, '_'), // intent_name
+          title_english // description
+        ]
+      );
+
+      const intentId = intentResult.rows[0].id;
+
+      // Split title into keywords
+      const words = title.split(' ').filter(w => w.length > 2);
+
+      for (const word of words) {
+        await query(
+          `INSERT INTO keywords (intent_id, keyword, language, weight)
+           VALUES ($1, $2, 'english', 1.0)`,
+          [intentId, word]
+        );
+      }
+        await query(
+        `INSERT INTO keywords (intent_id, keyword, language, weight)
+         VALUES ($1, $2, 'english', 1.0)`,
+        [intentId, title]
+      );
     }
     
     await query('COMMIT');

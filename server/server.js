@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000;
 // Import routes
 const apiRoutes = require('./routes/api');
 const searchRoutes = require('./routes/search');
-const tutorialRoutes = require('./routes/tutorial');
+const tutorialRoutes = require('./routes/tutorials');
 const adminRoutes = require('./routes/admin');
 const analyticsRoutes = require('./routes/analytics');
 

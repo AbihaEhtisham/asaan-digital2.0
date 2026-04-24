@@ -17,12 +17,12 @@ CREATE OR REPLACE FUNCTION search_intent_fuzzy(
 RETURNS TABLE(
   intent_id INT,
   tutorial_id INT,
-  matched_keyword TEXT,
-  confidence FLOAT,
-  tutorial_title_urdu TEXT,
-  tutorial_title_english TEXT,
-  category_name TEXT
-) AS $$
+  matched_keyword VARCHAR(255),
+  confidence NUMERIC,
+  tutorial_title_urdu VARCHAR(255),
+  tutorial_title_english VARCHAR(255),
+  category_name VARCHAR(100)
+)AS $$
 DECLARE
   v_phonetic_code VARCHAR(10);
 BEGIN
@@ -237,10 +237,10 @@ COMMENT ON FUNCTION get_tutorial_with_steps IS 'Efficiently fetch complete tutor
 CREATE OR REPLACE FUNCTION get_trending_topics(p_days INT DEFAULT 7)
 RETURNS TABLE(
   tutorial_id INT,
-  title_urdu TEXT,
-  title_english TEXT,
+  title_urdu VARCHAR(255),
+  title_english VARCHAR(255),
   search_count BIGINT,
-  success_rate FLOAT,
+  success_rate NUMERIC,
   trend_direction TEXT
 ) AS $$
 BEGIN
@@ -337,7 +337,7 @@ COMMENT ON FUNCTION get_content_gaps IS 'Identify frequently failed searches to 
 CREATE OR REPLACE FUNCTION get_learning_path(p_category_id INT DEFAULT NULL)
 RETURNS TABLE(
   tutorial_id INT,
-  title_urdu TEXT,
+  title_urdu VARCHAR(255),
   title_english TEXT,
   difficulty_level INT,
   estimated_time INT,

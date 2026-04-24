@@ -1,0 +1,251 @@
+.content-gaps {
+  background: var(--white);
+  border: 2px solid var(--black);
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.content-gaps-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid var(--black);
+  background: var(--off-white);
+}
+
+.gaps-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.gaps-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.gaps-subtitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-soft);
+}
+
+.refresh-btn {
+  background: transparent;
+  border: 2px solid var(--black);
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.refresh-btn:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.gaps-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.gaps-table-wrapper {
+  overflow-x: auto;
+}
+
+.gaps-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.gaps-table thead th {
+  background: var(--black);
+  color: var(--white);
+  padding: 0.75rem 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.gaps-table tbody td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.gap-row {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.gap-row:hover {
+  background: var(--cream);
+}
+
+.gap-row.expanded {
+  background: rgba(13, 51, 32, 0.05);
+}
+
+.gap-rank {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.rank-badge {
+  font-size: 1.2rem;
+}
+
+.query-cell {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fail-count {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: #dc3545;
+}
+
+.user-count {
+  font-weight: 600;
+}
+
+.category-tag {
+  background: var(--gold);
+  color: var(--black);
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-family: 'Space Mono', monospace;
+  border: 1px solid var(--black);
+  white-space: nowrap;
+}
+
+.priority-badge {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  border: 1px solid var(--black);
+}
+
+.priority-badge.priority-high {
+  background: #dc3545;
+  color: white;
+}
+
+.priority-badge.priority-medium {
+  background: #ffc107;
+  color: var(--black);
+}
+
+.priority-badge.priority-low {
+  background: #95a5a6;
+  color: white;
+}
+
+.create-tutorial-btn {
+  background: var(--green);
+  color: var(--white);
+  border: 1px solid var(--black);
+  padding: 0.3rem 0.6rem;
+  font-size: 0.7rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.create-tutorial-btn:hover {
+  background: var(--black);
+}
+
+/* Gap Details Row */
+.gap-details-row td {
+  padding: 0 !important;
+}
+
+.gap-details {
+  padding: 1.5rem;
+  background: var(--off-white);
+  border-top: 2px solid var(--black);
+}
+
+.gap-detail-section {
+  margin-bottom: 1.25rem;
+}
+
+.gap-detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.gap-detail-section h5 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  margin-bottom: 0.75rem;
+  color: var(--green);
+}
+
+.sample-queries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sample-query {
+  background: var(--white);
+  border: 1px solid var(--black);
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  font-family: 'Noto Nastaliq Urdu', serif;
+}
+
+.gap-meta {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+.gap-detail-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 0.6rem 1.2rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 2px solid var(--black);
+  transition: all 0.2s;
+}
+
+.action-btn.primary {
+  background: var(--green);
+  color: var(--white);
+}
+
+.action-btn.primary:hover {
+  background: var(--black);
+}
+
+.action-btn.secondary {
+  background: var(--white);
+  color: var(--black);
+}
+
+.action-btn.secondary:hover {
+  background: var(--gold);
+}

@@ -297,4 +297,17 @@ router.get('/export', async (req, res, next) => {
   }
 });
 
+router.get('/daily-stats', async (req, res, next) => {
+  try {
+    const days = parseInt(req.query.days) || 30;
+    const result = await query(
+      'SELECT * FROM daily_platform_stats_mv ORDER BY stat_date DESC LIMIT $1',
+      [days]
+    );
+    res.json({ success: true, data: result.rows });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

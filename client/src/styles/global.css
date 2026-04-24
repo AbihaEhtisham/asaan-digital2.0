@@ -1,0 +1,227 @@
+/* ============================================================
+   ASAAN DIGITAL 2.0 — Global Styles
+   ============================================================ */
+
+@import './variables.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Syne', sans-serif;
+  background-color: var(--off-white);
+  color: var(--black);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Pattern Background */
+.pattern-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%231a5d3c' d='M50,0 L61,35 L100,35 L68,57 L79,92 L50,70 L21,92 L32,57 L0,35 L39,35 Z'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 60px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+}
+
+.text-soft {
+  color: var(--text-soft);
+  line-height: 1.7 !important;
+}
+
+/* Section Titles */
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--black);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  display: inline-block;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+.section-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.5rem;
+}
+
+/* Urdu Text */
+.urdu-text {
+  font-family: 'Noto Nastaliq Urdu', serif;
+}
+
+.hero-urdu-main {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  color: var(--green);
+  line-height: 1.5;
+  direction: rtl;
+  font-weight: 700;
+}
+
+.hero-urdu-sub {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  color: var(--gold);
+  direction: rtl;
+  font-weight: 600;
+}
+
+.urdu-highlight {
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* Buttons */
+.btn-pakistan {
+  background: var(--green) !important;
+  color: var(--white) !important;
+  border: 2px solid var(--green) !important;
+  border-radius: 0;
+  padding: 0.85rem 2.4rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.btn-pakistan:hover {
+  background: var(--black) !important;
+  border-color: var(--black) !important;
+  color: var(--white) !important;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--green);
+}
+
+.btn-pakistan-outline {
+  background: transparent;
+  color: var(--green);
+  border: 2px solid var(--green);
+  border-radius: 0;
+  padding: 0.82rem 2.4rem;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+  box-shadow: 4px 4px 0 var(--green);
+}
+
+.btn-pakistan-outline:hover {
+  background: var(--green);
+  color: var(--white);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--black);
+}
+
+/* Cards */
+.card-elegant {
+  background: var(--white);
+  border: 2px solid var(--black);
+  border-radius: 0;
+  padding: 1.5rem;
+  transition: all 0.2s;
+}
+
+.card-elegant:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--green);
+}
+
+.card-alt {
+  background: var(--white);
+  border: 2px solid var(--black);
+  border-radius: 0;
+  padding: 2rem 1.5rem;
+  transition: all 0.2s;
+  height: 100%;
+}
+
+.card-alt:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 var(--green);
+}
+
+/* Animations */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideRight {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-up {
+  animation: fadeSlideUp 0.7s ease forwards;
+}
+
+.animate-right {
+  animation: fadeSlideRight 0.7s ease forwards;
+}
+
+.delay-100 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; }
+.delay-200 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; }
+.delay-300 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; }
+.delay-400 { animation-delay: 0.4s; opacity: 0; animation-fill-mode: forwards; }
+
+/* Main Content */
+.main-content {
+  min-height: calc(100vh - 200px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn-pakistan, .btn-pakistan-outline {
+    padding: 0.75rem 1.8rem;
+    font-size: 0.85rem;
+  }
+}

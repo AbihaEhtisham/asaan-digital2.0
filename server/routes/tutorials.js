@@ -101,14 +101,11 @@ router.get('/:id', async (req, res, next) => {
       });
     }
     
-    // Log view (optional)
+    // Log view 
     await query(
       `UPDATE tutorials 
-       SET metadata = jsonb_set(
-         COALESCE(metadata, '{}'),
-         '{views}',
-         COALESCE((metadata->>'views')::int, 0) + 1
-       )
+       SET metadata = metadata || jsonb_build_object( 'views',
+         COALESCE((metadata->>'views')::int, 0) + 1)
        WHERE id = $1`,
       [id]
     );

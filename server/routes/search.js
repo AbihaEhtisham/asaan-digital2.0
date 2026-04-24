@@ -40,17 +40,17 @@ router.get('/suggestions', async (req, res, next) => {
     }
     
     const result = await query(`
-      SELECT DISTINCT keyword
-      FROM keywords
-      WHERE keyword ILIKE $1
-         OR keyword % $2
-      ORDER BY 
+      SELECT DISTINCT keyword,
         CASE 
           WHEN keyword ILIKE $1 || '%' THEN 1
           WHEN keyword ILIKE '%' || $1 || '%' THEN 2
           ELSE 3
-        END,
-        similarity(keyword, $2) DESC
+        END as match_order,
+        similarity(keyword, $2) as sim_score
+      FROM keywords
+      WHERE keyword ILIKE $1
+         OR keyword % $2
+      ORDER BY match_order, sim_score DESC
       LIMIT 10
     `, [`${q}%`, q]);
     
