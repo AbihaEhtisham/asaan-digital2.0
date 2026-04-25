@@ -30,6 +30,7 @@ const Admin = () => {
       localStorage.setItem('adminKey', adminKey);
       
       const dashRes = await adminAPI.getDashboard();
+      console.log('dashRes:', dashRes);
       setDashboard(dashRes.data || dashRes);
     } catch (error) {
       toast.error('Failed to fetch admin data');

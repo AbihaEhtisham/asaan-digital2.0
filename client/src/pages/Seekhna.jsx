@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { tutorialAPI } from '../services/api';
 import './Seekhna.css';
+import { useSearchParams } from 'react-router-dom';
 
 const Seekhna = () => {
   const [categories, setCategories] = useState([]);
@@ -9,7 +10,8 @@ const Seekhna = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedDifficulty, setSelectedDifficulty] = useState(null);
-
+  const [searchParams] = useSearchParams();
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -28,13 +30,26 @@ const Seekhna = () => {
     fetchData();
   }, []);
 
+useEffect(() => {
+  const categoryParam = searchParams.get('category');
+  if (categoryParam && categories.length > 0) {
+    const match = categories.find(c => 
+      c.name_english.toLowerCase().includes(categoryParam.toLowerCase())
+    );
+    if (match) setSelectedCategory(match.id);
+  }
+}, [searchParams, categories]);
+
   const categoryTutorials = {
-    basics: { title: 'Digital Basics', subtitle: 'Beginner Journey', icon: '📱', color: 'basics' },
-    gov: { title: 'Gov Services', subtitle: 'Public Portals', icon: '🏛️', color: 'gov' },
-    payments: { title: 'Payments', subtitle: 'Finance', icon: '💳', color: 'payments' },
-    smart: { title: 'Smart Services', subtitle: 'Lifestyle', icon: '🚗', color: 'smart' },
-    learning: { title: 'Online Learning', subtitle: 'Education', icon: '📚', color: 'learning' }
-  };
+  whatsapp: { title: 'WhatsApp',            subtitle: 'Messaging',        icon: '💬', color: 'basics' },
+  payments: { title: 'Digital Payments',    subtitle: 'Finance',          icon: '💳', color: 'payments' },
+  gov:      { title: 'Government Services', subtitle: 'Public Portals',   icon: '🏛️', color: 'gov' },
+  social:   { title: 'Social Media',        subtitle: 'Stay Connected',   icon: '📱', color: 'smart' },
+  phone:    { title: 'Phone Basics',        subtitle: 'Beginner Journey', icon: '📞', color: 'basics' },
+  email:    { title: 'Email & Internet',    subtitle: 'Go Online',        icon: '✉️', color: 'learning' },
+  safety:   { title: 'Online Safety',       subtitle: 'Stay Safe',        icon: '🔒', color: 'gov' },
+  jobs:     { title: 'Job Applications',    subtitle: 'Career',           icon: '💼', color: 'smart' },
+};
 
   const filteredTutorials = tutorials.filter(t => {
     if (selectedCategory && t.category_id !== parseInt(selectedCategory)) return false;
@@ -194,7 +209,7 @@ const Seekhna = () => {
                   <span className="category-subtitle">{cat.subtitle}</span>
                   <h3 className="category-title">{cat.title}</h3>
                   <Link 
-                    to={`/seekhna?category=${key}`}
+                    to={`/seekhna/${key}`}
                     className="category-link"
                   >
                     Explore All <i className="fas fa-arrow-right ms-1"></i>

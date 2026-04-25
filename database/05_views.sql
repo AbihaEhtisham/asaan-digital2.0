@@ -157,7 +157,7 @@ WITH failed_analysis AS (
     COUNT(*) as fail_count,
     COUNT(DISTINCT session_id) as unique_users,
     MAX(created_at) as last_searched,
-    ARRAY_AGG(DISTINCT query_text ORDER BY query_text)[1:5] as sample_queries,
+    (ARRAY_AGG(DISTINCT query_text ORDER BY query_text))[1:5] as sample_queries,
     AVG(response_time_ms)::INT as avg_response_time
   FROM query_logs
   WHERE 
