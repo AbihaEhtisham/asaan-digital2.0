@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { tutorialAPI } from '../services/api';
 import toast from 'react-hot-toast';
 import './TutorialDetail.css';
+import TutorialQuiz from './TutorialQuiz';
 
 const TutorialDetail = () => {
   const { id } = useParams();
@@ -249,6 +250,14 @@ const TutorialDetail = () => {
           </div>
         </div>
       </div>
+      {tutorial && (
+        <div className="container-xl py-4">
+          <TutorialQuiz 
+            tutorialId={id} 
+            tutorialTitle={tutorial.title_english} 
+          />
+        </div>
+      )}
     </>
   );
 };

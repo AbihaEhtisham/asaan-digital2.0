@@ -6,6 +6,9 @@ const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
+const connectMongoDB = require('./config/mongodb');
+connectMongoDB();
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -15,6 +18,7 @@ const searchRoutes = require('./routes/search');
 const tutorialRoutes = require('./routes/tutorials');
 const adminRoutes = require('./routes/admin');
 const analyticsRoutes = require('./routes/analytics');
+const quizRoutes = require('./routes/quizRoutes');
 
 // Import middleware
 const { errorHandler } = require('./middleware/errorHandler');
@@ -67,6 +71,7 @@ app.use('/api/search', searchRoutes);
 app.use('/api/tutorials', tutorialRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/quiz', quizRoutes);
 
 // 404 handler
 app.use((req, res) => {
