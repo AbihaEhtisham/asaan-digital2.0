@@ -1,4 +1,4 @@
--- ============================================
+﻿-- ============================================
 -- ASAAN DIGITAL - PL/pgSQL FUNCTIONS
 -- ADBMS Project - Spring 2026
 -- ============================================
@@ -151,7 +151,7 @@ BEGIN
     -- Get suggestions for failed queries
     v_response := jsonb_build_object(
       'status', 'failed',
-      'message_urdu', 'کوئی نتیجہ نہیں ملا۔ براہ کرم دوسرے الفاظ استعمال کریں۔',
+      'message_urdu', 'Ú©ÙˆØ¦ÛŒ Ù†ØªÛŒØ¬Û Ù†ÛÛŒÚº Ù…Ù„Ø§Û” Ø¨Ø±Ø§Û Ú©Ø±Ù… Ø¯ÙˆØ³Ø±Û’ Ø§Ù„ÙØ§Ø¸ Ø§Ø³ØªØ¹Ù…Ø§Ù„ Ú©Ø±ÛŒÚºÛ”',
       'message_english', 'No results found. Please try different words.',
       'suggestions', (
         SELECT jsonb_agg(DISTINCT keyword) 
@@ -439,5 +439,5 @@ BEGIN
   WHERE pronamespace = 'public'::regnamespace 
     AND proname IN ('search_intent_fuzzy', 'process_user_query', 'get_tutorial_with_steps', 
                     'get_trending_topics', 'get_content_gaps', 'get_learning_path');
-  RAISE NOTICE '✅ Created % PL/pgSQL functions', func_count;
+  RAISE NOTICE 'âœ… Created % PL/pgSQL functions', func_count;
 END $$;
