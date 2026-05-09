@@ -1,12 +1,24 @@
 .hero-section {
-  background: var(--off-white);
+  background: var(--white);
   padding: 9rem 0 6rem;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  border-bottom: 2px solid var(--black);
 }
 
+.network-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+}
 .hero-section::before {
   content: '';
   position: absolute;
@@ -14,8 +26,6 @@
   right: -60px;
   width: 420px;
   height: 420px;
-  border: 2px solid rgba(13, 51, 32, 0.08);
-  border-radius: 50%;
   pointer-events: none;
 }
 
@@ -26,39 +36,148 @@
   left: -60px;
   width: 300px;
   height: 300px;
-  border: 2px solid rgba(13, 51, 32, 0.06);
-  border-radius: 50%;
   pointer-events: none;
 }
 
-.hero-img {
-  max-width: 100%;
-  height: auto;
-  border: 3px solid var(--black);
-  box-shadow: 12px 12px 0 var(--green);
-  border-radius: 0;
+/* ── Explore Section ───────────────────────────── */
+.explore-section {
+  position: relative;
+  background: var(--white);
+  padding: 6rem 0;
+  overflow: hidden;
 }
 
+/* reuse the same network canvas — NetworkWeb fills its parent */
+.explore-section .network-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.explore-inner {
+  position: relative;
+  z-index: 1;
+}
+
+
+.explore-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;   /* ← 3 columns */
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.explore-card {
+  background: var(--white);
+  border: 2px solid var(--black);
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.explore-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 7px 7px 0 var(--green);
+  color: inherit;
+  text-decoration: none;
+}
+
+.explore-card-icon {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.explore-card-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.explore-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.explore-card-urdu {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 1.05rem;
+  color: var(--black);
+  line-height: 1.8;
+}
+
+.explore-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.explore-card-cta {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--green);
+  margin-top: 0.4rem;
+}
+
+/* responsive: 2 cols on tablet, 1 on mobile */
+@media (max-width: 768px) {
+  .explore-cards-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .stats-section {
-  background: var(--black);
-  padding: 4rem 0;
+  background: var(--green);
+  padding: 2.5rem 2rem;
   border-top: 2px solid var(--black);
   border-bottom: 2px solid var(--black);
 }
 
+.stats-section .row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
 .stat-card {
-  background: var(--green);
+  background: var(--white);
   border: 2px solid var(--white);
   border-radius: 0;
-  padding: 2rem 1.5rem;
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   transition: 0.2s;
-  position: relative;
+  aspect-ratio: unset;
+  box-shadow: none;
 }
 
 .stat-card:hover {
-  background: var(--white);
   transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0 var(--green-accent);
+  box-shadow: 5px 5px 0 var(--black);
+  background: var(--white);
+  z-index: 1;
 }
 
 .stat-card:hover .stat-number,
@@ -68,21 +187,27 @@
 
 .stat-number {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 800;
-  color: var(--white);
+  color: var(--green);
   line-height: 1;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.3rem;
 }
 
 .stat-label {
   font-family: 'Space Mono', monospace;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.8rem;
+  color: var(--text-soft);
+  font-size: 0.68rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  text-align: center;
 }
 
+@media (max-width: 768px) {
+  .stats-section .row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 .display-5 {
   height: 80px;
   display: flex;

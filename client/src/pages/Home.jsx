@@ -1,6 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDebounce } from 'use-debounce';
+import toast from 'react-hot-toast';
+import { searchAPI } from '../services/api';
 import './Home.css';
+import NetworkWeb from './NetworkWeb';
 
 const Home = () => {
   const [counters, setCounters] = useState({
@@ -11,7 +15,93 @@ const Home = () => {
   });
 
   const statsRef = useRef(null);
+  const [query, setQuery] = useState('');
+  const [debouncedQuery] = useDebounce(query, 300);
+  const [suggestions, setSuggestions] = useState([]);
+  const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [trending, setTrending] = useState([]);
+  const [sessionId] = useState(() => {
+    let sid = localStorage.getItem('sessionId');
+    if (!sid) {
+      sid = crypto.randomUUID?.() || Math.random().toString(36).substring(2);
+      localStorage.setItem('sessionId', sid);
+    }
+    return sid;
+  });
 
+  // Fetch trending topics on mount
+  useEffect(() => {
+    const fetchTrending = async () => {
+      try {
+        const res = await searchAPI.getTrending(7);
+        setTrending(res.data || []);
+      } catch (error) {
+        console.error('Failed to fetch trending:', error);
+      }
+    };
+    fetchTrending();
+  }, []);
+
+  // Fetch suggestions as user types
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      if (debouncedQuery.length < 2) {
+        setSuggestions([]);
+        return;
+      }
+      try {
+        const res = await searchAPI.getSuggestions(debouncedQuery);
+        setSuggestions(res.data || []);
+      } catch (error) {
+        console.error('Suggestion error:', error);
+      }
+    };
+    fetchSuggestions();
+  }, [debouncedQuery]);
+
+  const handleSearch = async (searchQuery = query) => {
+    if (!searchQuery.trim() || searchQuery.trim().length < 2) {
+      toast.error('Please enter at least 2 characters');
+      return;
+    }
+
+    setLoading(true);
+    setSuggestions([]);
+
+    try {
+      const res = await searchAPI.search(searchQuery.trim(), sessionId);
+      setResults(res);
+      
+      if (res.status === 'failed') {
+        toast.error(res.message_english || 'No results found');
+      } else if (res.status === 'success') {
+        toast.success('Found matching tutorial!');
+      }
+    } catch (error) {
+      toast.error('Search failed. Please try again.');
+      console.error('Search error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setQuery(suggestion);
+    handleSearch(suggestion);
+  };
+
+  const getConfidenceClass = (confidence) => {
+    if (confidence >= 0.8) return 'high-confidence';
+    if (confidence >= 0.5) return 'medium-confidence';
+    return 'low-confidence';
+  };
   useEffect(() => {
     const targetCounts = { guides: 500, users: 10000, topics: 50 };
     
@@ -51,63 +141,259 @@ const Home = () => {
     <>
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="container-xl">
-          <div className="row align-items-center g-5">
-            <div className="col-lg-6 text-center text-lg-start">
-              <div className="hero-urdu-main mb-2 animate-up delay-100" dir="rtl">
-                آسان ڈیجیٹل
-              </div>
-              <br />
-              <div className="hero-urdu-sub mb-4 animate-up delay-200" dir="rtl">
-                اپنی مدد آپ
-              </div>
-              <p className="mb-3 fs-5 animate-up delay-300 text-soft">
-                Over <strong style={{ color: 'black' }}>60% of Pakistanis</strong> speak Urdu as their primary language, 
-                yet most digital services are in English. We bridge this gap.
-              </p>
-              <div className="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start animate-up delay-400">
-                <Link to="/poochna" className="btn-pakistan">کچھ پوچھنا ہے؟</Link>
-                <Link to="/seekhna" className="btn-pakistan-outline">کچھ سیکھنا ہے؟</Link>
-              </div>
-            </div>
-            <div className="col-lg-6 animate-right delay-200">
-              <img src="/images/pic1.png" alt="Asaan Digital 2.0" className="hero-img" />
-            </div>
-          </div>
-        </div>
-      </section>
+        <NetworkWeb/>
+  <div className="container-xl">
+    <div className="row justify-content-center">
+      
+      {/* Center whole hero content */}
+      <div className="col-lg-10 text-center">
 
-      {/* Stats Section */}
-      <section className="stats-section" ref={statsRef}>
-        <div className="container-xl">
-          <div className="row text-center g-4">
-            <div className="col-6 col-md-3">
-              <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
-                <div className="stat-number">{counters.guides}+</div>
-                <div className="stat-label">Digital Guides</div>
+        {/* Right aligned Urdu heading */}
+        <div
+          className="hero-urdu-main mb-2 animate-up delay-100"
+          dir="rtl"
+          style={{
+            fontSize: '3.5rem',
+            textAlign: 'right',
+            width: '100%',
+            paddingRight: '300px'
+          }}
+        >
+          آسان ڈیجیٹل
+        </div>
+
+        <div
+          className="hero-urdu-sub animate-up delay-200"
+          dir="rtl"
+          style={{
+            fontSize: '1.8rem',
+            textAlign: 'right',
+            width: '100%',
+            paddingRight: '300px',
+            marginBottom: '3rem',
+            marginTop: '1rem'
+          }}
+        >
+          اپنی مدد آپ
+        </div>
+
+        {/* Search bar */}
+        <div className="row justify-content-center">
+          <div className="col-md-11">
+            <div className="search-bar-wrapper">
+              <div className="search-input-group">
+                
+                <span className="search-icon">
+                  <i className="fas fa-search"></i>
+                </span>
+
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Type your question here — Urdu, Roman Urdu, or English..."
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                />
+
+                <button
+                  className="search-btn"
+                  onClick={() => handleSearch()}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <span
+                        className="spinner-border spinner-border-sm me-2"
+                        role="status"
+                      />
+                      Searching...
+                    </>
+                  ) : (
+                    'Ask'
+                  )}
+                </button>
               </div>
+
+              {/* Suggestions Dropdown */}
+              {suggestions.length > 0 && (
+                <div className="suggestions-dropdown">
+                  {suggestions.map((suggestion, i) => (
+                    <div
+                      key={i}
+                      className="suggestion-item"
+                      onClick={() => handleSuggestionClick(suggestion)}
+                    >
+                      <i className="fas fa-search me-2"></i>
+                      {suggestion}
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
-            <div className="col-6 col-md-3">
-              <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
-                <div className="stat-number">{counters.users.toLocaleString()}+</div>
-                <div className="stat-label">Happy Users</div>
-              </div>
+
+            {/* Increased spacing below search bar */}
+            <div
+              className="topic-pills"
+              style={{ marginTop: '2.5rem' }}
+            >
+              <span className="topic-label">Quick Topics:</span>
+
+              {['CNIC', 'WhatsApp', 'JazzCash', 'NADRA', 'Easypaisa'].map(
+                (topic) => (
+                  <button
+                    key={topic}
+                    className="topic-pill"
+                    onClick={() => {
+                      setQuery(topic);
+                      handleSearch(topic);
+                    }}
+                  >
+                    {topic}
+                  </button>
+                )
+              )}
             </div>
-            <div className="col-6 col-md-3">
-              <div className="stat-card" data-aos="fade-up" data-aos-delay="300">
-                <div className="stat-number">{counters.topics}+</div>
-                <div className="stat-label">Topics Covered</div>
-              </div>
-            </div>
-            <div className="col-6 col-md-3">
-              <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
-                <div className="stat-number">{counters.team}</div>
-                <div className="stat-label">Team Members</div>
-              </div>
-            </div>
+
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
+{results && (
+        <div className="container-xl py-4">
+          <div className="results-section" data-aos="fade-up">
+            {results.status === 'success' ? (
+              <div className="result-card success">
+                <div className="result-header">
+                  <div className={`confidence-badge ${getConfidenceClass(results.confidence)}`}>
+                    <i className="fas fa-chart-line me-1"></i>
+                    {Math.round(results.confidence * 100)}% Match
+                  </div>
+                  <span className="matched-keyword">
+                    Matched: "{results.matched_keyword}"
+                  </span>
+                </div>
+                
+                <h2 className="result-title">
+                  {results.tutorial_title?.urdu}
+                </h2>
+                <p className="result-subtitle">
+                  {results.tutorial_title?.english}
+                </p>
+                
+                <div className="result-meta">
+                  <span className="meta-item">
+                    <i className="fas fa-folder"></i> {results.category}
+                  </span>
+                  <span className="meta-item">
+                    <i className="fas fa-clock"></i> {results.response_time_ms}ms
+                  </span>
+                </div>
+                
+                <Link 
+                  to={`/tutorial/${results.tutorial_id}`}
+                  className="view-tutorial-btn"
+                >
+                  View Full Tutorial <i className="fas fa-arrow-right ms-2"></i>
+                </Link>
+              </div>
+            ) : (
+              <div className="result-card failed">
+                <div className="failed-icon">
+                  <i className="fas fa-search"></i>
+                </div>
+                <h3>{results.message_urdu}</h3>
+                <p>{results.message_english}</p>
+                
+                {results.suggestions && results.suggestions.length > 0 && (
+                  <div className="search-suggestions">
+                    <p>Try searching for:</p>
+                    <div className="suggestion-pills">
+                      {results.suggestions.map((s, i) => (
+                        <button
+                          key={i}
+                          className="suggestion-pill"
+                          onClick={() => handleSuggestionClick(s)}
+                        >
+                          {s}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+      {/* Explore Section */}
+<section className="explore-section">
+  <NetworkWeb />
+  <div className="explore-inner">
+    <div className="text-center mb-5" data-aos="fade-up">
+  <h2 className="explore-title" style={{ textAlign: 'center' }}>
+    Explore Karo — ایکسپلور کریں
+  </h2>
+  <p className="section-sub" style={{ textAlign: 'center', marginBottom: '7px' }}>
+    Pick a topic and start learning in minutes
+  </p>
+</div>
+
+    <div className="container-xl">
+      <div className="explore-cards-grid">
+        {[
+          { key: 'whatsapp',  icon: '', tag: 'Messaging',       title: 'WhatsApp',           urdu: 'واٹس ایپ',        desc: 'Send messages, voice notes, and video calls step by step.' },
+          { key: 'payments',  icon: '', tag: 'Finance',          title: 'Digital Payments',   urdu: 'ڈیجیٹل ادائیگی', desc: 'JazzCash, Easypaisa, and online banking made simple.' },
+          { key: 'gov',       icon: '', tag: 'Public Portals',   title: 'Govt Services',      urdu: 'سرکاری خدمات',    desc: 'NADRA, CNIC, passport and FBR guides in plain Urdu.' },
+          { key: 'safety',    icon: '', tag: 'Stay Safe',         title: 'Online Safety',      urdu: 'آن لائن حفاظت',   desc: 'Protect yourself from scams, fraud, and fake accounts.' },
+          { key: 'phone',     icon: '', tag: 'Beginner Journey',  title: 'Phone Basics',       urdu: 'فون بنیادیات',    desc: 'Learn to use your smartphone from scratch.' },
+          { key: 'jobs',      icon: '', tag: 'Career',            title: 'Job Applications',   urdu: 'نوکری درخواست',   desc: 'Write a CV and apply online for jobs across Pakistan.' },
+        ].map((card, i) => (
+          <Link
+            to={`/seekhna?category=${card.key}`}
+            className="explore-card"
+            key={card.key}
+            data-aos="fade-up"
+            data-aos-delay={100 + i * 80}
+          >
+            <div className="explore-card-icon">{card.icon}</div>
+            <div className="explore-card-tag">{card.tag}</div>
+            <div className="explore-card-title">{card.title}</div>
+            <div className="explore-card-urdu" dir="rtl">{card.urdu}</div>
+            <p className="explore-card-desc">{card.desc}</p>
+            <span className="explore-card-cta">Explore <i className="fas fa-arrow-right ms-1"></i></span>
+          </Link>
+            
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+      {/* Stats Section */}
+    <section className="stats-section" ref={statsRef}>
+  <div className="container-xl">
+    <div className="row">
+      <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
+        <div className="stat-number">{counters.guides}+</div>
+        <div className="stat-label">Digital Guides</div>
+      </div>
+      <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
+        <div className="stat-number">{counters.users.toLocaleString()}+</div>
+        <div className="stat-label">Happy Users</div>
+      </div>
+      <div className="stat-card" data-aos="fade-up" data-aos-delay="300">
+        <div className="stat-number">{counters.topics}+</div>
+        <div className="stat-label">Topics Covered</div>
+      </div>
+      <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
+        <div className="stat-number">{counters.team}</div>
+        <div className="stat-label">Team Members</div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Problems Section */}
       <section className="py-5">
