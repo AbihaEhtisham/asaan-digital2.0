@@ -1,7 +1,35 @@
 .poochna-hero {
   background: var(--white);
-  padding: 8rem 0 5rem;
+  padding: 7rem 2rem 4rem;
   border-bottom: 4px solid var(--black);
+}
+
+.poochna-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.poochna-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--black);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.poochna-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.poochna-search-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .search-bar-wrapper {
@@ -10,11 +38,16 @@
   margin: 0 auto;
 }
 
+.search-bar-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 .search-input-group {
   display: flex;
   background: var(--white);
   border: 4px solid var(--black);
-  box-shadow: 0 6px 0 rgba(212, 175, 55, 0.3);
+  box-shadow: 0 8px 0 var(--gold);
   overflow: hidden;
 }
 
@@ -100,6 +133,8 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  max-width: 700px;
+  margin: 2rem auto 0;
 }
 
 .topic-label {

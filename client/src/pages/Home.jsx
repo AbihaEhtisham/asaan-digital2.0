@@ -52,26 +52,24 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="container-xl">
-          <div className="row align-items-center g-5">
-            <div className="col-lg-6 text-center text-lg-start">
-              <div className="hero-urdu-main mb-2 animate-up delay-100" dir="rtl">
-                آسان ڈیجیٹل
-              </div>
-              <br />
-              <div className="hero-urdu-sub mb-4 animate-up delay-200" dir="rtl">
-                اپنی مدد آپ
-              </div>
-              <p className="mb-3 fs-5 animate-up delay-300 text-soft">
-                Over <strong style={{ color: 'black' }}>60% of Pakistanis</strong> speak Urdu as their primary language, 
-                yet most digital services are in English. We bridge this gap.
+          <div className="hero-grid">
+            <div className="hero-content">
+              <h1 className="hero-title animate-up delay-100">
+                Learn Digital Skills
+              </h1>
+              <p className="hero-subtitle animate-up delay-200">
+                Easy tutorials and instant answers for everyone
               </p>
-              <div className="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start animate-up delay-400">
-                <Link to="/poochna" className="btn-pakistan">کچھ پوچھنا ہے؟</Link>
-                <Link to="/seekhna" className="btn-pakistan-outline">کچھ سیکھنا ہے؟</Link>
+              <p className="hero-description animate-up delay-300">
+                Master digital tools step-by-step. No complicated jargon. Just clear, simple lessons designed for you.
+              </p>
+              <div className="hero-buttons animate-up delay-400">
+                <Link to="/poochna" className="btn-pakistan">Ask a Question</Link>
+                <Link to="/seekhna" className="btn-pakistan-outline">Start Learning</Link>
               </div>
             </div>
-            <div className="col-lg-6 animate-right delay-200">
-              <img src="/images/pic1.png" alt="Asaan Digital 2.0" className="hero-img" />
+            <div className="hero-image-wrapper animate-right delay-200">
+              <img src="/images/pic1.png" alt="Learn Digital Skills" className="hero-img" />
             </div>
           </div>
         </div>
@@ -80,30 +78,22 @@ const Home = () => {
       {/* Stats Section */}
       <section className="stats-section" ref={statsRef}>
         <div className="container-xl">
-          <div className="row text-center g-4">
-            <div className="col-6 col-md-3">
-              <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
-                <div className="stat-number">{counters.guides}+</div>
-                <div className="stat-label">Digital Guides</div>
-              </div>
+          <div className="stats-grid">
+            <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
+              <div className="stat-number">{counters.guides}+</div>
+              <div className="stat-label">Digital Guides</div>
             </div>
-            <div className="col-6 col-md-3">
-              <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
-                <div className="stat-number">{counters.users.toLocaleString()}+</div>
-                <div className="stat-label">Happy Users</div>
-              </div>
+            <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
+              <div className="stat-number">{counters.users.toLocaleString()}+</div>
+              <div className="stat-label">Happy Users</div>
             </div>
-            <div className="col-6 col-md-3">
-              <div className="stat-card" data-aos="fade-up" data-aos-delay="300">
-                <div className="stat-number">{counters.topics}+</div>
-                <div className="stat-label">Topics Covered</div>
-              </div>
+            <div className="stat-card" data-aos="fade-up" data-aos-delay="300">
+              <div className="stat-number">{counters.topics}+</div>
+              <div className="stat-label">Topics Covered</div>
             </div>
-            <div className="col-6 col-md-3">
-              <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
-                <div className="stat-number">{counters.team}</div>
-                <div className="stat-label">Team Members</div>
-              </div>
+            <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
+              <div className="stat-number">{counters.team}</div>
+              <div className="stat-label">Team Members</div>
             </div>
           </div>
         </div>

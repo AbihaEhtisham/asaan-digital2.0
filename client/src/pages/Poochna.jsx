@@ -98,15 +98,11 @@ const Poochna = () => {
     <>
       {/* Hero Search Section */}
       <div className="poochna-hero">
-        <div className="container text-center" data-aos="fade-up">
-          <div className="hero-urdu-sub mb-4" dir="rtl">
-            کچھ <span className="hero-urdu-main">پوچھنا</span> ہے؟
-          </div>
-          <h1 className="display-5 fw-bold mb-4" style={{ color: 'var(--green)' }}>
-            Kuch Poochna Hai?
-          </h1>
-          <div className="row justify-content-center">
-            <div className="col-md-8">
+        <div className="container-xl" data-aos="fade-up">
+          <div className="poochna-content">
+            <h1 className="poochna-title">Ask Your Question</h1>
+            <p className="poochna-subtitle">Get instant answers to your digital questions</p>
+            <div className="poochna-search-wrapper">
               <div className="search-bar-wrapper">
                 <div className="search-input-group">
                   <span className="search-icon">

@@ -72,21 +72,14 @@ useEffect(() => {
       {/* Page Header */}
       <div className="page-header text-center">
         <div className="container-xl" data-aos="zoom-in">
-          <div className="hero-urdu-sub mb-3" dir="rtl">
-            کچھ <span className="urdu-highlight">سیکھنا</span> ہے؟
-          </div>
-          <h1 className="display-4 fw-bold" style={{ color: 'var(--green)' }}>
-            Kuch Seekhna Hai?
-          </h1>
-          <p className="text-soft mt-3 mx-auto" style={{ maxWidth: '600px' }}>
-            Choose a topic, click the arrow, and start learning — simple, step-by-step guides for everyone.
-          </p>
+          <h1 className="seekhna-title">Learn Tutorials</h1>
+          <p className="seekhna-subtitle">Master digital skills with step-by-step guides</p>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="container-xl py-4">
-        <div className="filters-bar">
+      <div className="container-xl seekhna-filters-wrapper">
+        <div className="seekhna-filters">
           <div className="filter-group">
             <label>Category:</label>
             <div className="filter-options">
@@ -94,7 +87,7 @@ useEffect(() => {
                 className={`filter-btn ${!selectedCategory ? 'active' : ''}`}
                 onClick={() => setSelectedCategory(null)}
               >
-                All
+                All Categories
               </button>
               {categories.map(cat => (
                 <button
@@ -103,27 +96,6 @@ useEffect(() => {
                   onClick={() => setSelectedCategory(cat.id)}
                 >
                   {cat.name_english}
-                </button>
-              ))}
-            </div>
-          </div>
-          
-          <div className="filter-group">
-            <label>Difficulty:</label>
-            <div className="filter-options">
-              <button 
-                className={`filter-btn ${!selectedDifficulty ? 'active' : ''}`}
-                onClick={() => setSelectedDifficulty(null)}
-              >
-                All
-              </button>
-              {[1, 2, 3, 4, 5].map(level => (
-                <button
-                  key={level}
-                  className={`filter-btn ${selectedDifficulty === level ? 'active' : ''}`}
-                  onClick={() => setSelectedDifficulty(level)}
-                >
-                  {getDifficultyLabel(level)}
                 </button>
               ))}
             </div>
