@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDebounce } from 'use-debounce';
 import toast from 'react-hot-toast';
 import { searchAPI } from '../services/api';
 import './Poochna.css';
+import NetworkWeb from './NetworkWeb';
 
 const Poochna = () => {
   const [query, setQuery] = useState('');
@@ -94,15 +95,45 @@ const Poochna = () => {
     return 'low-confidence';
   };
 
+  // Star background animation
+  const starsRef = useRef(null);
+
+  useEffect(() => {
+    const starContainer = starsRef.current;
+    if (!starContainer) return;
+    
+    // Clear existing stars
+    starContainer.innerHTML = '';
+    
+    // Create stars only (no particles/bubbles)
+    const starCount = 100;
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random() * 2 + 0.5;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 3}s`;
+      star.style.animationDuration = `${Math.random() * 2 + 2}s`;
+      starContainer.appendChild(star);
+    }
+  }, []);
+
   return (
     <>
       {/* Hero Search Section */}
       <div className="poochna-hero">
+        {/* Star background */}
+        <div className="stars" ref={starsRef}></div>
+        {/* Network Canvas for 3D animation - only lines, no circles */}
+        <NetworkWeb />
         <div className="container text-center" data-aos="fade-up">
           <div className="hero-urdu-sub mb-4" dir="rtl">
             کچھ <span className="hero-urdu-main">پوچھنا</span> ہے؟
           </div>
-          <h1 className="display-5 fw-bold mb-4" style={{ color: 'var(--green)' }}>
+          <h1 className="display-5 fw-bold mb-4">
             Kuch Poochna Hai?
           </h1>
           <div className="row justify-content-center">
@@ -152,9 +183,6 @@ const Poochna = () => {
                   </div>
                 )}
               </div>
-              <p className="text-soft mt-3">
-                Ask anything about Pakistani digital services — we have got the answer for you.
-              </p>
               
               {/* Quick Topic Pills */}
               <div className="topic-pills mt-4">
@@ -246,89 +274,90 @@ const Poochna = () => {
         </div>
       )}
 
-      {/* Popular Questions Section */}
-      <div className="container-xl py-5">
-        <h2 className="section-title mb-5" data-aos="fade-right">Popular Questions</h2>
+      {/* Popular Questions Section - Alternating Layout with adjusted spacing */}
+      <div className="container-xl py-5 popular-questions-section">
+        <h2 className="section-title mb-4" data-aos="fade-up">Popular Questions</h2>
         
-        <div className="row g-4">
-          {/* Featured Card */}
-          <div className="col-lg-8" data-aos="fade-up">
-            <div className="featured-question-card">
-              <div className="featured-image">
-                <img src="https://images.unsplash.com/photo-1568219557405-376e23e4f7cf?w=600&q=80" alt="CNIC" />
-              </div>
-              <div className="featured-content">
-                <span className="badge">Most Searched</span>
-                <h3>CNIC & NADRA</h3>
-                <p>Apply for, renew, or track your CNIC. We cover document requirements and fees for every citizen.</p>
-                <button 
-                  className="btn-pakistan"
-                  onClick={() => handleSearch('CNIC online apply')}
-                >
-                  Learn More <i className="fas fa-arrow-right ms-2"></i>
-                </button>
-              </div>
+        <div className="popular-questions-grid">
+          {/* Card 1: Image on Left */}
+          <div className="popular-card" data-aos="fade-up">
+            <div className="popular-card-image">
+              <img src="https://images.unsplash.com/photo-1568219557405-376e23e4f7cf?w=600&q=80" alt="CNIC" />
+            </div>
+            <div className="popular-card-content">
+              <span className="badge">Most Searched</span>
+              <h3>CNIC & NADRA</h3>
+              <p>Apply for, renew, or track your CNIC. We cover document requirements and fees for every citizen.</p>
+              <button 
+                className="card-link"
+                onClick={() => handleSearch('CNIC online apply')}
+              >
+                Learn More <i className="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
 
-          {/* Quick Access Cards */}
-          <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div className="quick-card">
+          {/* Card 2: Image on Right (automatically via CSS) */}
+          <div className="popular-card" data-aos="fade-up" data-aos-delay="100">
+            <div className="popular-card-image">
               <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&q=80" alt="Banking" />
-              <div className="quick-card-content">
-                <h4>Online Banking</h4>
-                <p>Digital account setup and fund transfers.</p>
-                <button 
-                  className="card-link"
-                  onClick={() => handleSearch('online banking Pakistan')}
-                >
-                  Explore <i className="fas fa-arrow-right"></i>
-                </button>
-              </div>
+            </div>
+            <div className="popular-card-content">
+              <span className="badge">Finance</span>
+              <h3>Online Banking</h3>
+              <p>Digital account setup and fund transfers made simple with step-by-step Urdu guides.</p>
+              <button 
+                className="card-link"
+                onClick={() => handleSearch('online banking Pakistan')}
+              >
+                Explore <i className="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
 
-          <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div className="quick-card whatsapp-card">
-              <div className="whatsapp-content">
-                <i className="fab fa-whatsapp"></i>
-                <h4>Ask on WhatsApp</h4>
-                <p>Chat with our team for instant personal support.</p>
-                <a href="#" className="whatsapp-btn">
-                  Message Now <i className="fab fa-whatsapp ms-1"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div className="quick-card">
+          {/* Card 3: Image on Left */}
+          <div className="popular-card" data-aos="fade-up" data-aos-delay="200">
+            <div className="popular-card-image">
               <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&q=80" alt="Tutorials" />
-              <div className="quick-card-content">
-                <h4>Video Tutorials</h4>
-                <p>Step-by-step visual learning for all services.</p>
-                <Link to="/seekhna" className="card-link">
-                  Watch Now <i className="fas fa-arrow-right"></i>
-                </Link>
-              </div>
+            </div>
+            <div className="popular-card-content">
+              <span className="badge">Learning</span>
+              <h3>Video Tutorials</h3>
+              <p>Step-by-step visual learning for all services. Watch and learn at your own pace.</p>
+              <Link to="/seekhna" className="card-link">
+                Watch Now <i className="fas fa-arrow-right"></i>
+              </Link>
             </div>
           </div>
 
-          <div className="col-lg-4 col-md-12" data-aos="fade-up" data-aos-delay="400">
-            <div className="quick-card horizontal">
-              <div className="horizontal-image">
-                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80" alt="Wallets" />
-              </div>
-              <div className="quick-card-content">
-                <h4>Mobile Wallets</h4>
-                <p>Master JazzCash & Easypaisa in minutes.</p>
-                <button 
-                  className="card-link"
-                  onClick={() => handleSearch('JazzCash Easypaisa')}
-                >
-                  Learn <i className="fas fa-arrow-right"></i>
-                </button>
-              </div>
+          {/* Card 4: WhatsApp Card - Full background */}
+          <div className="popular-card whatsapp-card" data-aos="fade-up" data-aos-delay="300">
+            <div className="popular-card-content">
+              <i className="fab fa-whatsapp"></i>
+              <span className="badge">Instant Support</span>
+              <h3>Ask on WhatsApp</h3>
+              <p>Chat with our team for instant personal support. Get answers directly on your phone.</p>
+              <a href="#" className="whatsapp-btn">
+                Message Now <i className="fab fa-whatsapp ms-1"></i>
+              </a>
+            </div>
+          </div>
+
+          {/* Card 5: Image on Right (automatically) */}
+          <div className="popular-card" data-aos="fade-up" data-aos-delay="400">
+            <div className="popular-card-image">
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&q=80" alt="Wallets" />
+            </div>
+            <div className="popular-card-content">
+              <span className="badge">Mobile Wallets</span>
+              <h3>Mobile Wallets</h3>
+              <p>Master JazzCash & Easypaisa in minutes. Send money, pay bills, and more.</p>
+              <button 
+                className="card-link"
+                onClick={() => handleSearch('JazzCash Easypaisa')}
+              >
+                Learn <i className="fas fa-arrow-right"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -339,7 +368,7 @@ const Poochna = () => {
         <div className="container-xl mb-5">
           <div className="trending-section" data-aos="fade-up">
             <h3 className="trending-title">
-              <i className="fas fa-fire me-2" style={{ color: 'var(--gold)' }}></i>
+              <i className="fas fa-fire me-2" style={{ color: '#f59e0b' }}></i>
               Trending This Week
             </h3>
             <div className="trending-list">
@@ -363,7 +392,7 @@ const Poochna = () => {
         </div>
       )}
 
-      {/* Master Section */}
+      {/* Master Section - with darker 3D border effect */}
       <div className="container-xl mb-5">
         <div className="master-section" data-aos="fade-up">
           <h2 className="section-title text-center mb-5">Master Your Digital World</h2>
@@ -396,7 +425,7 @@ const Poochna = () => {
                 Asaan Digital 2.0 makes learning digital skills simple. Start by asking any question. 
                 Our platform provides clear guides to help you go from a beginner to a confident user.
               </p>
-              <div className="d-flex flex-wrap gap-3 justify-content-center">
+              <div className="d-flex flex-wrap gap-3 master-buttons">
                 <Link to="/poochna" className="btn-pakistan">کچھ پوچھنا ہے؟</Link>
                 <Link to="/seekhna" className="btn-pakistan-outline">کچھ سیکھنا ہے؟</Link>
               </div>
@@ -405,8 +434,8 @@ const Poochna = () => {
         </div>
       </div>
 
-      {/* Safety Alert */}
-      <div className="container-xl mb-5">
+      {/* Safety Alert Section - with margins and not full width */}
+      <div className="safety-alert-section">
         <div className="safety-alert">
           <div className="safety-icon">
             <i className="fas fa-shield-alt"></i>
