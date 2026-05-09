@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { adminAPI, analyticsAPI } from '../services/api';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import NetworkWeb from './NetworkWeb';
 import './Admin.css';
 
 const Admin = () => {
@@ -59,6 +60,8 @@ const Admin = () => {
   if (!isAuthenticated) {
     return (
       <div className="admin-login">
+        {/* Network Canvas for 3D animation */}
+        <NetworkWeb />
         <div className="admin-login-card">
           <div className="admin-login-icon">
             <i className="fas fa-lock"></i>
@@ -73,8 +76,8 @@ const Admin = () => {
               value={adminKey}
               onChange={(e) => setAdminKey(e.target.value)}
             />
-            <button type="submit" className="btn-pakistan w-100 mt-3">
-              Access Dashboard
+            <button type="submit" className="admin-login-btn">
+              Access Dashboard <i className="fas fa-arrow-right ms-2"></i>
             </button>
           </form>
         </div>
@@ -85,8 +88,11 @@ const Admin = () => {
   if (loading) {
     return (
       <div className="admin-loading">
-        <div className="spinner-border" style={{ color: 'var(--green)' }} role="status" />
-        <p className="mt-3">Loading dashboard...</p>
+        <NetworkWeb />
+        <div className="loading-content">
+          <div className="spinner-border" style={{ color: '#3b82f6' }} role="status" />
+          <p className="mt-3">Loading dashboard...</p>
+        </div>
       </div>
     );
   }
@@ -104,6 +110,7 @@ const Admin = () => {
     <div className="admin-dashboard">
       {/* Admin Header */}
       <div className="admin-header">
+        <NetworkWeb />
         <div className="container-xl">
           <div className="admin-header-content">
             <div>
