@@ -1,7 +1,7 @@
 .poochna-hero {
-  background: var(--cream);
+  background: var(--white);
   padding: 8rem 0 5rem;
-  border-bottom: 2px solid var(--black);
+  border-bottom: 4px solid var(--black);
 }
 
 .search-bar-wrapper {
@@ -13,27 +13,22 @@
 .search-input-group {
   display: flex;
   background: var(--white);
-  border: 3px solid var(--black);
-  box-shadow: 6px 6px 0 var(--black);
+  border: 4px solid var(--black);
+  box-shadow: 0 6px 0 rgba(212, 175, 55, 0.3);
   overflow: hidden;
 }
 
 .search-icon {
-  display: flex;
-  align-items: center;
-  padding: 0 1.2rem;
-  background: var(--white);
-  color: var(--text-soft);
-  border-right: 2px solid var(--border);
+  display: none;
 }
 
 .search-input {
   flex: 1;
   border: none;
   outline: none;
-  padding: 1rem 1rem;
-  font-family: 'Syne', sans-serif;
-  font-size: 1rem;
+  padding: 1.2rem 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: 1.1rem;
   font-weight: 500;
   background: var(--white);
 }
@@ -47,20 +42,21 @@
   background: var(--black);
   color: var(--white);
   border: none;
-  padding: 1rem 2rem;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  padding: 1.2rem 2.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0em;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
   white-space: nowrap;
-  border-left: 2px solid var(--black);
+  border-left: none;
 }
 
 .search-btn:hover:not(:disabled) {
-  background: var(--green);
+  background: var(--gold);
+  color: var(--black);
 }
 
 .search-btn:disabled {
@@ -103,32 +99,29 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .topic-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--text-soft);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-right: 0.5rem;
+  display: none;
 }
 
 .topic-pill {
-  background: transparent;
-  color: var(--green);
-  border: 1.5px solid var(--green);
-  padding: 0.3rem 1rem;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
+  background: var(--white);
+  color: var(--black);
+  border: 3px solid var(--black);
+  padding: 0.9rem 1.8rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
 }
 
 .topic-pill:hover {
-  background: var(--green);
-  color: var(--white);
+  background: var(--black);
+  color: var(--gold);
+  transform: translateY(-2px);
 }
 
 /* Results Section */
@@ -140,16 +133,16 @@
 .result-card {
   background: var(--white);
   border: 3px solid var(--black);
-  padding: 2rem;
-  box-shadow: 8px 8px 0 var(--green);
+  padding: 2.5rem;
+  box-shadow: 0 8px 0 var(--gold);
 }
 
 .result-card.success {
-  border-color: var(--green);
+  border-color: var(--black);
 }
 
 .result-card.failed {
-  border-color: var(--gold);
+  border-color: var(--black);
   text-align: center;
 }
 

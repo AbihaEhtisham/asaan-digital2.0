@@ -1,10 +1,10 @@
 .hero-section {
-  background: var(--off-white);
+  background: var(--white);
   padding: 9rem 0 6rem;
   position: relative;
   overflow: hidden;
   z-index: 1;
-  border-bottom: 2px solid var(--black);
+  border-bottom: 4px solid var(--black);
 }
 
 .hero-section::before {
@@ -35,52 +35,52 @@
   max-width: 100%;
   height: auto;
   border: 3px solid var(--black);
-  box-shadow: 12px 12px 0 var(--green);
+  box-shadow: 12px 12px 0 var(--gold);
   border-radius: 0;
 }
 
 .stats-section {
   background: var(--black);
   padding: 4rem 0;
-  border-top: 2px solid var(--black);
-  border-bottom: 2px solid var(--black);
+  border-top: 4px solid var(--black);
+  border-bottom: 4px solid var(--black);
 }
 
 .stat-card {
-  background: var(--green);
-  border: 2px solid var(--white);
+  background: var(--black);
+  border: 3px solid var(--gold);
   border-radius: 0;
-  padding: 2rem 1.5rem;
-  transition: 0.2s;
+  padding: 2.5rem 2rem;
+  transition: 0.3s ease;
   position: relative;
 }
 
 .stat-card:hover {
-  background: var(--white);
-  transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0 var(--green-accent);
+  background: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.3);
 }
 
 .stat-card:hover .stat-number,
 .stat-card:hover .stat-label {
-  color: var(--green) !important;
+  color: var(--black) !important;
 }
 
 .stat-number {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 900;
+  color: var(--gold);
   line-height: 1;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
 }
 
 .stat-label {
-  font-family: 'Space Mono', monospace;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  text-transform: none;
+  letter-spacing: 0em;
 }
 
 .display-5 {
@@ -107,7 +107,7 @@
   max-width: 460px;
   margin: 0 auto;
   border: 3px solid var(--black);
-  box-shadow: 10px 10px 0 var(--green);
+  box-shadow: 10px 10px 0 var(--gold);
 }
 
 .mission-cluster {
@@ -135,63 +135,63 @@
 
 .step-card {
   background: var(--white);
-  border: 2px solid var(--black);
+  border: 3px solid var(--black);
   border-radius: 0;
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 2rem;
   text-align: center;
-  transition: all 0.2s;
-  height: 250px;
+  transition: all 0.3s ease;
+  height: 280px;
 }
 
 .step-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 6px 6px 0 var(--green);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 var(--gold);
 }
 
 .step-number {
-  width: 56px;
-  height: 56px;
-  background: var(--green);
-  color: var(--white);
-  font-family: 'Syne', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 800;
+  width: 64px;
+  height: 64px;
+  background: var(--black);
+  color: var(--gold);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.2rem;
-  border: 2px solid var(--black);
-  box-shadow: 3px 3px 0 var(--black);
+  margin: 0 auto 1.5rem;
+  border: 3px solid var(--black);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .step-card h3 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
   color: var(--black);
 }
 
 .feature-card {
-  background: var(--green);
-  color: var(--white);
-  border: 2px solid var(--black);
-  padding: 2.5rem 2rem;
+  background: var(--white);
+  color: var(--black);
+  border: 3px solid var(--black);
+  padding: 3rem 2.5rem;
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  transition: all 0.2s;
-  box-shadow: 5px 5px 0 var(--black);
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
 }
 
 .feature-card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 8px 8px 0 var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 0 var(--gold);
 }
 
 .feature-card .text-soft {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: var(--text-soft) !important;
 }
 
 .urdu-feature-title {
@@ -205,18 +205,18 @@
 
 .btn-feature {
   background: var(--black);
-  color: var(--white);
-  border: 2px solid var(--white);
+  color: var(--gold);
+  border: 3px solid var(--black);
   border-radius: 0;
-  padding: 0.75rem 2rem;
-  font-family: 'Syne', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
+  padding: 1rem 2.2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0em;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
   width: fit-content;
 }
 
@@ -224,7 +224,7 @@
   background: var(--gold);
   border-color: var(--gold);
   color: var(--black);
-  transform: translate(-2px, -2px);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
