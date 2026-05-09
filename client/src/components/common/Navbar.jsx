@@ -6,17 +6,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
- const navLinks = [
-   { path: '/about', label: 'ہمارے بارے میں' },
+  const navLinks = [
+    { path: '/', label: 'ہوم' },
+    { path: '/poochna', label: 'کچھ پوچھنا' },
+    { path: '/seekhna', label: 'کچھ سیکھنا ہے' },
     { path: '/impact', label: 'کمیونٹی' },
-    { path: '/seekhna', label: 'سیکھنا' },
-     
-  { path: '/', label: 'ہوم' },
- 
-  
- 
- 
-];
+    { path: '/about', label: 'ہمارے بارے میں' },
+  ];
 
   const isActive = (path) => {
     if (path === '/' && location.pathname === '/') return true;
