@@ -1,3 +1,6 @@
+/* TutorialDetail.css - Clean & Simple Design */
+
+/* Loading & Not Found States */
 .tutorial-loading,
 .tutorial-not-found {
   padding: 10rem 2rem;
@@ -7,27 +10,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 30%, #f0f7ff 60%, #e8f4ff 100%);
 }
 
+/* Tutorial Header */
 .tutorial-header {
-  background: var(--off-white);
+  background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 30%, #f0f7ff 60%, #e8f4ff 100%);
   padding: 8rem 0 3rem;
-  border-bottom: 2px solid var(--black);
-}
-
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  color: var(--green);
-  font-weight: 700;
-  text-decoration: none;
-  margin-bottom: 2rem;
-  transition: gap 0.2s;
-}
-
-.back-link:hover {
-  gap: 0.5rem;
-  color: var(--green);
+  border-bottom: none;
+  position: relative;
 }
 
 .tutorial-header-content {
@@ -35,32 +26,40 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.tutorial-header-info {
+  flex: 1;
 }
 
 .tutorial-category-badge {
   display: inline-block;
-  background: var(--gold);
-  color: var(--black);
-  padding: 0.3rem 1rem;
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #ffffff;
+  padding: 0.4rem 1.2rem;
   font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  border: 2px solid var(--black);
+  border-radius: 50px;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 .tutorial-detail-title {
-  font-family: 'Noto Nastaliq Urdu', serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--green);
-  line-height: 1.6;
-  max-width: 600px;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #1e3a8a;
+  line-height: 1.4;
+  max-width: 700px;
+  margin-bottom: 0.5rem;
 }
 
 .tutorial-detail-subtitle {
-  font-size: 1.1rem;
-  color: var(--text-soft);
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  color: #475569;
   margin-bottom: 1rem;
 }
 
@@ -68,21 +67,30 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 
 .detail-meta-tag {
-  border: 2px solid var(--black);
+  border: 1px solid #e2e8f0;
   padding: 0.3rem 1rem;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   font-family: 'Space Mono', monospace;
+  border-radius: 50px;
+  color: #475569;
+  background: #ffffff;
+}
+
+.detail-meta-tag.difficulty {
+  border-color: #3b82f6;
+  color: #3b82f6;
 }
 
 /* Progress Circle */
 .progress-circle-wrapper {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   flex-shrink: 0;
 }
 
@@ -94,13 +102,13 @@
 
 .progress-bg {
   fill: none;
-  stroke: var(--border);
+  stroke: #e2e8f0;
   stroke-width: 8;
 }
 
 .progress-fill {
   fill: none;
-  stroke: var(--green);
+  stroke: #3b82f6;
   stroke-width: 8;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.5s ease;
@@ -117,67 +125,190 @@
 .progress-percent {
   display: block;
   font-family: 'Syne', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 800;
-  color: var(--green);
+  color: #3b82f6;
 }
 
 .progress-label {
   font-family: 'Space Mono', monospace;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   text-transform: uppercase;
-  color: var(--text-soft);
+  color: #64748b;
 }
 
-/* Steps Section */
+/* Steps Section - Blue Background */
+.steps-section-wrapper {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  padding: 3rem 0;
+}
+
 .steps-section-title {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #1e3a8a;
 }
 
-.step-detail-card {
-  background: var(--white);
-  border: 2px solid var(--black);
+/* Video Container - Smaller Size */
+.tutorial-video-container {
+  margin-bottom: 2rem;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.2rem;
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #ffffff;
+}
+
+.video-header h3 {
+  margin: 0;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.video-duration {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  background: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-description {
+  padding: 0.75rem 1.2rem;
+  margin: 0;
+  color: #475569;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+/* Video Loading & Placeholder States */
+.video-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
   padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  transition: all 0.3s;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-loading p {
+  margin: 0;
+  color: #64748b;
+}
+
+.video-placeholder-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-placeholder-message i {
+  font-size: 1.5rem;
+  color: #94a3b8;
+}
+
+.video-placeholder-message p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+/* Step Cards - Smaller Size */
+.step-detail-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .step-detail-card.completed {
-  border-color: var(--green);
-  opacity: 0.8;
+  border-color: #3b82f6;
+  background: #f0f4ff;
 }
 
 .step-detail-card.active {
-  border-color: var(--green);
-  box-shadow: 4px 4px 0 var(--green);
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.12);
 }
 
 .step-detail-header {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: flex-start;
 }
 
 .step-detail-number {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  background: var(--green);
-  color: var(--white);
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 1.2rem;
-  border: 2px solid var(--black);
-  box-shadow: 3px 3px 0 var(--black);
+  font-size: 1.1rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
 }
 
 .step-detail-card.completed .step-detail-number {
-  background: var(--green-accent);
+  background: #22c55e;
+  box-shadow: 0 2px 6px rgba(34, 197, 94, 0.2);
 }
 
 .step-detail-texts {
@@ -185,77 +316,116 @@
 }
 
 .step-instruction-urdu {
-  font-family: 'Noto Nastaliq Urdu', serif;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
   font-size: 1.2rem;
-  color: var(--green);
-  margin-bottom: 0.3rem;
-  line-height: 1.8;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 0.25rem;
+  line-height: 1.4;
+  direction: rtl;
 }
 
 .step-instruction-english {
-  color: var(--text-soft);
-  font-size: 0.95rem;
-}
-
-.step-image-container {
-  margin-top: 1.5rem;
-  border: 2px solid var(--black);
-  overflow: hidden;
-}
-
-.step-image-container img {
-  width: 100%;
-  height: auto;
-  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.4;
 }
 
 .step-actions {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   display: flex;
   align-items: center;
 }
 
 .complete-step-btn {
-  background: var(--green);
-  color: var(--white);
-  border: 2px solid var(--black);
-  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1.2rem;
   font-family: 'Syne', sans-serif;
   font-weight: 700;
+  font-size: 0.8rem;
   cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 3px 3px 0 var(--black);
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
 }
 
 .complete-step-btn:hover {
-  background: var(--green-mid);
-  transform: translate(-2px, -2px);
-  box-shadow: 5px 5px 0 var(--black);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
 }
 
 .step-completed-badge {
-  color: var(--green);
+  color: #22c55e;
   font-weight: 700;
   font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
 }
 
-/* Sidebar */
+/* Sidebar - Collapsible Dropdowns */
+.sidebar-section {
+  position: sticky;
+  top: 100px;
+}
+
 .sidebar-card {
-  background: var(--white);
-  border: 2px solid var(--black);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 4px 4px 0 var(--black);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.sidebar-dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+
+.sidebar-dropdown-header:hover {
+  background: #f8fafc;
 }
 
 .sidebar-title {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  color: var(--green);
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--black);
+  font-size: 0.95rem;
+  color: #1e3a8a;
+  margin: 0;
+}
+
+.dropdown-icon {
+  color: #3b82f6;
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+}
+
+.dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+.sidebar-dropdown-content {
+  padding: 0.8rem 1.2rem 1rem;
+  border-top: 1px solid #e2e8f0;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .step-nav-list {
@@ -267,50 +437,56 @@
 .step-nav-item {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  background: transparent;
-  border: 1px solid var(--border);
-  padding: 0.5rem;
+  gap: 0.6rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   text-align: left;
   width: 100%;
 }
 
 .step-nav-item:hover {
-  background: var(--cream);
+  background: #eef2ff;
+  border-color: #93c5fd;
 }
 
 .step-nav-item.active {
-  border-color: var(--green);
-  background: rgba(13, 51, 32, 0.05);
-}
-
-.step-nav-item.done {
-  opacity: 0.6;
+  border-color: #3b82f6;
+  background: #eef2ff;
 }
 
 .step-nav-number {
-  width: 28px;
-  height: 28px;
-  min-width: 28px;
-  background: var(--green);
-  color: var(--white);
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  background: #e2e8f0;
+  color: #475569;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
+  border-radius: 50%;
+}
+
+.step-nav-item.active .step-nav-number {
+  background: #3b82f6;
+  color: #ffffff;
 }
 
 .step-nav-item.done .step-nav-number {
-  background: var(--green-accent);
+  background: #22c55e;
+  color: #ffffff;
 }
 
 .step-nav-text {
-  font-size: 0.8rem;
-  color: var(--text-soft);
+  font-size: 0.75rem;
+  color: #334155;
   line-height: 1.3;
+  flex: 1;
 }
 
 .prereq-list {
@@ -322,33 +498,109 @@
 .prereq-item {
   display: flex;
   align-items: center;
-  padding: 0.5rem;
-  color: var(--green);
+  padding: 0.6rem 0.8rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  color: #3b82f6;
   text-decoration: none;
   font-weight: 600;
-  border: 1px solid var(--border);
-  transition: all 0.2s;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
 }
 
 .prereq-item:hover {
-  background: var(--cream);
-  color: var(--green);
+  background: #eef2ff;
+  border-color: #93c5fd;
+  transform: translateX(5px);
 }
 
 .sidebar-text {
-  color: var(--text-soft);
-  font-size: 0.9rem;
-  line-height: 1.7;
+  color: #475569;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .sidebar-text-urdu {
-  font-family: 'Noto Nastaliq Urdu', serif;
-  color: var(--green);
-  font-size: 1rem;
-  line-height: 1.8;
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border);
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  color: #1e3a8a;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid #e2e8f0;
+  direction: rtl;
+}
+
+/* Test Your Knowledge Section at Bottom */
+.test-knowledge-section {
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem 0 3rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+.test-knowledge-section h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.test-knowledge-section p {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+  color: #bfdbfe;
+  margin-bottom: 1.2rem;
+}
+
+.quiz-bottom-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #ffffff;
+  color: #1e40af;
+  padding: 0.7rem 1.5rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quiz-bottom-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  gap: 0.8rem;
+  color: #1e40af;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .step-instruction-urdu {
+    font-size: 1.1rem;
+  }
+  
+  .step-instruction-english {
+    font-size: 0.8rem;
+  }
+  
+  .step-detail-number {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    font-size: 1rem;
+  }
+  
+  .test-knowledge-section h2 {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -360,17 +612,111 @@
     flex-direction: column;
   }
 
+  .tutorial-detail-title {
+    font-size: 1.6rem;
+  }
+  
+  .tutorial-detail-subtitle {
+    font-size: 0.95rem;
+  }
+
   .progress-circle-wrapper {
     width: 80px;
     height: 80px;
-  }
-
-  .tutorial-detail-title {
-    font-size: 1.8rem;
+    align-self: center;
   }
 
   .step-detail-header {
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .step-detail-card {
+    padding: 1rem;
+  }
+  
+  .step-instruction-urdu {
+    font-size: 1rem;
+  }
+  
+  .step-instruction-english {
+    font-size: 0.75rem;
+  }
+  
+  .step-detail-number {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    font-size: 0.9rem;
+  }
+  
+  .test-knowledge-section {
+    padding: 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+  
+  .test-knowledge-section h2 {
+    font-size: 1.2rem;
+  }
+  
+  .sidebar-section {
+    position: static;
+    margin-top: 1.5rem;
+  }
+  
+  .video-header {
+    padding: 0.6rem 1rem;
+  }
+  
+  .video-header h3 {
+    font-size: 0.85rem;
+  }
+  
+  .video-duration {
+    font-size: 0.65rem;
+  }
+  
+  .video-description {
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .step-instruction-urdu {
+    font-size: 0.95rem;
+  }
+  
+  .step-instruction-english {
+    font-size: 0.7rem;
+  }
+  
+  .step-detail-card {
+    padding: 0.8rem;
+  }
+  
+  .step-detail-number {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    font-size: 0.85rem;
+  }
+  
+  .complete-step-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.7rem;
+  }
+  
+  .test-knowledge-section {
+    padding: 1.2rem;
+  }
+  
+  .test-knowledge-section h2 {
+    font-size: 1rem;
+  }
+  
+  .quiz-bottom-btn {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.8rem;
   }
 }

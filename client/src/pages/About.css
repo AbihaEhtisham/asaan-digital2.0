@@ -281,10 +281,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
 }
 
-.explore-section .col-lg-5 {
+.explore-section .col-lg-3 {
   order: 2;
   flex: 1.2;
 }

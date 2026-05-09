@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { tutorialAPI } from '../services/api';
 import './Seekhna.css';
 import { useSearchParams } from 'react-router-dom';
+import NetworkWeb from './NetworkWeb';
 
 const Seekhna = () => {
   const [categories, setCategories] = useState([]);
@@ -71,6 +72,7 @@ useEffect(() => {
     <>
       {/* Page Header */}
       <div className="page-header text-center">
+        <NetworkWeb/>
         <div className="container-xl" data-aos="zoom-in">
           <div className="hero-urdu-sub mb-3" dir="rtl">
             کچھ <span className="urdu-highlight">سیکھنا</span> ہے؟

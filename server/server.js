@@ -19,6 +19,7 @@ const tutorialRoutes = require('./routes/tutorials');
 const adminRoutes = require('./routes/admin');
 const analyticsRoutes = require('./routes/analytics');
 const quizRoutes = require('./routes/quizRoutes');
+const videoRoutes = require('./routes/videoRoutes');
 
 // Import middleware
 const { errorHandler } = require('./middleware/errorHandler');
@@ -36,6 +37,8 @@ app.use(cors({
   credentials: true,
   optionsSuccessStatus: 200
 }));
+
+app.use('/api/videos', videoRoutes);
 
 // Rate limiting
 const limiter = rateLimit({

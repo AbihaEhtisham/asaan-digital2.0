@@ -8,7 +8,7 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', label: 'ہوم' },
-    { path: '/poochna', label: 'کچھ پوچھنا' },
+    { path: '/poochna', label: ' کچھ پوچھنا ہے' },
     { path: '/seekhna', label: 'کچھ سیکھنا ہے' },
     { path: '/impact', label: 'کمیونٹی' },
     { path: '/about', label: 'ہمارے بارے میں' },

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import './TutorialQuiz.css';
 
 const getSessionId = () => {
@@ -13,56 +13,64 @@ const getSessionId = () => {
 
 const API = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-// ─── States ───────────────────────────────────────────────────
 const STATE = { IDLE: 'idle', LOADING: 'loading', QUIZ: 'quiz', RESULT: 'result', ERROR: 'error' };
 
-const TutorialQuiz = ({ tutorialId, tutorialTitle }) => {
-  const [state,     setState]     = useState(STATE.IDLE);
-  const [quiz,      setQuiz]      = useState(null);
-  const [answers,   setAnswers]   = useState(Array(5).fill(null));
-  const [current,   setCurrent]   = useState(0);
-  const [result,    setResult]    = useState(null);
-  const [error,     setError]     = useState('');
+const TutorialQuiz = () => {
+  const { id: tutorialId } = useParams();
+  const navigate = useNavigate();
+  
+  const [state, setState] = useState(STATE.LOADING);
+  const [quiz, setQuiz] = useState(null);
+  const [answers, setAnswers] = useState(Array(5).fill(null));
+  const [current, setCurrent] = useState(0);
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState('');
+  const [tutorialTitle, setTutorialTitle] = useState('');
   const startTime = useRef(null);
 
-  // ── Load quiz ──────────────────────────────────────────────
-  const loadQuiz = async () => {
-    setState(STATE.LOADING);
-    setError('');
-    try {
-      const res  = await fetch(`${API}/quiz/${tutorialId}`);
-      const data = await res.json();
-      if (!data.success) throw new Error(data.error);
-      setQuiz(data.data);
-      setAnswers(Array(5).fill(null));
-      setCurrent(0);
-      setResult(null);
-      startTime.current = Date.now();
-      setState(STATE.QUIZ);
-    } catch (err) {
-      setError(err.message || 'Failed to load quiz');
-      setState(STATE.ERROR);
+  // Load quiz on mount
+  useEffect(() => {
+    const loadQuiz = async () => {
+      setState(STATE.LOADING);
+      setError('');
+      try {
+        const res = await fetch(`${API}/quiz/${tutorialId}`);
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error);
+        setQuiz(data.data);
+        setTutorialTitle(data.data.tutorial_title);
+        setAnswers(Array(5).fill(null));
+        setCurrent(0);
+        setResult(null);
+        startTime.current = Date.now();
+        setState(STATE.QUIZ);
+      } catch (err) {
+        setError(err.message || 'Failed to load quiz');
+        setState(STATE.ERROR);
+      }
+    };
+    
+    if (tutorialId) {
+      loadQuiz();
     }
-  };
+  }, [tutorialId]);
 
-  // ── Select answer ──────────────────────────────────────────
   const selectAnswer = (optionIndex) => {
     const updated = [...answers];
     updated[current] = optionIndex;
     setAnswers(updated);
   };
 
-  // ── Submit ─────────────────────────────────────────────────
   const submitQuiz = async () => {
     if (answers.includes(null)) return;
     setState(STATE.LOADING);
     try {
       const timeTaken = Math.round((Date.now() - startTime.current) / 1000);
-      const res  = await fetch(`${API}/quiz/${tutorialId}/submit`, {
-        method:  'POST',
+      const res = await fetch(`${API}/quiz/${tutorialId}/submit`, {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          session_id:   getSessionId(),
+          session_id: getSessionId(),
           answers,
           time_taken_s: timeTaken,
         }),
@@ -77,197 +85,230 @@ const TutorialQuiz = ({ tutorialId, tutorialTitle }) => {
     }
   };
 
-  const retry = () => loadQuiz();
+  const retry = () => {
+    setAnswers(Array(5).fill(null));
+    setCurrent(0);
+    setResult(null);
+    startTime.current = Date.now();
+    setState(STATE.QUIZ);
+  };
 
   const progress = answers.filter(a => a !== null).length;
   const allAnswered = progress === 5;
 
-  // ═══════════════════════════════════════════════════════════
-  // RENDER
-  // ═══════════════════════════════════════════════════════════
-
-  // ── Idle (entry point at bottom of TutorialDetail) ──
-  if (state === STATE.IDLE) {
-    return (
-      <div className="quiz-entry" data-aos="fade-up">
-        <div className="quiz-entry-left">
-          <span className="quiz-entry-tag">📝 Quiz</span>
-          <h3 className="quiz-entry-title">Test Your Knowledge</h3>
-          <p className="quiz-entry-desc">
-            5 questions · Pass with 3/5 · Retries allowed
-          </p>
-        </div>
-        <button className="quiz-start-btn" onClick={loadQuiz}>
-          Start Quiz <i className="fas fa-arrow-right ms-2" />
-        </button>
-      </div>
-    );
-  }
-
-  // ── Loading ──
+  // Loading State
   if (state === STATE.LOADING) {
     return (
-      <div className="quiz-loading">
-        <div className="quiz-spinner" />
-        <p>{quiz ? 'Submitting…' : 'Generating your quiz with AI…'}</p>
+      <div className="quiz-page-container">
+        <div className="quiz-loading">
+          <div className="quiz-spinner" />
+          <p>آپ کا کوئز لوڈ ہو رہا ہے...</p>
+          <p className="quiz-loading-sub">Loading your quiz...</p>
+        </div>
       </div>
     );
   }
 
-  // ── Error ──
+  // Error State
   if (state === STATE.ERROR) {
     return (
-      <div className="quiz-error">
-        <i className="fas fa-exclamation-triangle" />
-        <p>{error}</p>
-        <button className="quiz-retry-btn" onClick={loadQuiz}>Try Again</button>
-      </div>
-    );
-  }
-
-  // ── Result ──
-  if (state === STATE.RESULT && result) {
-    const pct = Math.round((result.score / 5) * 100);
-    return (
-      <div className="quiz-result" data-aos="zoom-in">
-        <div className={`quiz-result-banner ${result.passed ? 'passed' : 'failed'}`}>
-          <div className="quiz-result-icon">
-            {result.passed ? '🏆' : '📚'}
-          </div>
-          <div>
-            <h3 className="quiz-result-title">
-              {result.passed ? 'Well Done!' : 'Keep Practicing!'}
-            </h3>
-            <p className="quiz-result-score">
-              {result.score} / 5 &nbsp;·&nbsp; {pct}%
-              &nbsp;·&nbsp; {result.passed ? 'PASSED' : 'NOT PASSED'}
-            </p>
-          </div>
-        </div>
-
-        {/* Per-question breakdown */}
-        <div className="quiz-breakdown">
-          {quiz.questions.map((q, i) => {
-            const r = result.results[i];
-            return (
-              <div key={i} className={`quiz-breakdown-item ${r.correct ? 'correct' : 'wrong'}`}>
-                <div className="quiz-breakdown-header">
-                  <span className="qb-num">Q{i + 1}</span>
-                  <span className="qb-question">{q.question_text}</span>
-                  <span className="qb-icon">{r.correct ? '✓' : '✗'}</span>
-                </div>
-                <div className="qb-detail">
-                  <span className="qb-your">
-                    Your answer: <strong>{q.options[answers[i]]}</strong>
-                  </span>
-                  {!r.correct && (
-                    <span className="qb-correct">
-                      Correct: <strong>{q.options[r.correct_index]}</strong>
-                    </span>
-                  )}
-                  {r.explanation && (
-                    <span className="qb-explanation">💡 {r.explanation}</span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="quiz-result-actions">
-          {!result.passed && (
-            <button className="quiz-retry-btn" onClick={retry}>
-              <i className="fas fa-redo me-2" /> Retry Quiz
-            </button>
-          )}
-          <Link to="/seekhna" className="quiz-browse-btn">
-            Browse More Tutorials <i className="fas fa-arrow-right ms-2" />
+      <div className="quiz-page-container">
+        <div className="quiz-error">
+          <i className="fas fa-exclamation-triangle"></i>
+          <p>{error}</p>
+          <button className="quiz-retry-btn" onClick={() => window.location.reload()}>
+            دوبارہ کوشش کریں
+          </button>
+          <Link to={`/tutorial/${tutorialId}`} className="quiz-back-btn">
+            واپس سبق پر جائیں
           </Link>
         </div>
       </div>
     );
   }
 
-  // ── Quiz ──
+  // Result State - Success Message with Aur Kuch Seekhein Button
+  if (state === STATE.RESULT && result) {
+    const pct = Math.round((result.score / 5) * 100);
+    const passed = result.score >= 3;
+    
+    return (
+      <div className="quiz-page-container">
+        <div className="quiz-result-card">
+          {/* Celebration Animation */}
+          <div className="quiz-celebration">
+            <div className="confetti">🎉</div>
+            <div className="confetti delay-1">🎊</div>
+            <div className="confetti delay-2">🏆</div>
+            <div className="confetti delay-3">⭐</div>
+            <div className="confetti delay-4">🎈</div>
+          </div>
+          
+          <div className={`quiz-result-banner ${passed ? 'passed' : 'failed'}`}>
+            <div className="quiz-result-icon">
+              {passed ? '🏆' : '📚'}
+            </div>
+            <div>
+              <h3 className="quiz-result-title">
+                {passed ? 'مبارک ہو! ' : 'پریکٹس جاری رکھیں! '}
+              </h3>
+              <p className="quiz-result-message">
+                {passed 
+                  ? 'آپ نے کوئز کامیابی سے پاس کر لیا!'
+                  : 'اگلی بار بہتر کوشش کریں۔ مزید پریکٹس کریں!'}
+              </p>
+            </div>
+          </div>
+          
+          {/* Score Display */}
+          <div className="quiz-score-card">
+            <div className="quiz-score-circle">
+              <span className="quiz-score-number">{result.score}</span>
+              <span className="quiz-score-total">/5</span>
+            </div>
+            <div className="quiz-score-details">
+              <div className="quiz-score-percent">{pct}%</div>
+              <div className="quiz-score-status">
+                {passed ? '✅ پاس ہو گئے' : '❌ پاس نہیں ہوئے'}
+              </div>
+              <div className="quiz-score-message">
+                {passed 
+                  ? 'بہت خوب! آپ نے یہ سبق اچھی طرح سیکھ لیا ہے۔'
+                  : 'پریشان نہ ہوں! دوبارہ کوشش کریں اور سبق دوبارہ پڑھیں۔'}
+              </div>
+            </div>
+          </div>
+
+          {/* Question Breakdown - Collapsible */}
+          <details className="quiz-breakdown-details">
+            <summary className="quiz-breakdown-summary">
+              <i className="fas fa-list-ul"></i> سوالات کے جوابات دیکھیں
+              <span className="summary-arrow">▼</span>
+            </summary>
+            <div className="quiz-breakdown">
+              {quiz.questions.map((q, i) => {
+                const r = result.results[i];
+                return (
+                  <div key={i} className={`quiz-breakdown-item ${r.correct ? 'correct' : 'wrong'}`}>
+                    <div className="quiz-breakdown-header">
+                      <span className="qb-num">سوال {i + 1}</span>
+                      <span className="qb-icon">{r.correct ? '✓' : '✗'}</span>
+                    </div>
+                    <div className="qb-question-text">{q.question_text}</div>
+                    <div className="qb-detail">
+                      <div className="qb-your">
+                        آپ کا جواب: <strong>{q.options[answers[i]]}</strong>
+                      </div>
+                      {!r.correct && (
+                        <div className="qb-correct">
+                          صحیح جواب: <strong>{q.options[r.correct_index]}</strong>
+                        </div>
+                      )}
+                      {r.explanation && (
+                        <div className="qb-explanation">
+                          💡 وضاحت: {r.explanation}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </details>
+
+          {/* Action Buttons */}
+          <div className="quiz-result-actions">
+            {!passed && (
+              <button className="quiz-retry-btn" onClick={retry}>
+                <i className="fas fa-redo me-2"></i> دوبارہ کوئز دیں
+              </button>
+            )}
+            <Link to="/seekhna" className="quiz-more-btn">
+              <i className="fas fa-graduation-cap me-2"></i> اور کچھ سیکھیں
+            </Link>
+            <Link to={`/tutorial/${tutorialId}`} className="quiz-review-btn">
+              <i className="fas fa-book me-2"></i> سبق دوبارہ پڑھیں
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Quiz State
   if (state === STATE.QUIZ && quiz) {
     const q = quiz.questions[current];
     return (
-      <div className="quiz-wrap">
-        {/* Header bar */}
-        <div className="quiz-header">
-          <div className="quiz-header-left">
-            <span className="quiz-label">📝 Quiz</span>
-            <span className="quiz-counter">Question {current + 1} of 5</span>
-          </div>
-          <div className="quiz-progress-bar">
-            <div
-              className="quiz-progress-fill"
-              style={{ width: `${(progress / 5) * 100}%` }}
-            />
-          </div>
-          <span className="quiz-progress-text">{progress}/5 answered</span>
-        </div>
-
-        {/* Question */}
-        <div className="quiz-question-block">
-          {/* Step dots nav */}
-          <div className="quiz-dots">
-            {quiz.questions.map((_, i) => (
-              <button
-                key={i}
-                className={`quiz-dot ${i === current ? 'active' : ''} ${answers[i] !== null ? 'done' : ''}`}
-                onClick={() => setCurrent(i)}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
-
-          <h3 className="quiz-question-text">{q.question_text}</h3>
-
-          <div className="quiz-options">
-            {q.options.map((opt, oi) => (
-              <button
-                key={oi}
-                className={`quiz-option ${answers[current] === oi ? 'selected' : ''}`}
-                onClick={() => selectAnswer(oi)}
-              >
-                <span className="quiz-option-letter">
-                  {['A', 'B', 'C', 'D'][oi]}
-                </span>
-                <span className="quiz-option-text">{opt}</span>
-              </button>
-            ))}
+      <div className="quiz-page-container">
+        <div className="quiz-header-section">
+          <Link to={`/tutorial/${tutorialId}`} className="quiz-exit-btn">
+            <i className="fas fa-times"></i> کوئز چھوڑیں
+          </Link>
+          <div className="quiz-header-stats">
+            <span className="quiz-header-title">{tutorialTitle}</span>
+            <span className="quiz-header-progress">{progress}/5 جواب دیے</span>
           </div>
         </div>
 
-        {/* Navigation */}
-        <div className="quiz-nav">
-          <button
-            className="quiz-nav-btn"
-            onClick={() => setCurrent(c => Math.max(0, c - 1))}
-            disabled={current === 0}
-          >
-            <i className="fas fa-arrow-left" /> Prev
-          </button>
+        <div className="quiz-wrap">
+          <div className="quiz-question-block">
+            <div className="quiz-dots">
+              {quiz.questions.map((_, i) => (
+                <button
+                  key={i}
+                  className={`quiz-dot ${i === current ? 'active' : ''} ${answers[i] !== null ? 'done' : ''}`}
+                  onClick={() => setCurrent(i)}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
 
-          {current < 4 ? (
+            <h3 className="quiz-question-text">{q.question_text}</h3>
+
+            <div className="quiz-options">
+              {q.options.map((opt, oi) => (
+                <button
+                  key={oi}
+                  className={`quiz-option ${answers[current] === oi ? 'selected' : ''}`}
+                  onClick={() => selectAnswer(oi)}
+                >
+                  <span className="quiz-option-letter">
+                    {['الف', 'ب', 'پ', 'ت'][oi]}
+                  </span>
+                  <span className="quiz-option-text">{opt}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="quiz-nav">
             <button
-              className="quiz-nav-btn primary"
-              onClick={() => setCurrent(c => c + 1)}
-              disabled={answers[current] === null}
+              className="quiz-nav-btn"
+              onClick={() => setCurrent(c => Math.max(0, c - 1))}
+              disabled={current === 0}
             >
-              Next <i className="fas fa-arrow-right" />
+              <i className="fas fa-arrow-right"></i> پچھلا
             </button>
-          ) : (
-            <button
-              className={`quiz-submit-btn ${allAnswered ? '' : 'disabled'}`}
-              onClick={submitQuiz}
-              disabled={!allAnswered}
-            >
-              Submit Quiz <i className="fas fa-check ms-2" />
-            </button>
-          )}
+
+            {current < 4 ? (
+              <button
+                className="quiz-nav-btn primary"
+                onClick={() => setCurrent(c => c + 1)}
+                disabled={answers[current] === null}
+              >
+                اگلا <i className="fas fa-arrow-left"></i>
+              </button>
+            ) : (
+              <button
+                className={`quiz-submit-btn ${allAnswered ? '' : 'disabled'}`}
+                onClick={submitQuiz}
+                disabled={!allAnswered}
+              >
+                کوئز جمع کروائیں <i className="fas fa-check ms-2"></i>
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );

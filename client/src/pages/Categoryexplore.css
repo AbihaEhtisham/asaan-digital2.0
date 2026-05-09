@@ -1,19 +1,20 @@
 /* ══════════════════════════════════════
-   CategoryExplore.css
-   Same brutalist design language as Seekhna
+   CategoryExplore.css - Matching Seekhna Page
+   Same backgrounds, blue categories div, explore card UI
 ══════════════════════════════════════ */
 
-/* ── Header ── */
+/* ── Header - Same as Seekhna Page Header ── */
 .ce-header {
-  position: relative;
   padding-top: 8rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 2px solid var(--black);
-  background: var(--off-white);
+  padding-bottom: 4rem;
+  background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 30%, #f0f7ff 60%, #e8f4ff 100%);
+  position: relative;
   overflow: hidden;
+  text-align: left;
+  border-bottom: none;
 }
 
-/* diagonal hatch texture — matches the app's .page-header vibe */
+/* diagonal hatch texture overlay */
 .ce-header-hatch {
   position: absolute;
   inset: 0;
@@ -21,34 +22,11 @@
     -45deg,
     transparent,
     transparent 28px,
-    rgba(0, 0, 0, 0.03) 28px,
-    rgba(0, 0, 0, 0.03) 30px
+    rgba(0, 0, 0, 0.02) 28px,
+    rgba(0, 0, 0, 0.02) 30px
   );
   pointer-events: none;
-}
-
-/* back button */
-.ce-back {
-  position: relative;
   z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  border: 2px solid var(--black);
-  padding: 0.4rem 1rem;
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  cursor: pointer;
-  margin-bottom: 2rem;
-  transition: all 0.2s;
-  box-shadow: 2px 2px 0 var(--black);
-}
-.ce-back:hover {
-  background: var(--black);
-  color: var(--white);
-  transform: translate(-1px, -1px);
-  box-shadow: 3px 3px 0 var(--green);
 }
 
 /* header body */
@@ -58,274 +36,537 @@
   gap: 1.5rem;
   margin-bottom: 2rem;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* icon block — coloured square like the category banners in Seekhna */
+/* icon block */
 .ce-icon-block {
-  width: 72px;
-  height: 72px;
-  border: 2px solid var(--black);
+  width: 80px;
+  height: 80px;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   flex-shrink: 0;
-  box-shadow: 4px 4px 0 var(--black);
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  color: #3b82f6;
 }
-.ce-icon-block--basics   { background: var(--green);        color: var(--white); }
-.ce-icon-block--gov      { background: var(--gold);         color: var(--white); }
-.ce-icon-block--payments { background: var(--green-mid, #2d8a55); color: var(--white); }
-.ce-icon-block--smart    { background: var(--green-accent, #1db954); color: var(--white); }
-.ce-icon-block--learning { background: var(--off-black, #1a1a1a); color: var(--white); }
+
+.ce-icon-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+}
 
 .ce-cat-sub {
   font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--gold);
   margin: 0 0 0.3rem;
+  font-weight: 700;
+  color: #3b82f6;
 }
 
 .ce-cat-title {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   font-weight: 800;
-  color: var(--green);
   margin: 0 0 0.3rem;
-  line-height: 1.1;
+  line-height: 1.2;
+  color: #1e3a8a;
 }
 
 .ce-cat-count {
   font-family: 'Space Mono', monospace;
   font-size: 0.8rem;
-  color: var(--text-soft);
   margin: 0;
+  color: #64748b;
 }
 
-/* ── Category switcher pills ── */
+/* ── Category switcher pills - Blue Div (Same as Seekhna filters) ── */
 .ce-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  padding: 1.2rem 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
 }
 
 .ce-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0.35rem 1rem;
-  border: 2px solid var(--black);
-  background: var(--white);
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
   font-family: 'Syne', sans-serif;
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   text-decoration: none;
-  color: var(--black);
-  transition: all 0.18s;
-  box-shadow: 2px 2px 0 var(--black);
-}
-.ce-pill:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 var(--black);
-  color: var(--black);
-}
-.ce-pill.active {
-  background: var(--green);
-  color: var(--white);
-  border-color: var(--green);
-  box-shadow: 3px 3px 0 var(--black);
+  transition: all 0.3s ease;
+  color: #ffffff;
 }
 
-/* ── Grid container ── */
+.ce-pill:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.ce-pill.active {
+  background: #ffffff;
+  color: #1e40af;
+  border-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ── Grid container - Same background as Seekhna ── */
 .ce-grid-wrap {
-  padding-top: 3rem;
-  padding-bottom: 2rem;
+    background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 30%, #f0f7ff 60%, #e8f4ff 100%);
+  padding: 3rem 0;
 }
 
 .ce-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
 }
 
-/* ── Card ── */
+/* ── Card Styles - Like Home Explore Cards (Same as tutorial-card) ── */
 .ce-card {
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  text-decoration: none;
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--black);
-  background: var(--white);
-  text-decoration: none;
-  color: inherit;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 4px 4px 0 var(--black);
-  transition: transform 0.22s, box-shadow 0.22s;
+  cursor: pointer;
 
   /* staggered entrance */
   opacity: 0;
-  animation: ceCardIn 0.35s forwards ease-out;
+  animation: ceCardIn 0.4s forwards ease-out;
 }
 
 @keyframes ceCardIn {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .ce-card:hover {
-  transform: translate(-5px, -5px);
-  box-shadow: 9px 9px 0 var(--green);
-  color: inherit;
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(37, 99, 235, 0.12);
+  border-color: #93c5fd;
 }
 
-/* difficulty colour stripe at top */
+/* Colored stripe at the top of each card based on difficulty */
 .ce-stripe {
   height: 5px;
   width: 100%;
   flex-shrink: 0;
-  transition: height 0.2s;
+  transition: height 0.25s ease;
 }
-.ce-card:hover .ce-stripe { height: 8px; }
+
+.ce-card:hover .ce-stripe {
+  height: 7px;
+}
 
 /* card body */
 .ce-card-body {
-  padding: 1.25rem 1.25rem 0.75rem;
+  padding: 1.5rem;
   flex: 1;
 }
 
 .ce-badge {
-  display: block;
+  display: inline-block;
   font-family: 'Space Mono', monospace;
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--gold);
-  margin-bottom: 0.6rem;
+  color: #3b82f6;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  background: transparent;
+  padding: 0;
 }
 
 .ce-urdu {
-  font-family: 'Noto Nastaliq Urdu', serif;
-  font-size: 1.3rem;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: var(--green);
-  line-height: 1.8;
-  margin: 0 0 0.2rem;
+  color: #1e40af;
+  line-height: 1.5;
+  margin: 0 0 0.5rem;
+  direction: rtl;
 }
 
 .ce-english {
-  font-weight: 700;
-  font-size: 0.88rem;
-  color: var(--black);
-  margin: 0;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
 }
 
-/* card footer */
-.ce-card-footer {
-  padding: 0.75rem 1.25rem;
-  border-top: 2px solid var(--black);
+/* difficulty and time tags */
+.ce-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
 }
 
 .ce-tag {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.68rem;
+  border: 1px solid #e2e8f0;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  border: 1.5px solid var(--black);
-  padding: 0.2rem 0.5rem;
+  font-family: 'Space Mono', monospace;
+  border-radius: 50px;
+  color: #475569;
+  background: transparent;
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  color: var(--black);
-  transition: border-color 0.2s;
 }
 
-/* "Start →" CTA — slides up from bottom on hover */
-.ce-cta {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: var(--green);
-  color: var(--white);
+/* card footer with full-width start button */
+.ce-card-footer {
+  padding: 0 1.5rem 1.5rem;
+  width: 100%;
+}
+/* Add to TutorialDetail.css */
+.tutorial-video-container {
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.video-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  color: #ffffff;
+}
+
+.video-header h3 {
+  margin: 0;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.video-duration {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+}
+
+.tutorial-video-container iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+.video-description {
+  padding: 1rem 1.5rem;
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border-top: 1px solid #e2e8f0;
+}
+/* Full width start learning button - Same as Seekhna */
+.start-tutorial-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  padding: 0.75rem 1.8rem;
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  font-size: 0.78rem;
   text-transform: uppercase;
-  padding: 0.45rem 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  transform: translateY(100%);
-  transition: transform 0.2s ease;
-  pointer-events: none;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  cursor: pointer;
 }
-.ce-card:hover .ce-cta { transform: translateY(0); }
 
-/* ── Loading ── */
+.start-tutorial-btn i {
+  transition: transform 0.2s ease;
+}
+
+.start-tutorial-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+  color: #ffffff;
+}
+
+.start-tutorial-btn:hover i {
+  transform: translateX(5px);
+}
+
+.start-tutorial-btn:active {
+  transform: translateY(1px);
+}
+
+/* ── Loading State ── */
 .ce-loading {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5rem 0;
+  justify-content: center;
+  padding: 4rem 0;
   gap: 1rem;
-  color: var(--text-soft);
+  color: #64748b;
+  min-height: 400px;
 }
 
 .ce-spinner {
-  width: 38px;
-  height: 38px;
-  border: 3px solid rgba(0,0,0,0.1);
-  border-top-color: var(--green);
+  width: 45px;
+  height: 45px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #3b82f6;
   border-radius: 50%;
-  animation: spin 0.75s linear infinite;
+  animation: spin 0.8s linear infinite;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── Empty state ── */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Empty State ── */
 .ce-empty {
   text-align: center;
-  padding: 5rem 0;
-}
-.ce-empty-icon { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
-.ce-empty h3 { font-family: 'Syne', sans-serif; margin-bottom: 1rem; }
-.ce-empty-link {
-  color: var(--green);
-  font-weight: 700;
-  text-decoration: none;
-  border-bottom: 2px solid var(--green);
-  padding-bottom: 2px;
+  padding: 4rem 0;
+  background: #ffffff;
+  border-radius: 20px;
+  margin: 2rem 0;
+  border: 2px solid #e2e8f0;
 }
 
-/* ── Tip ── */
-.ce-tip-wrap { padding-bottom: 4rem; }
+.ce-empty-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.ce-empty h3 {
+  font-family: 'Syne', sans-serif;
+  color: #1e293b;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.ce-empty-link {
+  color: #3b82f6;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid #3b82f6;
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+}
+
+.ce-empty-link:hover {
+  color: #1e40af;
+  border-bottom-color: #1e40af;
+}
+
+/* ── Tip / Alert Section - Same as Seekhna Tip Alert ── */
+.ce-tip-wrap {
+  padding-bottom: 4rem;
+  background: var(--off-white, #f5f5f0);
+}
 
 .ce-tip {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  background: var(--white);
-  border: 2px solid var(--black);
-  border-left: 6px solid var(--gold);
-  padding: 1.25rem 1.5rem;
-  box-shadow: 4px 4px 0 var(--gold);
-  font-size: 0.9rem;
-  color: var(--text-soft);
+  gap: 1.5rem;
+  background: #ffffff;
+  border-left: 6px solid #3b82f6;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.08);
+  transition: all 0.3s ease;
 }
-.ce-tip-icon { font-size: 1.5rem; color: var(--gold); flex-shrink: 0; }
-.ce-tip strong { color: var(--green); }
 
-/* ── Responsive ── */
+.ce-tip:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.12);
+  border-color: #93c5fd;
+}
+
+.ce-tip-icon {
+  font-size: 2rem;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.ce-tip strong {
+  color: #1e40af;
+}
+
+.ce-tip span {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ── Responsive Styles (Matching Seekhna) ── */
+@media (max-width: 992px) {
+  .ce-pills {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .ce-pill {
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .ce-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .ce-urdu {
+    font-size: 1.4rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .ce-header-body { flex-direction: row; gap: 1rem; }
-  .ce-icon-block { width: 56px; height: 56px; font-size: 1.6rem; }
-  .ce-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
-  .ce-cta { display: none; }
+  .ce-header {
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+  }
+  
+  .ce-header-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .ce-icon-block {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+  
+  .ce-cat-title {
+    font-size: 1.8rem;
+  }
+  
+  .ce-pills {
+    padding: 1rem;
+  }
+  
+  .ce-pill {
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .ce-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  
+  .ce-card-body {
+    padding: 1.25rem;
+  }
+  
+  .ce-urdu {
+    font-size: 1.2rem;
+  }
+  
+  .ce-tags {
+    gap: 0.5rem;
+  }
+  
+  .ce-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+  }
+  
+  .ce-card-footer {
+    padding: 0 1.25rem 1.25rem;
+  }
+  
+  .start-tutorial-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .ce-tip {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
 }
 
-@media (max-width: 480px) {
-  .ce-grid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 576px) {
+  .ce-header {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
+  
+  .ce-cat-title {
+    font-size: 1.5rem;
+  }
+  
+  .ce-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .ce-card-body {
+    padding: 1rem;
+  }
+  
+  .ce-urdu {
+    font-size: 1.1rem;
+  }
+  
+  .ce-english {
+    font-size: 0.85rem;
+  }
+  
+  .start-tutorial-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+  }
+  
+  .ce-empty h3 {
+    font-size: 1.2rem;
+  }
+  
+  .ce-empty-icon {
+    font-size: 3rem;
+  }
 }
