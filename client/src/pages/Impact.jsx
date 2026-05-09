@@ -39,6 +39,14 @@ const Impact = () => {
     { name: 'Rizwan Akhtar', city: 'Quetta', quote: 'سرکاری پورٹلز بہت مشکل ہیں لیکن آسان ڈیجیٹل نے سب آسان کر دیا۔', quoteEn: 'Government portals are complex but Asaan Digital made everything simple.' },
   ];
 
+  // Progress bars data
+  const progressBars = [
+    { value: 78, label: 'People Helped', labelUrdu: 'لوگ مدد یافتہ', color: '#3b82f6', target: stats.peopleHelped, suffix: '+' },
+    { value: 65, label: 'Guides Published', labelUrdu: 'گائیڈز شائع', color: '#22c55e', target: stats.guidesPublished, suffix: '+' },
+    { value: 45, label: 'Cities Reached', labelUrdu: 'شہروں تک رسائی', color: '#f59e0b', target: stats.citiesReached, suffix: '+' },
+    { value: 94, label: 'Satisfaction Rate', labelUrdu: 'اطمینان کی شرح', color: '#8b5cf6', target: stats.satisfactionRate, suffix: '%' }
+  ];
+
   const handleFormChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -49,9 +57,9 @@ const Impact = () => {
       setFormStatus('error');
       return;
     }
-    // Simulate send
     setFormStatus('success');
     setForm({ name: '', email: '', message: '' });
+    setTimeout(() => setFormStatus(null), 3000);
   };
 
   const scrollStories = (dir) => {
@@ -60,32 +68,22 @@ const Impact = () => {
     }
   };
 
-  const milestones = [
-    { number: '10,000+', label: 'People Helped', labelUrdu: 'لوگ مدد یافتہ', icon: '👥' },
-    { number: '500+',    label: 'Guides Published', labelUrdu: 'گائیڈز شائع', icon: '📚' },
-    { number: '50+',     label: 'Cities Reached', labelUrdu: 'شہروں تک رسائی', icon: '🏙️' },
-    { number: '94%',     label: 'Satisfaction Rate', labelUrdu: 'اطمینان کی شرح', icon: '⭐' },
-  ];
-
   return (
     <>
-      {/* ── HERO ── */}
+      {/* ── HERO SECTION ── White background, image left, text right */}
       <section className="impact-hero-section">
         <NetworkWeb />
-        <div className="impact-hero-overlay" />
         <div className="container-xl">
           <div className="impact-hero-inner">
-
-            {/* Left — single static square image */}
+            {/* Left — large image */}
             <div className="impact-hero-img-col">
               <div className="impact-hero-img-box">
-                <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="Community" />
+                 <img src="/public/images/pic19.png" alt="Digital Pakistan Community" /> 
               </div>
             </div>
 
             {/* Right — text */}
             <div className="impact-hero-text-col">
-              <div className="hero-eyebrow">🌟 Making Digital Pakistan Accessible</div>
               <h1 className="impact-main-title">
                 <span className="title-urdu">بنانا پاکستان</span>
                 <span className="title-en">Digital Pakistan</span>
@@ -113,24 +111,43 @@ const Impact = () => {
                 سیکھنا شروع کریں <i className="fas fa-arrow-right ms-2" />
               </a>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ── IMPACT NUMBERS ── */}
+      {/* ── IMPACT NUMBERS ── Progress Bars instead of number cards */}
       <section className="impact-numbers-section">
         <div className="container-xl">
-          <div className="text-center mb-4">
+          <div className="text-center mb-5" data-aos="fade-up">
             <h2 className="numbers-title">Our Impact in Numbers</h2>
+            <p className="numbers-subtitle">ہمارے اعداد و شمار</p>
           </div>
-          <div className="numbers-grid">
-            {milestones.map((item, i) => (
-              <div className="number-card" key={i} data-aos="zoom-in" data-aos-delay={i * 100}>
-                <div className="number-icon">{item.icon}</div>
-                <div className="number-value">{item.number}</div>
-                <div className="number-label-en">{item.label}</div>
-                <div className="number-label-urdu">{item.labelUrdu}</div>
+          <div className="progress-bars-container">
+            {progressBars.map((item, i) => (
+              <div className="progress-bar-item" key={i} data-aos="fade-up" data-aos-delay={i * 100}>
+                <div className="progress-bar-header">
+                  <div className="progress-bar-info">
+                    <span className="progress-bar-icon">
+                      {i === 0 && '👥'}
+                      {i === 1 && '📚'}
+                      {i === 2 && '🏙️'}
+                      {i === 3 && '⭐'}
+                    </span>
+                    <div className="progress-bar-labels">
+                      <span className="progress-label-en">{item.label}</span>
+                      <span className="progress-label-urdu">{item.labelUrdu}</span>
+                    </div>
+                  </div>
+                  <span className="progress-target">{item.target.toLocaleString()}{item.suffix}</span>
+                </div>
+                <div className="progress-bar-track">
+                  <div 
+                    className="progress-bar-fill" 
+                    style={{ width: `${item.value}%`, backgroundColor: item.color }}
+                  >
+                    <span className="progress-percent">{item.value}%</span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -150,7 +167,7 @@ const Impact = () => {
             </button>
             <div className="stories-track" ref={storiesRef}>
               {userStories.map((s, i) => (
-                <div className="story-card" key={i}>
+                <div className="story-card" key={i} data-aos="zoom-in" data-aos-delay={i * 100}>
                   <div className="story-quote-icon">"</div>
                   <p className="story-quote-urdu" dir="rtl">{s.quote}</p>
                   <p className="story-quote-en">{s.quoteEn}</p>
