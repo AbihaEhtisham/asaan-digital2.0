@@ -1,27 +1,174 @@
-.footer {
-  background: var(--black);
-  color: rgba(255, 255, 255, 0.8);
-  padding: 2.2rem;
+footer {
+  background: linear-gradient(135deg, #0f2b5c 0%, #1e3a8a 50%, #2563eb 100%);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 2.5rem 0;
   font-family: 'Syne', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   position: relative;
   margin-top: 0;
-  border-top: 3px solid var(--green);
+  border-top: none;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Add decorative top border gradient */
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #60a5fa, #3b82f6, #1e40af, #3b82f6, #60a5fa);
+}
+
+/* Footer container spacing */
+footer .container-xl {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+@media (max-width: 768px) {
+  footer .container-xl {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  footer {
+    padding: 1.8rem 0;
+  }
+}
+
+/* Center all columns */
+footer .row {
+  text-align: center;
+}
+
+footer .col-md-4 {
+  text-align: center !important;
+  margin-bottom: 1rem;
+}
+
+/* Remove any left/right alignment overrides */
+.text-md-start,
+.text-md-end {
+  text-align: center !important;
+}
+
+/* Footer links styling */
 .footer a {
-  color: var(--gold);
+  color: #bfdbfe;
   text-decoration: none;
-  margin: 0 6px;
-  font-weight: 700;
-  transition: color 0.2s;
+  margin: 0 8px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  font-family: 'Noto Nastaliq Urdu', 'Nastaliq Urdu', serif;
+  font-size: 1rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 8px;
+  display: inline-block;
 }
 
 .footer a:hover {
-  color: var(--white);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
+/* Active/Pressed state for footer links */
+.footer a:active {
+  transform: translateY(1px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Horizontal rule styling */
 .footer hr {
   border-color: rgba(255, 255, 255, 0.15);
-  margin: 1rem 0;
+  margin: 1.5rem 0;
+  border-width: 1px;
+}
+
+/* Urdu brand name styling */
+.footer strong {
+  font-family: 'Noto Nastaliq Urdu', 'Nastaliq Urdu', serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-bottom: 0.3rem;
+}
+
+/* Tagline styling */
+.footer .small.opacity-75 {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  color: #bfdbfe;
+  letter-spacing: 0.3px;
+  display: block;
+}
+
+/* Language selector styling */
+.footer .col-md-4.text-md-end {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  color: #bfdbfe;
+}
+
+/* Copyright text */
+.footer .text-center.opacity-75.small {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.5px;
+}
+
+/* Link separator styling */
+.footer a:not(:last-child)::after {
+  content: '|';
+  margin-left: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+}
+
+.footer a:last-child::after {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer a {
+    margin: 0 4px;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.3rem;
+  }
+  
+  .footer strong {
+    font-size: 1.2rem;
+  }
+  
+  .footer .col-md-4 {
+    margin-bottom: 0.8rem;
+  }
+  
+  .footer a:not(:last-child)::after {
+    margin-left: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer a {
+    font-size: 0.8rem;
+    margin: 0 3px;
+  }
+  
+  .footer strong {
+    font-size: 1.1rem;
+  }
+  
+  footer {
+    padding: 1.5rem 0;
+  }
+  
+  .footer hr {
+    margin: 1rem 0;
+  }
 }

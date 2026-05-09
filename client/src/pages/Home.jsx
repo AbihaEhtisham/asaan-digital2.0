@@ -371,8 +371,8 @@ const Home = () => {
     </div>
   </div>
 </section>
-      {/* Stats Section */}
-    <section className="stats-section" ref={statsRef}>
+{/* Stats Section - Reduced height */}
+<section className="stats-section" ref={statsRef}>
   <div className="container-xl">
     <div className="row">
       <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
@@ -395,87 +395,103 @@ const Home = () => {
   </div>
 </section>
 
-      {/* Problems Section */}
-      <section className="py-5">
-        <div className="container-xl">
-          <div className="text-center mb-5" data-aos="fade-up">
-            <h2 className="section-title">ہم کیا مسئلہ حل کر رہے ہیں؟</h2>
-            <p className="section-sub">What Problems Are We Solving?</p>
+
+{/* Problems Section - Updated with icon on left */}
+<section className="py-5">
+  <div className="container-xl">
+    <div className="text-center mb-5" data-aos="fade-up">
+      <h2 className="section-title">ہم کیا مسئلہ حل کر رہے ہیں؟</h2>
+      <p className="section-sub">What Problems Are We Solving?</p>
+    </div>
+    <div className="problems-section-wrapper">
+      <div className="problems-row">
+        {/* Problem Card 1 - Language Barrier */}
+        <div className="problem-card" data-aos="fade-up" data-aos-delay="100">
+          <div className="problem-icon">
+            <img src="/images/language-barrier.png" alt="Language Barrier" />
           </div>
-          <div className="row g-4 justify-content-center">
-            <div className="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-              <div className="card-alt text-center">
-                <div className="display-5 mb-3">
-                  <img src="/images/language-barrier.png" alt="Language Barrier" />
-                </div>
-                <h3 className="h4 fw-bold mb-3" style={{ color: 'var(--green)' }}>Language Barrier</h3>
-                <p className="text-soft">
-                  Breaking every process down in simple Urdu and Roman Urdu, making technology accessible to over 60% of the population.
-                </p>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-              <div className="card-alt text-center">
-                <div className="display-5 mb-3">
-                  <img src="/images/digital-illiteracy.png" alt="Digital Illiteracy" />
-                </div>
-                <h3 className="h4 fw-bold mb-3" style={{ color: 'var(--green)' }}>Digital Illiteracy</h3>
-                <p className="text-soft">
-                  Teaching essential digital skills step by step, from basic navigation to advanced online transactions.
-                </p>
-              </div>
-            </div>
-            <div className="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-              <div className="card-alt text-center">
-                <div className="display-5 mb-3">
-                  <img src="/images/confusing-portals.png" alt="Confusing Portals" />
-                </div>
-                <h3 className="h4 fw-bold mb-3" style={{ color: 'var(--green)' }}>Confusing Portals</h3>
-                <p className="text-soft">
-                  Providing clear, numbered walkthroughs for complex government portals like NADRA, FBR, and Passports.
-                </p>
-              </div>
-            </div>
+          <div className="problem-content">
+            <h3>Language Barrier</h3>
+            <p>
+              Breaking every process down in simple Urdu and Roman Urdu, making technology accessible to over 60% of the population.
+            </p>
           </div>
         </div>
-      </section>
 
-      {/* Mission Section */}
-      <section className="py-5">
-        <div className="container-xl">
-          <div className="row align-items-center g-5">
-            <div className="col-lg-6" data-aos="fade-right">
-              <h2 className="section-title mb-4">ہمارا مشن</h2>
-              <div className="card-elegant mb-3">
-                <p className="m-0">
-                  Making digital Pakistan accessible to every citizen, removing language barriers that prevent millions from using digital tools.
-                </p>
-              </div>
-              <div className="card-elegant mb-3">
-                <p className="m-0">
-                  Serving both urban users and rural communities who have never had proper digital guidance for government services.
-                </p>
-              </div>
-              <div className="card-elegant">
-                <p className="m-0">
-                  A trusted digital companion for Karachi, Lahore, Peshawar, and every village in between. Apni Madad Aap.
-                </p>
-              </div>
-            </div>
-            <div className="col-lg-6" data-aos="fade-left">
-              <div className="mission-grid">
-                <div className="mission-cluster">
-                  <img src="/images/pic1.png" alt="Digital Pakistan" className="mission-piece d1" />
-                  <img src="/images/pic2.png" alt="Community" className="mission-piece d2" />
-                  <img src="/images/pic3.png" alt="Students" className="mission-piece d3" />
-                  <img src="/images/pic4.png" alt="Rural" className="mission-piece d4" />
-                </div>
-              </div>
-            </div>
+        {/* Problem Card 2 - Digital Illiteracy */}
+        <div className="problem-card" data-aos="fade-up" data-aos-delay="200">
+          <div className="problem-icon">
+            <img src="/images/digital-illiteracy.png" alt="Digital Illiteracy" />
+          </div>
+          <div className="problem-content">
+            <h3>Digital Illiteracy</h3>
+            <p>
+              Teaching essential digital skills step by step, from basic navigation to advanced online transactions.
+            </p>
           </div>
         </div>
-      </section>
 
+        {/* Problem Card 3 - Confusing Portals */}
+        <div className="problem-card" data-aos="fade-up" data-aos-delay="300">
+          <div className="problem-icon">
+            <img src="/images/confusing-portals.png" alt="Confusing Portals" />
+          </div>
+          <div className="problem-content">
+            <h3>Confusing Portals</h3>
+            <p>
+              Providing clear, numbered walkthroughs for complex government portals like NADRA, FBR, and Passports.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{/* Mission Section - Content on LEFT, Images on RIGHT (Diamond Grid) */}
+<section className="py-5 mission-section">
+  <div className="container-xl">
+    <div className="row align-items-center g-5">
+      {/* Mission Content - LEFT side (order 1) */}
+      <div className="col-lg-6 mission-content-col" data-aos="fade-right">
+        <h2 className="section-title mb-4">ہمارا مشن</h2>
+        <div className="card-elegant mb-3">
+          <p className="m-0">
+            Making digital Pakistan accessible to every citizen, removing language barriers that prevent millions from using digital tools.
+          </p>
+        </div>
+        <div className="card-elegant mb-3">
+          <p className="m-0">
+            Serving both urban users and rural communities who have never had proper digital guidance for government services.
+          </p>
+        </div>
+        <div className="card-elegant">
+          <p className="m-0">
+            A trusted digital companion for Karachi, Lahore, Peshawar, and every village in between. Apni Madad Aap.
+          </p>
+        </div>
+      </div>
+      
+      {/* Mission Images - RIGHT side with Diamond Grid */}
+      <div className="col-lg-6 mission-images-col" data-aos="fade-left">
+        <div className="mission-grid">
+          <div className="mission-piece">
+            <img src="/images/pic1.png" alt="Digital Pakistan" />
+          </div>
+          <div className="mission-piece">
+            <img src="/images/pic2.png" alt="Community" />
+          </div>
+          <div className="mission-piece">
+            <img src="/images/pic3.png" alt="Students" />
+          </div>
+          <div className="mission-piece">
+            <img src="/images/pic4.png" alt="Rural" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       {/* How It Works Section */}
       <section className="py-5" style={{ background: 'var(--cream)' }}>
         <div className="container-xl">
@@ -502,35 +518,34 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-5">
-        <div className="container-xl">
-          <div className="text-center mb-5" data-aos="fade-up">
-            <h2 className="section-title">ہماری خصوصیات</h2>
-            <p className="section-sub">Everything you need in one place</p>
-          </div>
-          <div className="row g-4">
-            <div className="col-md-6" data-aos="fade-right" data-aos-delay="100">
-              <div className="feature-card">
-                <div className="urdu-feature-title" dir="rtl">کچھ سیکھنا ہے؟</div>
-                <p className="text-soft">
-                  Step-by-step guides on Digital Basics, Government Services, and Job Applications. Written in plain English and Roman Urdu.
-                </p>
-                <Link to="/seekhna" className="btn-feature">Explore Seekhna →</Link>
-              </div>
-            </div>
-            <div className="col-md-6" data-aos="fade-left" data-aos-delay="200">
-              <div className="feature-card">
-                <div className="urdu-feature-title" dir="rtl">کچھ پوچھنا ہے؟</div>
-                <p className="text-soft">
-                  A safe space to get answers about CNIC, NADRA, JazzCash, and more. Get a clear answer instantly.
-                </p>
-                <Link to="/poochna" className="btn-feature">Ask on Poochna →</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+{/* Features Section - 2 Cards in One Row */}
+<section className="py-5 features-section">
+  <div className="container-xl">
+    <div className="text-center mb-5" data-aos="fade-up">
+      <h2 className="section-title">ہماری خصوصیات</h2>
+      <p className="section-sub">Everything you need in one place</p>
+    </div>
+    <div className="features-row">
+      {/* Feature Card 1 - Seekhna */}
+      <div className="feature-card" data-aos="fade-right" data-aos-delay="100">
+        <div className="urdu-feature-title" dir="rtl">کچھ سیکھنا ہے؟</div>
+        <p className="text-soft">
+          Step-by-step guides on Digital Basics, Government Services, and Job Applications. Written in plain English and Roman Urdu.
+        </p>
+        <Link to="/seekhna" className="btn-feature">Explore Seekhna →</Link>
+      </div>
+      
+      {/* Feature Card 2 - Poochna */}
+      <div className="feature-card" data-aos="fade-left" data-aos-delay="200">
+        <div className="urdu-feature-title" dir="rtl">کچھ پوچھنا ہے؟</div>
+        <p className="text-soft">
+          A safe space to get answers about CNIC, NADRA, JazzCash, and more. Get a clear answer instantly.
+        </p>
+        <Link to="/poochna" className="btn-feature">Ask on Poochna →</Link>
+      </div>
+    </div>
+  </div>
+</section>
     </>
   );
 };
