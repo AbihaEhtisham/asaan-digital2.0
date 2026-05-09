@@ -1,25 +1,27 @@
-/* About Hero */
+/* About Hero - Updated with Blue Theme */
 .about-hero-section {
-  min-height: 100px;
-  background: var(--off-white);
-  border-bottom: 3px solid var(--black);
+  min-height: auto;
+  background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 30%, #f0f7ff 60%, #e8f4ff 100%);
+  border-bottom: none;
   position: relative;
   z-index: 1;
   overflow: hidden;
+  padding: 3rem 0;
 }
 
 .about-hero-grid {
   display: grid;
   grid-template-columns: 520px 1fr;
-  min-height: 500px;
+  min-height: auto;
+  align-items: center;
 }
 
 .about-text-column {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 3.5rem 4rem 5rem;
-  border-right: 2px solid var(--black);
+  padding: 3rem 3rem 3rem 4rem;
+  border-right: 2px solid #bfdbfe;
 }
 
 .about-eyebrow {
@@ -31,7 +33,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--green);
+  color: #3b82f6;
   margin-bottom: 1.4rem;
 }
 
@@ -40,7 +42,7 @@
   display: inline-block;
   width: 28px;
   height: 2px;
-  background: var(--green);
+  background: #3b82f6;
 }
 
 .about-main-title {
@@ -49,39 +51,41 @@
   font-weight: 800;
   line-height: 1.0;
   letter-spacing: -0.03em;
-  color: var(--black);
+  color: #1e3a8a;
   margin-bottom: 0.3rem;
 }
 
 .about-title-highlight {
-  color: var(--green);
+  color: #3b82f6;
   display: block;
 }
 
 .about-urdu-text {
-  font-family: 'Noto Nastaliq Urdu', serif;
+  font-family: 'Noto Nastaliq Urdu', 'Nastaliq Urdu', serif !important;
   font-size: clamp(1.4rem, 3vw, 2rem);
-  color: var(--gold);
+  color: #1e40af;
   direction: rtl;
   line-height: 2;
   margin-bottom: 1.2rem;
   display: block;
+  font-weight: 700;
 }
 
 .about-lead-text {
   font-family: 'Syne', sans-serif;
   font-size: 0.97rem;
-  color: #555;
+  color: #475569;
   line-height: 1.8;
   max-width: 420px;
   margin-bottom: 2.5rem;
 }
 
-/* Mosaic Grid */
+/* Mosaic Grid - Reduced Height */
 .about-mosaic-column {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  max-height: 480px;
 }
 
 .about-mosaic-grid {
@@ -91,7 +95,7 @@
 .mosaic-cell {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--black);
+  border: 1px solid #e2e8f0;
   transition: transform 0.3s ease;
 }
 
@@ -127,22 +131,22 @@
   padding: 1rem 1.1rem;
 }
 
-.mosaic-cell.green-bg { background: var(--green); }
-.mosaic-cell.gold-bg { background: var(--gold); }
-.mosaic-cell.black-bg { background: #0a0a0a; }
+.mosaic-cell.green-bg { background: linear-gradient(135deg, #1e40af, #2563eb); }
+.mosaic-cell.gold-bg { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.mosaic-cell.black-bg { background: #0f2b5c; }
 
 .mosaic-tag {
   font-family: 'Space Mono', monospace;
   font-size: 0.6rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  opacity: 0.6;
+  opacity: 0.7;
   margin-bottom: 0.2rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .mosaic-tag.dark {
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .mosaic-name {
@@ -154,11 +158,11 @@
 }
 
 .mosaic-name.dark {
-  color: #0a0a0a;
+  color: #ffffff;
 }
 
 .gold-text {
-  color: var(--gold);
+  color: #bfdbfe;
 }
 
 .mosaic-label {
@@ -174,63 +178,163 @@
   text-transform: uppercase;
 }
 
-/* Overview Cards */
-.overview-card {
-  background: var(--white);
-  border: 2px solid var(--black);
+/* Project Overview - Side by Side with Fading Vertical Line */
+.project-overview-section {
+  padding: 5rem 0;
+  background: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+.project-overview-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: visible;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+/* Container for the line that stays visible */
+.project-overview-row .line-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+/* Fading vertical line - using a separate div for better control */
+.vertical-line {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 2px;
+  height: 80%;
+  background: linear-gradient(
+    to bottom,
+    rgba(59, 130, 246, 0) 0%,
+    rgba(59, 130, 246, 0.6) 15%,
+    #3b82f6 50%,
+    rgba(59, 130, 246, 0.6) 85%,
+    rgba(59, 130, 246, 0) 100%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.overview-card-left,
+.overview-card-right {
+  flex: 1;
   padding: 2.5rem;
-  height: 100%;
-  transition: all 0.2s;
-  box-shadow: 4px 4px 0 var(--green);
+  background: #ffffff;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
-.overview-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--black);
+/* Add margin/boundary between cards */
+.overview-card-left {
+  margin-right: 1px;
 }
 
-.overview-card h3 {
-  font-family: 'Syne', sans-serif;
+.overview-card-right {
+  margin-left: 1px;
+}
+
+.overview-card-left:hover,
+.overview-card-right:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.1);
+  z-index: 5;
+}
+
+/* Left aligned English text for overview cards */
+.overview-card-left h3,
+.overview-card-right h3 {
+  font-family: 'Syne', sans-serif !important;
   font-size: 1.3rem;
   font-weight: 800;
-  color: var(--green);
+  color: #1e40af;
   margin-bottom: 1rem;
+  text-align: left;
+  direction: ltr;
 }
 
-.overview-card p {
-  color: var(--text-soft);
+.overview-card-left p,
+.overview-card-right p {
+  color: #475569;
   line-height: 1.8;
+  font-size: 0.95rem;
+  text-align: left;
+  direction: ltr;
 }
 
-/* Explore Section */
+/* Explore Section - Image on Right, Text on Left (English LTR) */
 .explore-section {
   background: #f8fafc;
   padding: 5rem 0;
 }
 
-.explore-image {
-  border: 3px solid var(--black);
-  box-shadow: 10px 10px 0 var(--green);
-  width: 100%;
+.explore-section .row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 3rem;
 }
 
+.explore-section .col-lg-5 {
+  order: 2;
+  flex: 1.2;
+}
+
+.explore-section .col-lg-7 {
+  order: 1;
+  flex: 1;
+  padding-right: 2rem;
+}
+
+.explore-image {
+  border: 3px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.15);
+  width: 100%;
+  max-width: 500px;
+  transition: all 0.3s ease;
+  display: block;
+  margin-left: auto;
+}
+
+.explore-image:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+  border-color: #93c5fd;
+}
+
+/* English LTR text for explore section */
 .explore-title {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Syne', sans-serif !important;
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 1.5rem;
-  color: var(--black);
+  color: #1e3a8a;
+  text-align: left;
+  direction: ltr;
 }
 
 .explore-text {
-  color: var(--text-soft);
+  color: #475569;
   line-height: 1.8;
   margin-bottom: 1rem;
+  font-size: 1rem;
+  text-align: left;
+  direction: ltr;
 }
 
-/* Team Section */
+/* Team Section - Fixed Center Card Hover Issue */
 .team-section {
-  background: var(--cream);
+  background: linear-gradient(160deg, #eff6ff 0%, #e0eeff 100%);
   padding: 5rem 0;
 }
 
@@ -238,81 +342,153 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1.8rem;
+  gap: 2rem;
   flex-wrap: wrap;
 }
 
 .team-member-card {
-  background: var(--white);
-  border: 2px solid var(--black);
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 24px;
   padding: 1.8rem;
   text-align: center;
-  transition: all 0.3s;
-  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   width: 300px;
-  height: 340px;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
+/* Card boundaries - visible borders - No permanent hover state */
 .team-member-card.left {
-  transform: rotate(-8deg) translateY(12px);
+  transform: translateY(0);
+  border-color: #c7d2fe;
 }
 
 .team-member-card.right {
-  transform: rotate(8deg) translateY(12px);
+  transform: translateY(0);
+  border-color: #c7d2fe;
 }
 
 .team-member-card.center {
-  transform: translateY(0);
-  z-index: 2;
-  border-color: var(--green);
-  box-shadow: 6px 6px 0 var(--green);
+  transform: translateY(-10px);
+  z-index: 3;
+  border: 3px solid #3b82f6;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2);
+  background: linear-gradient(135deg, #ffffff, #f0f4ff);
 }
 
+/* Hover effect for ALL cards - no permanent hover state */
 .team-member-card:hover {
-  transform: scale(1.02) translateY(-5px);
-  box-shadow: 8px 8px 0 var(--green);
-  border-color: var(--green);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(37, 99, 235, 0.15);
+  border-color: #3b82f6;
+  transition: all 0.3s ease;
   z-index: 10;
 }
 
-.team-member-card.left:hover {
-  transform: rotate(-4deg) scale(1.02) translateY(-5px);
-}
-
-.team-member-card.right:hover {
-  transform: rotate(4deg) scale(1.02) translateY(-5px);
+.team-member-card.left:hover,
+.team-member-card.right:hover,
+.team-member-card.center:hover {
+  transform: translateY(-8px);
 }
 
 .team-member-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 0;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem;
   display: block;
-  border: 3px solid var(--black);
-  box-shadow: 4px 4px 0 var(--green);
+  border: 3px solid #3b82f6;
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
 }
 
 .team-member-name {
-  font-family: 'Syne', sans-serif;
+  font-family: 'Noto Nastaliq Urdu', 'Nastaliq Urdu', serif !important;
   font-size: 1.3rem;
   font-weight: 800;
-  margin-bottom: 0.25rem;
-  color: var(--green);
+  margin-bottom: 0.5rem;
+  color: #1e40af;
+  direction: rtl;
 }
 
 .team-member-role {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.75rem;
-  color: var(--gold);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.8rem;
+  color: #3b82f6;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
 
+/* Section Title Styling */
+.section-title {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #1e3a8a;
+  line-height: 1.2;
+  text-align: center;
+  display: block;
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.75rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e3a8a);
+  border-radius: 3px;
+}
+
+.section-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  color: #3b82f6;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Responsive Styles */
 @media (max-width: 1100px) {
   .about-hero-grid {
     grid-template-columns: 1fr 1fr;
+  }
+  
+  .about-mosaic-column {
+    max-height: 420px;
+  }
+  
+  .project-overview-row {
+    flex-direction: column;
+  }
+  
+  .vertical-line {
+    display: none;
+  }
+  
+  .overview-card-left {
+    border-bottom: 2px solid #3b82f6;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  
+  .overview-card-right {
+    margin-left: 0;
   }
 }
 
@@ -322,21 +498,75 @@
   }
 
   .about-text-column {
-    padding: 3rem 1.5rem;
+    padding: 2rem 1.5rem;
     border-right: none;
   }
 
   .about-mosaic-column {
     display: none;
   }
+  
+  .explore-section .row {
+    flex-direction: column;
+  }
+  
+  .explore-section .col-lg-5 {
+    order: 1;
+    margin-bottom: 1.5rem;
+  }
+  
+  .explore-section .col-lg-7 {
+    order: 2;
+    padding-right: 0;
+  }
+  
+  .explore-title {
+    text-align: center;
+  }
+  
+  .explore-text {
+    text-align: center;
+  }
+  
+  .explore-image {
+    margin: 0 auto;
+  }
 
   .team-cards-wrapper {
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.5rem;
   }
 
   .team-member-card.left,
-  .team-member-card.right {
-    transform: rotate(0deg);
+  .team-member-card.right,
+  .team-member-card.center {
+    transform: translateY(0);
+  }
+  
+  .team-member-card {
+    width: 280px;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-hero-section {
+    padding: 2rem 0;
+  }
+  
+  .about-text-column {
+    padding: 1.5rem;
+  }
+  
+  .about-main-title {
+    font-size: 2rem;
+  }
+  
+  .about-urdu-text {
+    font-size: 1.2rem;
+  }
+  
+  .overview-card-left,
+  .overview-card-right {
+    padding: 1.5rem;
   }
 }
