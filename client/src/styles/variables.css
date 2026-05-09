@@ -1,24 +1,52 @@
 /* ============================================================
-   ASAAN DIGITAL 2.0 — CSS Variables (Black, White, Gold)
+   ASAAN DIGITAL - Modern Design System
    ============================================================ */
 
 :root {
-  /* Core palette */
-  --green:        #1a1a1a;
-  --green-mid:    #2d2d2d;
-  --green-light:  #404040;
-  --green-accent: #d4af37;
-  --black:        #000000;
-  --off-black:    #1a1a1a;
-  --white:        #ffffff;
-  --off-white:    #f9f9f9;
-  --cream:        #f5f5f5;
-  --gold:         #d4af37;
+  /* Primary Colors */
+  --black: #000000;
+  --white: #ffffff;
+  --gold: #d4af37;
+  --gold-dark: #b8942e;
 
-  /* Semantic */
-  --text-soft:    #444444;
-  --border:       rgba(0, 0, 0, 0.2);
-  --shadow-sm:    0 4px 16px rgba(0,0,0,0.12);
-  --shadow-md:    0 12px 36px rgba(0,0,0,0.18);
-  --shadow-lg:    0 24px 60px rgba(0,0,0,0.25);
+  /* Neutrals */
+  --off-white: #f9f9f9;
+  --light-gray: #f0f0f0;
+  --medium-gray: #666666;
+  --dark-gray: #333333;
+
+  /* Legacy Support */
+  --green: #1a1a1a;
+  --green-mid: #2d2d2d;
+  --green-light: #404040;
+  --green-accent: #d4af37;
+  --off-black: #1a1a1a;
+  --cream: #f5f5f5;
+  --text-soft: #666666;
+  --border: rgba(0, 0, 0, 0.1);
+
+  /* Semantic Colors */
+  --text-primary: #000000;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9f9f9;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.18);
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+
+  /* Transitions */
+  --transition: all 0.3s ease;
+  --transition-fast: all 0.15s ease;
 }

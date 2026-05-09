@@ -1,215 +1,86 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { tutorialAPI } from '../services/api';
+import React, { useState } from 'react';
 import './Seekhna.css';
-import { useSearchParams } from 'react-router-dom';
 
-const Seekhna = () => {
-  const [categories, setCategories] = useState([]);
-  const [tutorials, setTutorials] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function Seekhna() {
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedDifficulty, setSelectedDifficulty] = useState(null);
-  const [searchParams] = useSearchParams();
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [catRes, tutRes] = await Promise.all([
-          tutorialAPI.getCategories(),
-          tutorialAPI.getTutorials({ limit: 100 })
-        ]);
-        setCategories(catRes.data || []);
-        setTutorials(tutRes.data?.tutorials || []);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
 
-useEffect(() => {
-  const categoryParam = searchParams.get('category');
-  if (categoryParam && categories.length > 0) {
-    const match = categories.find(c => 
-      c.name_english.toLowerCase().includes(categoryParam.toLowerCase())
-    );
-    if (match) setSelectedCategory(match.id);
-  }
-}, [searchParams, categories]);
+  const categories = [
+    { id: 1, name: 'Getting Started', tutorials: 8 },
+    { id: 2, name: 'Communication', tutorials: 12 },
+    { id: 3, name: 'Banking & Money', tutorials: 10 },
+    { id: 4, name: 'Social Media', tutorials: 15 },
+    { id: 5, name: 'Shopping Online', tutorials: 7 },
+    { id: 6, name: 'Safety & Security', tutorials: 9 },
+  ];
 
-  const categoryTutorials = {
-  whatsapp: { title: 'WhatsApp',            subtitle: 'Messaging',        icon: '💬', color: 'basics' },
-  payments: { title: 'Digital Payments',    subtitle: 'Finance',          icon: '💳', color: 'payments' },
-  gov:      { title: 'Government Services', subtitle: 'Public Portals',   icon: '🏛️', color: 'gov' },
-  social:   { title: 'Social Media',        subtitle: 'Stay Connected',   icon: '📱', color: 'smart' },
-  phone:    { title: 'Phone Basics',        subtitle: 'Beginner Journey', icon: '📞', color: 'basics' },
-  email:    { title: 'Email & Internet',    subtitle: 'Go Online',        icon: '✉️', color: 'learning' },
-  safety:   { title: 'Online Safety',       subtitle: 'Stay Safe',        icon: '🔒', color: 'gov' },
-  jobs:     { title: 'Job Applications',    subtitle: 'Career',           icon: '💼', color: 'smart' },
-};
+  const tutorials = [
+    { id: 1, category: 1, title: 'What is the Internet?', difficulty: 1, duration: '5 min' },
+    { id: 2, category: 1, title: 'How to Use a Smartphone', difficulty: 1, duration: '8 min' },
+    { id: 3, category: 2, title: 'Creating an Email Account', difficulty: 2, duration: '10 min' },
+    { id: 4, category: 2, title: 'Making Video Calls', difficulty: 2, duration: '7 min' },
+    { id: 5, category: 3, title: 'Opening a Bank Account Online', difficulty: 2, duration: '12 min' },
+    { id: 6, category: 3, title: 'Sending Money Online', difficulty: 3, duration: '15 min' },
+    { id: 7, category: 4, title: 'Setting Up WhatsApp', difficulty: 1, duration: '6 min' },
+    { id: 8, category: 4, title: 'Using Facebook', difficulty: 2, duration: '10 min' },
+    { id: 9, category: 5, title: 'Shopping on Amazon', difficulty: 3, duration: '20 min' },
+    { id: 10, category: 6, title: 'Protecting Your Passwords', difficulty: 2, duration: '8 min' },
+  ];
 
-  const filteredTutorials = tutorials.filter(t => {
-    if (selectedCategory && t.category_id !== parseInt(selectedCategory)) return false;
-    if (selectedDifficulty && t.difficulty_level !== parseInt(selectedDifficulty)) return false;
-    return true;
-  });
-
-  const getDifficultyLabel = (level) => {
-    const labels = { 1: 'Very Easy', 2: 'Easy', 3: 'Medium', 4: 'Hard', 5: 'Advanced' };
-    return labels[level] || 'Easy';
-  };
-
-  const getDifficultyColor = (level) => {
-    const colors = { 1: '#28a745', 2: '#20c997', 3: '#ffc107', 4: '#fd7e14', 5: '#dc3545' };
-    return colors[level] || '#6c757d';
-  };
+  const filteredTutorials = selectedCategory
+    ? tutorials.filter(t => t.category === selectedCategory)
+    : tutorials;
 
   return (
-    <>
-      {/* Page Header */}
-      <div className="page-header text-center">
-        <div className="container-xl" data-aos="zoom-in">
-          <h1 className="seekhna-title">Learn Tutorials</h1>
-          <p className="seekhna-subtitle">Master digital skills with step-by-step guides</p>
+    <div className="seekhna">
+      {/* Hero Section */}
+      <section className="seekhna-hero">
+        <div className="container container-sm">
+          <h1>Learn Tutorials</h1>
+          <p>Master digital skills with our easy-to-follow step-by-step guides</p>
         </div>
-      </div>
+      </section>
 
-      {/* Filters */}
-      <div className="container-xl seekhna-filters-wrapper">
-        <div className="seekhna-filters">
-          <div className="filter-group">
-            <label>Category:</label>
-            <div className="filter-options">
-              <button 
-                className={`filter-btn ${!selectedCategory ? 'active' : ''}`}
-                onClick={() => setSelectedCategory(null)}
+      {/* Categories */}
+      <section className="categories alt">
+        <div className="container">
+          <h2>Choose a Category</h2>
+          <div className="category-grid">
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                className={`category-card ${selectedCategory === cat.id ? 'active' : ''}`}
+                onClick={() => setSelectedCategory(selectedCategory === cat.id ? null : cat.id)}
               >
-                All Categories
+                <h3>{cat.name}</h3>
+                <p>{cat.tutorials} tutorials</p>
               </button>
-              {categories.map(cat => (
-                <button
-                  key={cat.id}
-                  className={`filter-btn ${selectedCategory === cat.id ? 'active' : ''}`}
-                  onClick={() => setSelectedCategory(cat.id)}
-                >
-                  {cat.name_english}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Tutorial Cards */}
-      <div className="container-xl py-2">
-        {loading ? (
-          <div className="text-center py-5">
-            <div className="spinner-border" style={{ color: 'var(--green)' }} role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-            <p className="mt-3 text-soft">Loading tutorials...</p>
-          </div>
-        ) : filteredTutorials.length === 0 ? (
-          <div className="text-center py-5">
-            <i className="fas fa-search fa-3x mb-3" style={{ color: 'var(--gold)' }}></i>
-            <h4>No tutorials found</h4>
-            <p className="text-soft">Try adjusting your filters</p>
-          </div>
-        ) : (
-          <div className="d-flex flex-column gap-4">
-            {filteredTutorials.map((tutorial, index) => (
-              <div 
-                className="tutorial-card" 
-                key={tutorial.id}
-                data-aos="fade-up"
-                data-aos-delay={index * 100}
-              >
-                <div className={`tutorial-card-accent ${index % 2 === 0 ? 'left' : 'right'}`}>
-                  <div className="tutorial-content">
-                    <div className="tutorial-badge">
-                      {tutorial.category_name}
-                    </div>
-                    <h2 className="tutorial-title">
-                      {tutorial.title_urdu}
-                    </h2>
-                    <p className="tutorial-subtitle">
-                      {tutorial.title_english}
-                    </p>
-                    <p className="tutorial-desc">
-                      {tutorial.description_english?.substring(0, 150)}...
-                    </p>
-                    
-                    <div className="tutorial-meta">
-                      <span className="meta-tag difficulty" style={{ borderColor: getDifficultyColor(tutorial.difficulty_level) }}>
-                        <i className="fas fa-signal me-1"></i>
-                        {getDifficultyLabel(tutorial.difficulty_level)}
-                      </span>
-                      <span className="meta-tag">
-                        <i className="fas fa-list me-1"></i>
-                        {tutorial.step_count || 'Multiple'} Steps
-                      </span>
-                      <span className="meta-tag">
-                        <i className="fas fa-clock me-1"></i>
-                        {tutorial.estimated_time_minutes || 5} min
-                      </span>
-                    </div>
-                    
-                    <Link 
-                      to={`/tutorial/${tutorial.id}`}
-                      className="start-tutorial-btn"
-                    >
-                      Start Learning <i className="fas fa-arrow-right ms-2"></i>
-                    </Link>
-                  </div>
+      {/* Tutorials List */}
+      <section className="tutorials">
+        <div className="container">
+          <h2>
+            {selectedCategory
+              ? `${categories.find(c => c.id === selectedCategory)?.name} Tutorials`
+              : 'All Tutorials'}
+          </h2>
+          <div className="tutorials-list">
+            {filteredTutorials.map(tutorial => (
+              <div key={tutorial.id} className="tutorial-item card">
+                <div className="tutorial-header">
+                  <h3>{tutorial.title}</h3>
+                  <span className="difficulty">Level {tutorial.difficulty}</span>
                 </div>
+                <p className="tutorial-duration">Duration: {tutorial.duration}</p>
+                <button className="btn btn-small">Start Tutorial</button>
               </div>
             ))}
           </div>
-        )}
-      </div>
-
-      {/* Category Sections */}
-      <div className="container-xl py-4">
-        <div className="d-flex flex-column gap-4">
-          {Object.entries(categoryTutorials).map(([key, cat]) => (
-            <div className="category-banner" key={key} data-aos="fade-up">
-              <div className={`category-banner-accent ${cat.color}`}>
-                <div className="category-banner-content">
-                  <span className="category-subtitle">{cat.subtitle}</span>
-                  <h3 className="category-title">{cat.title}</h3>
-                  <Link 
-                    to={`/seekhna/${key}`}
-                    className="category-link"
-                  >
-                    Explore All <i className="fas fa-arrow-right ms-1"></i>
-                  </Link>
-                </div>
-                <div className="category-icon">
-                  {cat.icon}
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
-      </div>
-
-      {/* Tip Alert */}
-      <div className="container-xl mb-5">
-        <div className="tip-alert" data-aos="zoom-in">
-          <div className="tip-icon">
-            <i className="fas fa-lightbulb"></i>
-          </div>
-          <div className="tip-content">
-            <strong>Seekhna Tip:</strong> All our guides are free and tested on real Pakistani platforms. 
-            Click the buttons above to access complete tutorials with screenshots.
-          </div>
-        </div>
-      </div>
-    </>
+      </section>
+    </div>
   );
-};
-
-export default Seekhna;
+}

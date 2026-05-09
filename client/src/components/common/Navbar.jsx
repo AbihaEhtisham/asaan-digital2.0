@@ -8,10 +8,10 @@ const Navbar = () => {
 
   const navLinks = [
     { path: '/', label: 'Home' },
-    { path: '/poochna', label: 'Poochna' },
-    { path: '/seekhna', label: 'Seekhna' },
-    { path: '/impact', label: 'Community' },
-    { path: '/about', label: 'About' },
+    { path: '/poochna', label: 'Ask Questions' },
+    { path: '/seekhna', label: 'Learn Tutorials' },
+    { path: '/community', label: 'Community' },
+    { path: '/about', label: 'About Us' },
   ];
 
   const isActive = (path) => {
@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="container-xl nav-container">
 
         <Link className="navbar-brand" to="/">
-          آسان<span>Digital</span>
+          Asaan<span>Digital</span>
         </Link>
 
         {/* Hamburger Menu */}

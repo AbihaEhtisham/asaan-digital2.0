@@ -1,291 +1,158 @@
-.page-header {
-  padding-top: 7rem;
-  padding-bottom: 4rem;
-  border-bottom: 4px solid var(--black);
-  background: var(--white);
+.seekhna {
+  width: 100%;
 }
 
-.seekhna-title {
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: var(--black);
-  margin: 0;
-  line-height: 1.1;
+/* Hero Section */
+.seekhna-hero {
+  padding: 4rem 0;
+  border-bottom: 3px solid var(--black);
 }
 
-.seekhna-subtitle {
-  font-size: 1.2rem;
-  color: var(--text-soft);
-  margin-top: 1rem;
-}
-
-.seekhna-filters-wrapper {
-  padding: 3rem 2rem;
-}
-
-.seekhna-filters {
-  display: flex;
-  gap: 2rem;
-  background: var(--white);
-  border: 4px solid var(--black);
-  padding: 2rem;
-  box-shadow: 0 6px 0 var(--gold);
-  flex-wrap: wrap;
-}
-
-/* Filters */
-.filters-bar {
-  display: none;
-}
-
-.filter-group label {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-  font-size: 1rem;
-  text-transform: none;
-  letter-spacing: 0em;
-  color: var(--black);
+.seekhna-hero h1 {
+  text-align: center;
   margin-bottom: 1rem;
-  display: block;
-  font-weight: 700;
 }
 
-.filter-options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+.seekhna-hero p {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 0;
 }
 
-.filter-btn {
+/* Categories Section */
+.categories {
+  padding: 4rem 0;
+}
+
+.categories h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.category-card {
   background: var(--white);
   border: 3px solid var(--black);
-  padding: 0.8rem 1.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
+  padding: 2rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 1rem;
 }
 
-.filter-btn:hover {
-  background: var(--black);
-  color: var(--gold);
+.category-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
 }
 
-.filter-btn.active {
-  background: var(--black);
-  color: var(--gold);
-  border-color: var(--black);
+.category-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
 }
 
-/* Tutorial Cards */
-.tutorial-card {
-  background: var(--white);
-  border: 3px solid var(--black);
-  transition: all 0.3s ease;
-  margin-bottom: 2rem;
-}
-
-.tutorial-card:hover {
+.category-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 0 var(--gold);
 }
 
-.tutorial-card-accent {
-  padding: 3rem;
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-}
-
-.tutorial-card-accent.left {
-  border-left: 8px solid var(--gold);
-  flex-direction: row;
-}
-
-.tutorial-card-accent.right {
-  border-left: 8px solid var(--gold);
-  flex-direction: row-reverse;
-}
-
-@media (max-width: 768px) {
-  .tutorial-card-accent {
-    flex-direction: column !important;
-  }
-}
-
-.tutorial-content {
-  max-width: 800px;
-}
-
-.tutorial-badge {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--gold);
-  margin-bottom: 0.5rem;
-}
-
-.tutorial-title {
-  font-family: 'Noto Nastaliq Urdu', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--green);
-  line-height: 1.6;
-}
-
-.tutorial-subtitle {
-  font-weight: 600;
-  color: var(--black);
-  margin-bottom: 0.5rem;
-}
-
-.tutorial-desc {
-  color: var(--text-soft);
-  font-size: 0.95rem;
-  margin-bottom: 1.5rem;
-}
-
-.tutorial-meta {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.meta-tag {
-  border: 2px solid var(--black);
-  padding: 0.3rem 0.8rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  font-family: 'Space Mono', monospace;
-}
-
-.start-tutorial-btn {
-  display: inline-block;
+.category-card.active {
   background: var(--black);
   color: var(--white);
-  padding: 1rem 2.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-  font-weight: 700;
-  text-transform: none;
-  text-decoration: none;
-  border: 3px solid var(--black);
-  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
-}
-
-.start-tutorial-btn:hover {
-  background: var(--gold);
-  color: var(--black);
   border-color: var(--gold);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2);
 }
 
-/* Category Banners */
-.category-banner {
-  transition: all 0.3s;
+.category-card.active h3,
+.category-card.active p {
+  color: var(--white);
 }
 
-.category-banner:hover {
-  transform: translate(-3px, -3px);
+/* Tutorials Section */
+.tutorials {
+  padding: 4rem 0;
+  border-top: 3px solid var(--black);
 }
 
-.category-banner-accent {
+.tutorials h2 {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.tutorials-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.tutorial-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2.5rem;
-  border: 3px solid var(--black);
-  background: var(--white);
-  box-shadow: 0 6px 0 var(--gold);
-}
-
-.category-banner-accent.basics { border-left: 12px solid var(--black); }
-.category-banner-accent.gov { border-left: 12px solid var(--gold); }
-.category-banner-accent.payments { border-left: 12px solid var(--black); }
-.category-banner-accent.smart { border-left: 12px solid var(--gold); }
-.category-banner-accent.learning { border-left: 12px solid var(--black); }
-
-.category-subtitle {
-  font-family: 'Space Mono', monospace;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--gold);
-}
-
-.category-title {
-  font-family: 'Syne', sans-serif;
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0.5rem 0;
-}
-
-.category-link {
-  color: var(--green);
-  font-weight: 700;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: gap 0.2s;
-}
-
-.category-link:hover {
-  gap: 0.6rem;
-  color: var(--green);
-}
-
-.category-icon {
-  font-size: 3rem;
-  opacity: 0.3;
-}
-
-/* Tip Alert */
-.tip-alert {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1.5rem;
-  background: var(--white);
-  border-left: 6px solid var(--gold);
-  border: 2px solid var(--black);
-  padding: 1.5rem;
-  box-shadow: 4px 4px 0 var(--gold);
 }
 
-.tip-icon {
-  font-size: 2rem;
-  color: var(--gold);
+.tutorial-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
-.tip-content {
-  color: var(--text-soft);
+.tutorial-item h3 {
+  margin: 0;
+  font-size: 1.3rem;
 }
 
-.tip-content strong {
-  color: var(--green);
+.difficulty {
+  background: var(--light-gray);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--text-primary);
 }
 
+.tutorial-duration {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.btn-small {
+  align-self: flex-start;
+  padding: 0.9rem 1.8rem;
+  font-size: 0.95rem;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
-  .filters-bar {
+  .seekhna-hero {
+    padding: 3rem 0;
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .tutorials-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tutorial-header {
     flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .tutorial-card-accent.left,
-  .tutorial-card-accent.right {
-    border-left: 4px solid var(--green);
-    border-right: none;
-  }
-  
-  .category-banner-accent {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .category-icon {
-    font-size: 2rem;
   }
 }

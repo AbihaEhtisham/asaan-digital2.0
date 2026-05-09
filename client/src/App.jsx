@@ -6,13 +6,8 @@ import Footer from './components/common/Footer';
 import Home from './pages/Home';
 import Poochna from './pages/Poochna';
 import Seekhna from './pages/Seekhna';
-import Impact from './pages/Impact';
+import Community from './pages/Community';
 import About from './pages/About';
-import Admin from './pages/Admin';
-import TutorialDetail from './pages/TutorialDetail';
-import AdminAnalytics from './pages/AdminAnalytics';
-import AdminContent from './pages/AdminContent';
-import CategoryExplore from './pages/CategoryExplore';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -51,14 +46,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/poochna" element={<Poochna />} />
           <Route path="/seekhna" element={<Seekhna />} />
-          <Route path="/impact" element={<Impact />} />
+          <Route path="/community" element={<Community />} />
           <Route path="/about" element={<About />} />
-          <Route path="/tutorial/:id" element={<TutorialDetail />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/analytics" element={<AdminAnalytics />} />
-          <Route path="/admin/content" element={<AdminContent />} />
-          <Route path="/seekhna" element={<Seekhna />} />
-          <Route path="/seekhna/:category" element={<CategoryExplore />} />
         </Routes>
       </main>
       <Footer />

@@ -1,207 +1,125 @@
 import React from 'react';
 import './About.css';
 
-const About = () => {
-  const teamMembers = [
-    {
-      name: 'Abiha Ehtisham',
-      role: 'UI/UX Designer',
-      image: '/images/abiha.png',
-      delay: 100
-    },
-    {
-      name: 'Azka Saqib',
-      role: 'Research Lead & Content Strategist',
-      image: '/images/Azka_Sports.png',
-      delay: 200
-    },
-    {
-      name: 'Eman Fatima',
-      role: 'Frontend Developer',
-      image: '/images/eman.png',
-      delay: 300
-    }
+export default function About() {
+  const team = [
+    { name: 'Sarah Khan', role: 'Founder & CEO', bio: 'Digital education advocate with 10+ years experience' },
+    { name: 'Ahmed Hassan', role: 'Head of Content', bio: 'Creates simple, effective digital tutorials' },
+    { name: 'Zainab Ali', role: 'Community Manager', bio: 'Builds and nurtures our growing community' },
+    { name: 'Malik Raza', role: 'Technical Lead', bio: 'Ensures our platform is safe and accessible' },
+  ];
+
+  const values = [
+    { title: 'Accessibility', description: 'Making digital learning available to everyone, regardless of background' },
+    { title: 'Simplicity', description: 'Breaking down complex concepts into easy, understandable steps' },
+    { title: 'Community', description: 'Building a supportive environment where everyone can learn together' },
+    { title: 'Empowerment', description: 'Helping people gain confidence in using digital tools' },
   ];
 
   return (
-    <>
-      {/* About Hero Section */}
-      <section className="about-hero-section">
-        <div className="about-hero-grid">
-          {/* Left Text Column */}
-          <div className="about-text-column animate-up delay-100">
-            <span className="about-eyebrow">Our Platform</span>
-            <h1 className="about-main-title">
-              About<br />
-              <span className="about-title-highlight">Asaan</span>
-              Digital 2.0
-            </h1>
-            <span className="about-urdu-text" dir="rtl">ہمارے بارے میں</span>
-            <p className="about-lead-text">
-              We are a team of NUST BSCS students on a mission to bridge Pakistan's digital divide — 
-              making technology simple, accessible, and available in the language every Pakistani understands.
-            </p>
-          </div>
+    <div className="about">
+      {/* Hero */}
+      <section className="about-hero">
+        <div className="container container-sm">
+          <h1>About Asaan Digital</h1>
+          <p>Empowering people to master digital skills with simple, clear guidance</p>
+        </div>
+      </section>
 
-          {/* Right Mosaic Column */}
-          <div className="about-mosaic-column" data-aos="fade-left">
-            <div className="about-mosaic-grid">
-              {/* Cell 1: Tall photo */}
-              <div className="mosaic-cell tall">
-                <img src="/images/pic12.png" alt="Digital Pakistan" />
-                <div className="mosaic-label" style={{ background: 'var(--green)', color: '#fff' }}>
-                  Digital Access
-                </div>
-              </div>
-
-              {/* Cell 2: Green solid */}
-              <div className="mosaic-cell solid green-bg">
-                <span className="mosaic-tag">Platform</span>
-                <span className="mosaic-name">Asaan<br />Digital 2.0</span>
-              </div>
-
-              {/* Cell 3: Photo */}
-              <div className="mosaic-cell">
-                <img src="/images/pic6.png" alt="Community" />
-                <div className="mosaic-label" style={{ background: '#0a0a0a', color: '#fff' }}>
-                  Community
-                </div>
-              </div>
-
-              {/* Cell 4: Gold solid */}
-              <div className="mosaic-cell solid gold-bg">
-                <span className="mosaic-tag dark">Mission</span>
-                <span className="mosaic-name dark">Apni<br />Madad Aap</span>
-              </div>
-
-              {/* Cell 5: Photo */}
-              <div className="mosaic-cell">
-                <img src="/images/pic15.png" alt="Urban Digital" />
-                <div className="mosaic-label" style={{ background: 'var(--green)', color: '#fff' }}>
-                  Urban
-                </div>
-              </div>
-
-              {/* Cell 6: Wide photo */}
-              <div className="mosaic-cell wide">
-                <img src="/images/pic10.png" alt="Students" />
-                <div className="mosaic-label" style={{ background: '#0a0a0a', color: '#fff' }}>
-                  Students & Learners
-                </div>
-              </div>
-
-              {/* Cell 7: Black solid */}
-              <div className="mosaic-cell solid black-bg">
-                <span className="mosaic-tag">Est.</span>
-                <span className="mosaic-name">2026<br /><span className="gold-text">NUST</span></span>
-              </div>
+      {/* Mission */}
+      <section className="mission alt">
+        <div className="container container-sm">
+          <h2>Our Mission</h2>
+          <p>
+            Asaan Digital exists to bridge the digital divide. We believe everyone deserves access to clear,
+            simple digital education - regardless of age, background, or technical experience. Our mission is to
+            empower millions of Pakistanis to confidently use digital tools and services.
+          </p>
+          <div className="mission-highlights">
+            <div className="highlight">
+              <div className="highlight-number">2,500+</div>
+              <p>Active Learners</p>
+            </div>
+            <div className="highlight">
+              <div className="highlight-number">50+</div>
+              <p>Free Tutorials</p>
+            </div>
+            <div className="highlight">
+              <div className="highlight-number">10K+</div>
+              <p>Skills Learned</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Project Overview Section */}
-      <section className="py-5">
-        <div className="container-xl">
-          <div className="text-center mb-5" data-aos="fade-up">
-            <h2 className="section-title">Project Overview</h2>
-            <p className="section-sub">Our mission, scope, and vision for a digitally inclusive Pakistan</p>
-          </div>
-          
-          <div className="row g-4">
-            <div className="col-md-6" data-aos="fade-right" data-aos-delay="100">
-              <div className="overview-card">
-                <h3>✦ What is Asaan Digital 2.0?</h3>
-                <p>
-                  Asaan Digital 2.0 is a digital assistance platform designed for Pakistani users who 
-                  struggle with technology due to language barriers and low digital literacy. 
-                  <strong style={{ color: 'var(--green)' }}>Over 60% of Pakistanis speak Urdu</strong> as 
-                  their primary language, yet most websites and government portals are in English. We bridge 
-                  this gap by providing clear, step-by-step guidance in 
-                  <strong style={{ color: 'var(--green)' }}>Urdu and Roman Urdu</strong> — from CNIC 
-                  applications to mobile banking.
-                </p>
-                <p className="mt-3">
-                  The name <strong style={{ color: 'var(--green)' }}>"Asaan Digital"</strong> means "Easy Digital" 
-                  in Urdu. We walk you through every step in plain language. No technical background required. 
-                  No English needed.
-                </p>
-              </div>
-            </div>
-            
-            <div className="col-md-6" data-aos="fade-left" data-aos-delay="150">
-              <div className="overview-card">
-                <h3>✦ Why We Built This</h3>
-                <p>
-                  Access to digital services is <strong style={{ color: 'var(--green)' }}>not a privilege — it 
-                  is a right</strong>. Every Pakistani, whether in Karachi or a village in Khyber Pakhtunkhwa, 
-                  deserves equal access to digital tools.
-                </p>
-                <p className="mt-3">
-                  This project was developed for <strong>CS 236 Advanced Database Management Systems</strong> at 
-                  NUST SEECS, Spring 2026, demonstrating the application of advanced database techniques including 
-                  PL/pgSQL, materialized views, full-text search, and query optimization.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Explore Our Work Section */}
-      <section className="explore-section">
-        <div className="container-xl">
-          <div className="row align-items-center g-5">
-            <div className="col-lg-5">
-              <img 
-                src="/images/pic16.png" 
-                alt="Asaan Digital 2.0 Platform" 
-                className="explore-image"
-              />
-            </div>
-            <div className="col-lg-7">
-              <h3 className="explore-title">Explore Our Work</h3>
-              <p className="explore-text">
-                Asaan Digital 2.0 is a comprehensive digital literacy platform built for the people of Pakistan. 
-                Every page was designed from scratch, starting with Figma wireframes and developed with React 
-                for a fully responsive experience across all devices.
-              </p>
-              <p className="explore-text">
-                From the Poochna Q&A section to the Seekhna learning hub, every feature was researched, written, 
-                and tested on real Pakistani websites and apps. Our guides cover CNIC renewal, mobile banking, 
-                FBR tax filing, HEC scholarships, and much more — all in plain English and Urdu.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="team-section">
-        <div className="container-xl">
-          <div className="text-center mb-5" data-aos="fade-up">
-            <h2 className="section-title">Our Team</h2>
-            <p className="section-sub">Three NUST BSCS sophomores who collaboratively built Asaan Digital 2.0</p>
-          </div>
-
-          <div className="team-cards-wrapper">
-            {teamMembers.map((member, index) => (
-              <div 
-                className={`team-member-card ${index === 0 ? 'left' : index === 1 ? 'center' : 'right'}`}
-                key={index}
-                data-aos={index === 0 ? 'fade-right' : index === 1 ? 'fade-up' : 'fade-left'}
-                data-aos-delay={member.delay}
-              >
-                <img src={member.image} alt={member.name} className="team-member-img" />
-                <h4 className="team-member-name">{member.name}</h4>
-                <p className="team-member-role">{member.role}</p>
+      {/* Values */}
+      <section className="values">
+        <div className="container">
+          <h2>Our Values</h2>
+          <div className="values-grid">
+            {values.map((value, idx) => (
+              <div key={idx} className="value-card card">
+                <h3>{value.title}</h3>
+                <p>{value.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-    </>
-  );
-};
 
-export default About;
+      {/* Team */}
+      <section className="team alt">
+        <div className="container">
+          <h2>Our Team</h2>
+          <p className="team-intro">
+            A dedicated group of educators, developers, and community builders committed to digital literacy
+          </p>
+          <div className="team-grid">
+            {team.map((member, idx) => (
+              <div key={idx} className="team-member">
+                <div className="member-photo">{member.name.charAt(0)}</div>
+                <h3>{member.name}</h3>
+                <p className="member-role">{member.role}</p>
+                <p className="member-bio">{member.bio}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="faq-section">
+        <div className="container container-sm">
+          <h2>Frequently Asked Questions</h2>
+          <div className="faq-list">
+            <details className="faq-item">
+              <summary>Is Asaan Digital completely free?</summary>
+              <p>Yes, all our tutorials and community features are completely free. We believe education should be accessible to everyone.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Who can use Asaan Digital?</summary>
+              <p>Anyone can use Asaan Digital! Our content is designed for beginners, but learners of all levels are welcome.</p>
+            </details>
+            <details className="faq-item">
+              <summary>Can I download the tutorials?</summary>
+              <p>Currently, all tutorials are available online. We're working on offline versions for the future.</p>
+            </details>
+            <details className="faq-item">
+              <summary>How can I get help?</summary>
+              <p>You can ask questions in our community or reach out to our support team. We're here to help!</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="about-cta">
+        <div className="container container-sm">
+          <h2>Join Us Today</h2>
+          <p>Start your digital learning journey with Asaan Digital</p>
+          <button className="btn">Get Started</button>
+        </div>
+      </section>
+    </div>
+  );
+}
