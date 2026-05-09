@@ -18,7 +18,7 @@ const adminAuth = (req, res, next) => {
 };
 
 // Apply auth middleware to all admin routes
-router.use(adminAuth);
+//router.use(adminAuth);
 
 // Get dashboard overview stats
 router.get('/dashboard', async (req, res, next) => {
