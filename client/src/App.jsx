@@ -13,6 +13,8 @@ import TutorialDetail from './pages/TutorialDetail';
 import AdminAnalytics from './pages/AdminAnalytics';
 import AdminContent from './pages/AdminContent';
 import CategoryExplore from './pages/CategoryExplore';
+import TutorialQuiz from './pages/TutorialQuiz';
+import VoiceSearch from './components/VoiceSearch';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -59,6 +61,7 @@ function App() {
           <Route path="/admin/content" element={<AdminContent />} />
           <Route path="/seekhna" element={<Seekhna />} />
           <Route path="/seekhna/:category" element={<CategoryExplore />} />
+          <Route path="/tutorial/:id/quiz" element={<TutorialQuiz />} />
         </Routes>
       </main>
       <Footer />
@@ -73,6 +76,7 @@ function App() {
           },
         }}
       />
+      <VoiceSearch />
     </>
   );
 }

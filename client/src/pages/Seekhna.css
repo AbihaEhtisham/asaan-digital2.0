@@ -1,19 +1,68 @@
+/* Seekhna Page Styles - Blue Theme */
+
+/* Page Header - Centered with enlarged text */
 .page-header {
-  padding-top: 9rem;
-  padding-bottom: 4rem;
-  border-bottom: 2px solid var(--black);
-  background: var(--off-white);
+  padding-top: 10rem;
+  padding-bottom: 6rem;
+  background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 30%, #f0f7ff 60%, #e8f4ff 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
 }
 
-/* Filters */
+.page-header .container-xl {
+  position: relative;
+  z-index: 2;
+}
+
+/* Hero Urdu Text - Black and Blue */
+.hero-urdu-sub {
+  font-family: 'Noto Nastaliq Urdu', 'Nastaliq Urdu', serif !important;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  text-align: center;
+  direction: rtl;
+  margin-bottom: 1rem;
+}
+
+.hero-urdu-sub .urdu-highlight {
+  color: #3b82f6;
+}
+
+.hero-urdu-sub {
+  color: #1e293b;
+}
+
+/* Hero English Heading */
+.page-header .display-4 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #3b82f6;
+  margin-bottom: 1rem;
+}
+
+.page-header p {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  color: #475569;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Filters Section - Blue Background */
 .filters-bar {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  background: var(--white);
-  border: 2px solid var(--black);
-  padding: 1.5rem;
-  box-shadow: 4px 4px 0 var(--green);
+  background: linear-gradient(135deg, #1e40af, #2563eb);
+  padding: 1.8rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+  margin-top: -2rem;
+  position: relative;
+  z-index: 10;
 }
 
 .filter-group label {
@@ -21,64 +70,66 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--text-soft);
-  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.75rem;
   display: block;
 }
 
 .filter-options {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.75rem;
 }
 
 .filter-btn {
-  background: transparent;
-  border: 2px solid var(--black);
-  padding: 0.35rem 1rem;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1.2rem;
   font-family: 'Syne', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  color: #ffffff;
 }
 
 .filter-btn:hover {
-  background: var(--cream);
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .filter-btn.active {
-  background: var(--green);
-  color: var(--white);
-  border-color: var(--green);
+  background: #ffffff;
+  color: #1e40af;
+  border-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Tutorial Cards */
+/* Tutorial Cards - Like Home Explore Cards */
 .tutorial-card {
-  background: var(--white);
-  border: 2px solid var(--black);
-  transition: all 0.3s;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  margin-bottom: 1.5rem;
 }
 
 .tutorial-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: 8px 8px 0 var(--green);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 35px rgba(37, 99, 235, 0.12);
+  border-color: #93c5fd;
 }
 
 .tutorial-card-accent {
   padding: 2rem;
-}
-
-.tutorial-card-accent.left {
-  border-left: 8px solid var(--green);
-}
-
-.tutorial-card-accent.right {
-  border-right: 8px solid var(--green);
+  background: #ffffff;
 }
 
 .tutorial-content {
-  max-width: 800px;
+  max-width: 100%;
 }
 
 .tutorial-badge {
@@ -86,27 +137,32 @@
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--gold);
-  margin-bottom: 0.5rem;
+  color: #3b82f6;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
 }
 
 .tutorial-title {
-  font-family: 'Noto Nastaliq Urdu', serif;
-  font-size: 1.8rem;
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: var(--green);
-  line-height: 1.6;
-}
-
-.tutorial-subtitle {
-  font-weight: 600;
-  color: var(--black);
+  color: #1e40af;
+  line-height: 1.5;
   margin-bottom: 0.5rem;
 }
 
+.tutorial-subtitle {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
 .tutorial-desc {
-  color: var(--text-soft);
-  font-size: 0.95rem;
+  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.6;
   margin-bottom: 1.5rem;
 }
 
@@ -118,137 +174,297 @@
 }
 
 .meta-tag {
-  border: 2px solid var(--black);
+  border: 1px solid #e2e8f0;
   padding: 0.3rem 0.8rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   font-family: 'Space Mono', monospace;
+  border-radius: 50px;
+  color: #475569;
+}
+
+.meta-tag.difficulty {
+  border-width: 2px;
 }
 
 .start-tutorial-btn {
-  display: inline-block;
-  background: var(--green);
-  color: var(--white);
-  padding: 0.75rem 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  padding: 0.75rem 1.8rem;
   font-family: 'Syne', sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   text-decoration: none;
-  border: 2px solid var(--black);
-  box-shadow: 4px 4px 0 var(--black);
-  transition: all 0.2s;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
 }
 
 .start-tutorial-btn:hover {
-  background: var(--black);
-  color: var(--white);
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--green);
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+  color: #ffffff;
 }
 
-/* Category Banners */
+/* Category Banners - Explore Cards Style (1 Column) */
 .category-banner {
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
 }
 
 .category-banner:hover {
-  transform: translate(-3px, -3px);
+  transform: translateY(-6px);
 }
 
 .category-banner-accent {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
-  border: 3px solid var(--black);
-  background: var(--white);
-  box-shadow: 6px 6px 0 var(--black);
+  padding: 1.8rem 2rem;
+  background: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  gap: 1.5rem;
 }
 
-.category-banner-accent.basics { border-left: 12px solid var(--green); }
-.category-banner-accent.gov { border-left: 12px solid var(--gold); }
-.category-banner-accent.payments { border-left: 12px solid var(--green-mid); }
-.category-banner-accent.smart { border-left: 12px solid var(--green-accent); }
-.category-banner-accent.learning { border-left: 12px solid var(--off-black); }
+.category-banner-accent:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.12);
+}
+
+/* Category color accents - Blue theme */
+.category-banner-accent.basics { border-left: 6px solid #3b82f6; }
+.category-banner-accent.gov { border-left: 6px solid #2563eb; }
+.category-banner-accent.payments { border-left: 6px solid #1d4ed8; }
+.category-banner-accent.smart { border-left: 6px solid #60a5fa; }
+.category-banner-accent.learning { border-left: 6px solid #1e40af; }
 
 .category-subtitle {
   font-family: 'Space Mono', monospace;
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--gold);
+  color: #3b82f6;
+  font-weight: 700;
 }
 
 .category-title {
   font-family: 'Syne', sans-serif;
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 800;
   margin: 0.5rem 0;
+  color: #1e293b;
 }
 
 .category-link {
-  color: var(--green);
+  color: #3b82f6;
   font-weight: 700;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  transition: gap 0.2s;
+  transition: gap 0.3s ease;
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
 }
 
 .category-link:hover {
   gap: 0.6rem;
-  color: var(--green);
+  color: #1e40af;
 }
 
 .category-icon {
-  font-size: 3rem;
-  opacity: 0.3;
+  font-size: 2.5rem;
+  opacity: 0.4;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f5f9;
+  border-radius: 16px;
 }
 
-/* Tip Alert */
+/* Tip Alert - Blue Theme */
 .tip-alert {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  background: var(--white);
-  border-left: 6px solid var(--gold);
-  border: 2px solid var(--black);
+  background: #ffffff;
+  border-left: 6px solid #3b82f6;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
   padding: 1.5rem;
-  box-shadow: 4px 4px 0 var(--gold);
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.08);
+  transition: all 0.3s ease;
+}
+
+.tip-alert:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.12);
+  border-color: #93c5fd;
 }
 
 .tip-icon {
   font-size: 2rem;
-  color: var(--gold);
+  color: #3b82f6;
 }
 
 .tip-content {
-  color: var(--text-soft);
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .tip-content strong {
-  color: var(--green);
+  color: #1e40af;
 }
 
-@media (max-width: 768px) {
+/* Loading State */
+.spinner-border {
+  color: #3b82f6 !important;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
   .filters-bar {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
+    padding: 1.5rem;
   }
   
-  .tutorial-card-accent.left,
-  .tutorial-card-accent.right {
-    border-left: 4px solid var(--green);
-    border-right: none;
+  .filter-options {
+    justify-content: center;
   }
   
   .category-banner-accent {
     flex-direction: column;
-    gap: 1rem;
+    text-align: center;
+  }
+  
+  .category-icon {
+    margin-top: 0.5rem;
+  }
+  
+  .tutorial-title {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+  
+  .hero-urdu-sub {
+    font-size: 2rem;
+  }
+  
+  .page-header .display-4 {
+    font-size: 1.8rem;
+  }
+  
+  .page-header p {
+    font-size: 0.95rem;
+    padding: 0 1rem;
+  }
+  
+  .filters-bar {
+    margin-top: -1rem;
+    padding: 1.2rem;
+  }
+  
+  .filter-group {
+    text-align: center;
+  }
+  
+  .filter-options {
+    justify-content: center;
+  }
+  
+  .filter-btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+  }
+  
+  .tutorial-card-accent {
+    padding: 1.5rem;
+  }
+  
+  .tutorial-title {
+    font-size: 1.2rem;
+  }
+  
+  .tutorial-meta {
+    gap: 0.5rem;
+  }
+  
+  .meta-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+  }
+  
+  .start-tutorial-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .category-title {
+    font-size: 1.2rem;
   }
   
   .category-icon {
     font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .tip-alert {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-header {
+    padding-top: 7rem;
+    padding-bottom: 3rem;
+  }
+  
+  .hero-urdu-sub {
+    font-size: 1.6rem;
+  }
+  
+  .page-header .display-4 {
+    font-size: 1.5rem;
+  }
+  
+  .filter-btn {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.7rem;
+  }
+  
+  .category-banner-accent {
+    padding: 1.2rem;
+  }
+  
+  .category-title {
+    font-size: 1rem;
+  }
+  
+  .category-icon {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
   }
 }

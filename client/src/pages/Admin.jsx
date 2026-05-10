@@ -147,7 +147,7 @@ const Admin = () => {
 
         {/* Quick Links */}
         <div className="admin-quick-links mt-4">
-          <h3 className="section-title-sm">Quick Navigation</h3>
+          <h3 className=" style={{ color: '#1a1a53',  font-family: 'Syne', sans-serif }}">Quick Navigation</h3>
           <div className="quick-links-grid">
             <Link to="/admin/analytics" className="quick-link-card">
               <i className="fas fa-chart-line fa-2x mb-3" style={{ color: 'var(--gold)' }}></i>

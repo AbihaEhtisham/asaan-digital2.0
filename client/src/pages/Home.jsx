@@ -102,6 +102,7 @@ const Home = () => {
     if (confidence >= 0.5) return 'medium-confidence';
     return 'low-confidence';
   };
+
   useEffect(() => {
     const targetCounts = { guides: 500, users: 10000, topics: 50 };
     
@@ -142,126 +143,114 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <NetworkWeb/>
-  <div className="container-xl">
-    <div className="row justify-content-center">
-      
-      {/* Center whole hero content */}
-      <div className="col-lg-10 text-center">
+        <div className="container-xl">
+          <div className="row justify-content-center">
+            <div className="col-lg-10 text-center">
 
-        {/* Right aligned Urdu heading */}
-        <div
-          className="hero-urdu-main mb-2 animate-up delay-100"
-          dir="rtl"
-          style={{
-            fontSize: '3.5rem',
-            textAlign: 'right',
-            width: '100%',
-            paddingRight: '300px'
-          }}
-        >
-          آسان ڈیجیٹل
-        </div>
-
-        <div
-          className="hero-urdu-sub animate-up delay-200"
-          dir="rtl"
-          style={{
-            fontSize: '1.8rem',
-            textAlign: 'right',
-            width: '100%',
-            paddingRight: '300px',
-            marginBottom: '3rem',
-            marginTop: '1rem'
-          }}
-        >
-          اپنی مدد آپ
-        </div>
-
-        {/* Search bar */}
-        <div className="row justify-content-center">
-          <div className="col-md-11">
-            <div className="search-bar-wrapper">
-              <div className="search-input-group">
-                
-                <span className="search-icon">
-                  <i className="fas fa-search"></i>
-                </span>
-
-                <input
-                  type="text"
-                  className="search-input"
-                  placeholder="Type your question here — Urdu, Roman Urdu, or English..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                />
-
-                <button
-                  className="search-btn"
-                  onClick={() => handleSearch()}
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <>
-                      <span
-                        className="spinner-border spinner-border-sm me-2"
-                        role="status"
-                      />
-                      Searching...
-                    </>
-                  ) : (
-                    'Ask'
-                  )}
-                </button>
+              {/* CENTERED Urdu heading */}
+              <div
+                className="hero-urdu-main mb-2 animate-up delay-100"
+                dir="rtl"
+                 style={{ fontSize: '5.5rem', fontWeight: '800', color: '#1e3a8a' }}
+              >
+                آسان ڈیجیٹل
               </div>
 
-              {/* Suggestions Dropdown */}
-              {suggestions.length > 0 && (
-                <div className="suggestions-dropdown">
-                  {suggestions.map((suggestion, i) => (
-                    <div
-                      key={i}
-                      className="suggestion-item"
-                      onClick={() => handleSuggestionClick(suggestion)}
-                    >
-                      <i className="fas fa-search me-2"></i>
-                      {suggestion}
+              <div
+                className="hero-urdu-sub animate-up delay-200"
+                dir="rtl"
+              >
+                اپنی مدد آپ
+              </div>
+
+              {/* Grey Urdu paragraph below headings */}
+              <p className="hero-urdu-para animate-up delay-300" dir="rtl">
+                فون نہیں سمجھ آ رہا؟ کوئی بات نہیں — ادھر پوچھیں!
+              </p>
+
+              {/* Search bar */}
+              <div className="row justify-content-center">
+                <div className="col-md-11">
+                  {/* overflow:visible so suggestions don't get clipped */}
+                  <div className="search-bar-wrapper">
+                    <div className="search-input-group">
+                      
+                      <span className="search-icon">
+                        <i className="fas fa-search"></i>
+                      </span>
+
+                      <input
+                        type="text"
+                        className="search-input"
+                        placeholder="Type your question here — Urdu, Roman Urdu, or English..."
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        onKeyPress={handleKeyPress}
+                      />
+
+                      <button
+                        className="search-btn"
+                        onClick={() => handleSearch()}
+                        disabled={loading}
+                      >
+                        {loading ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-sm me-2"
+                              role="status"
+                            />
+                            Searching...
+                          </>
+                        ) : (
+                          'Ask'
+                        )}
+                      </button>
                     </div>
-                  ))}
+
+                    {/* Suggestions Dropdown — rendered outside clipping context */}
+                    {suggestions.length > 0 && (
+                      <div className="suggestions-dropdown">
+                        {suggestions.map((suggestion, i) => (
+                          <div
+                            key={i}
+                            className="suggestion-item"
+                            onClick={() => handleSuggestionClick(suggestion)}
+                          >
+                            <i className="fas fa-search me-2"></i>
+                            {suggestion}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="topic-pills" style={{ marginTop: '2.5rem' }}>
+                    <span className="topic-label">Quick Topics:</span>
+                    {['CNIC', 'WhatsApp', 'JazzCash', 'NADRA', 'Easypaisa'].map(
+                      (topic) => (
+                        <button
+                          key={topic}
+                          className="topic-pill"
+                          onClick={() => {
+                            setQuery(topic);
+                            handleSearch(topic);
+                          }}
+                        >
+                          {topic}
+                        </button>
+                      )
+                    )}
+                  </div>
+
                 </div>
-              )}
+              </div>
             </div>
-
-            {/* Increased spacing below search bar */}
-            <div
-              className="topic-pills"
-              style={{ marginTop: '2.5rem' }}
-            >
-              <span className="topic-label">Quick Topics:</span>
-
-              {['CNIC', 'WhatsApp', 'JazzCash', 'NADRA', 'Easypaisa'].map(
-                (topic) => (
-                  <button
-                    key={topic}
-                    className="topic-pill"
-                    onClick={() => {
-                      setQuery(topic);
-                      handleSearch(topic);
-                    }}
-                  >
-                    {topic}
-                  </button>
-                )
-              )}
-            </div>
-
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-{results && (
+      </section>
+
+      {/* Results — with proper padding */}
+      {results && (
         <div className="container-xl py-4">
           <div className="results-section" data-aos="fade-up">
             {results.status === 'success' ? (
@@ -328,224 +317,193 @@ const Home = () => {
           </div>
         </div>
       )}
-      {/* Explore Section */}
-<section className="explore-section">
-  <NetworkWeb />
-  <div className="explore-inner">
+
+      {/* Explore Section — unchanged */}
+      <section className="explore-section">
+        <NetworkWeb />
+        <div className="explore-inner">
+          <div className="text-center mb-5" data-aos="fade-up">
+            <h2 className="explore-title" style={{ textAlign: 'center' }}>
+              Explore Karo — ایکسپلور کریں
+            </h2>
+            <p className="section-sub" style={{ textAlign: 'center', marginBottom: '7px' }}>
+              Pick a topic and start learning in minutes
+            </p>
+          </div>
+
+          <div className="container-xl">
+            <div className="explore-cards-grid">
+              {[
+                { key: 'whatsapp',  icon: '', tag: 'Messaging',       title: 'WhatsApp',           urdu: 'واٹس ایپ',        desc: 'Send messages, voice notes, and video calls step by step.' },
+                { key: 'payments',  icon: '', tag: 'Finance',          title: 'Digital Payments',   urdu: 'ڈیجیٹل ادائیگی', desc: 'JazzCash, Easypaisa, and online banking made simple.' },
+                { key: 'gov',       icon: '', tag: 'Public Portals',   title: 'Govt Services',      urdu: 'سرکاری خدمات',    desc: 'NADRA, CNIC, passport and FBR guides in plain Urdu.' },
+                { key: 'safety',    icon: '', tag: 'Stay Safe',         title: 'Online Safety',      urdu: 'آن لائن حفاظت',   desc: 'Protect yourself from scams, fraud, and fake accounts.' },
+                { key: 'phone',     icon: '', tag: 'Beginner Journey',  title: 'Phone Basics',       urdu: 'فون بنیادیات',    desc: 'Learn to use your smartphone from scratch.' },
+                { key: 'jobs',      icon: '', tag: 'Career',            title: 'Job Applications',   urdu: 'نوکری درخواست',   desc: 'Write a CV and apply online for jobs across Pakistan.' },
+              ].map((card, i) => (
+                <Link
+                  to={`/seekhna?category=${card.key}`}
+                  className="explore-card"
+                  key={card.key}
+                  data-aos="fade-up"
+                  data-aos-delay={100 + i * 80}
+                >
+                  <div className="explore-card-icon">{card.icon}</div>
+                  <div className="explore-card-tag">{card.tag}</div>
+                  <div className="explore-card-title">{card.title}</div>
+                  <div className="explore-card-urdu" dir="rtl">{card.urdu}</div>
+                  <p className="explore-card-desc">{card.desc}</p>
+                  <span className="explore-card-cta">Explore <i className="fas fa-arrow-right ms-1"></i></span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section — unchanged */}
+      <section className="stats-section" ref={statsRef}>
+        <div className="container-xl">
+          <div className="row">
+            <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
+              <div className="stat-number">{counters.guides}+</div>
+              <div className="stat-label">Digital Guides</div>
+            </div>
+            <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
+              <div className="stat-number">{counters.users.toLocaleString()}+</div>
+              <div className="stat-label">Happy Users</div>
+            </div>
+            <div className="stat-card" data-aos="fade-up" data-aos-delay="300">
+              <div className="stat-number">{counters.topics}+</div>
+              <div className="stat-label">Topics Covered</div>
+            </div>
+            <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
+              <div className="stat-number">{counters.team}</div>
+              <div className="stat-label">Team Members</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Problems Section — single row on desktop */}
+      <section className="py-5">
+        <div className="container-xl">
+          <div className="text-center mb-5" data-aos="fade-up">
+            <h2 className="section-title">ہم کیا مسئلہ حل کر رہے ہیں؟</h2>
+            <p className="section-sub">What Problems Are We Solving?</p>
+          </div>
+          <div className="problems-section-wrapper">
+            <div className="problems-row">
+              {/* Problem Card 1 */}
+              <div className="problem-card" data-aos="fade-up" data-aos-delay="100">
+                <div className="problem-icon">
+                  <img src="/images/language-barrier.png" alt="Language Barrier" />
+                </div>
+                <div className="problem-content">
+                  <h3>Language Barrier</h3>
+                  <p>
+                    Breaking every process down in simple Urdu and Roman Urdu, making technology accessible to over 60% of the population.
+                  </p>
+                </div>
+              </div>
+
+              {/* Problem Card 2 */}
+              <div className="problem-card" data-aos="fade-up" data-aos-delay="200">
+                <div className="problem-icon">
+                  <img src="/images/digital-illiteracy.png" alt="Digital Illiteracy" />
+                </div>
+                <div className="problem-content">
+                  <h3>Digital Illiteracy</h3>
+                  <p>
+                    Teaching essential digital skills step by step, from basic navigation to advanced online transactions.
+                  </p>
+                </div>
+              </div>
+
+              {/* Problem Card 3 */}
+              <div className="problem-card" data-aos="fade-up" data-aos-delay="300">
+                <div className="problem-icon">
+                  <img src="/images/confusing-portals.png" alt="Confusing Portals" />
+                </div>
+                <div className="problem-content">
+                  <h3>Confusing Portals</h3>
+                  <p>
+                    Providing clear, numbered walkthroughs for complex government portals like NADRA, FBR, and Passports.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section — 2 images LEFT | 3 cards CENTER | 2 images RIGHT */}
+  <section className="py-5 mission-section">
+  <div className="container-xl">
     <div className="text-center mb-5" data-aos="fade-up">
-  <h2 className="explore-title" style={{ textAlign: 'center' }}>
-    Explore Karo — ایکسپلور کریں
-  </h2>
-  <p className="section-sub" style={{ textAlign: 'center', marginBottom: '7px' }}>
-    Pick a topic and start learning in minutes
-  </p>
-</div>
+      <h2 className="section-title">ہمارا مشن</h2>
+    </div>
+    <div className="mission-cards-row">
 
-    <div className="container-xl">
-      <div className="explore-cards-grid">
-        {[
-          { key: 'whatsapp',  icon: '', tag: 'Messaging',       title: 'WhatsApp',           urdu: 'واٹس ایپ',        desc: 'Send messages, voice notes, and video calls step by step.' },
-          { key: 'payments',  icon: '', tag: 'Finance',          title: 'Digital Payments',   urdu: 'ڈیجیٹل ادائیگی', desc: 'JazzCash, Easypaisa, and online banking made simple.' },
-          { key: 'gov',       icon: '', tag: 'Public Portals',   title: 'Govt Services',      urdu: 'سرکاری خدمات',    desc: 'NADRA, CNIC, passport and FBR guides in plain Urdu.' },
-          { key: 'safety',    icon: '', tag: 'Stay Safe',         title: 'Online Safety',      urdu: 'آن لائن حفاظت',   desc: 'Protect yourself from scams, fraud, and fake accounts.' },
-          { key: 'phone',     icon: '', tag: 'Beginner Journey',  title: 'Phone Basics',       urdu: 'فون بنیادیات',    desc: 'Learn to use your smartphone from scratch.' },
-          { key: 'jobs',      icon: '', tag: 'Career',            title: 'Job Applications',   urdu: 'نوکری درخواست',   desc: 'Write a CV and apply online for jobs across Pakistan.' },
-        ].map((card, i) => (
-          <Link
-            to={`/seekhna?category=${card.key}`}
-            className="explore-card"
-            key={card.key}
-            data-aos="fade-up"
-            data-aos-delay={100 + i * 80}
-          >
-            <div className="explore-card-icon">{card.icon}</div>
-            <div className="explore-card-tag">{card.tag}</div>
-            <div className="explore-card-title">{card.title}</div>
-            <div className="explore-card-urdu" dir="rtl">{card.urdu}</div>
-            <p className="explore-card-desc">{card.desc}</p>
-            <span className="explore-card-cta">Explore <i className="fas fa-arrow-right ms-1"></i></span>
-          </Link>
-            
-        ))}
+      <div className="mission-card" data-aos="fade-up" data-aos-delay="100">
+        <div className="mission-card-text">
+          <h3>Language Accessibility</h3>
+          <p>Making digital Pakistan accessible to every citizen, removing language barriers that prevent millions from using digital tools.</p>
+        </div>
+        <img src="/images/pic1.png" alt="Digital Pakistan" className="mission-card-img" />
       </div>
+
+      <div className="mission-card" data-aos="fade-up" data-aos-delay="200">
+        <div className="mission-card-text">
+          <h3>Urban & Rural Reach</h3>
+          <p>Serving both urban users and rural communities who have never had proper digital guidance for government services.</p>
+        </div>
+        <img src="/images/pic2.png" alt="Community" className="mission-card-img" />
+      </div>
+
+      <div className="mission-card" data-aos="fade-up" data-aos-delay="300">
+        <div className="mission-card-text">
+          <h3>Apni Madad Aap</h3>
+          <p>A trusted digital companion for Karachi, Lahore, Peshawar, and every village in between.</p>
+        </div>
+        <img src="/images/pic3.png" alt="Students" className="mission-card-img" />
+      </div>
+
     </div>
   </div>
 </section>
-{/* Stats Section - Reduced height */}
-<section className="stats-section" ref={statsRef}>
-  <div className="container-xl">
-    <div className="row">
-      <div className="stat-card" data-aos="fade-up" data-aos-delay="100">
-        <div className="stat-number">{counters.guides}+</div>
-        <div className="stat-label">Digital Guides</div>
-      </div>
-      <div className="stat-card" data-aos="fade-up" data-aos-delay="200">
-        <div className="stat-number">{counters.users.toLocaleString()}+</div>
-        <div className="stat-label">Happy Users</div>
-      </div>
-      <div className="stat-card" data-aos="fade-up" data-aos-delay="300">
-        <div className="stat-number">{counters.topics}+</div>
-        <div className="stat-label">Topics Covered</div>
-      </div>
-      <div className="stat-card" data-aos="fade-up" data-aos-delay="400">
-        <div className="stat-number">{counters.team}</div>
-        <div className="stat-label">Team Members</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-{/* Problems Section - Updated with icon on left */}
-<section className="py-5">
-  <div className="container-xl">
-    <div className="text-center mb-5" data-aos="fade-up">
-      <h2 className="section-title">ہم کیا مسئلہ حل کر رہے ہیں؟</h2>
-      <p className="section-sub">What Problems Are We Solving?</p>
-    </div>
-    <div className="problems-section-wrapper">
-      <div className="problems-row">
-        {/* Problem Card 1 - Language Barrier */}
-        <div className="problem-card" data-aos="fade-up" data-aos-delay="100">
-          <div className="problem-icon">
-            <img src="/images/language-barrier.png" alt="Language Barrier" />
-          </div>
-          <div className="problem-content">
-            <h3>Language Barrier</h3>
-            <p>
-              Breaking every process down in simple Urdu and Roman Urdu, making technology accessible to over 60% of the population.
-            </p>
-          </div>
-        </div>
-
-        {/* Problem Card 2 - Digital Illiteracy */}
-        <div className="problem-card" data-aos="fade-up" data-aos-delay="200">
-          <div className="problem-icon">
-            <img src="/images/digital-illiteracy.png" alt="Digital Illiteracy" />
-          </div>
-          <div className="problem-content">
-            <h3>Digital Illiteracy</h3>
-            <p>
-              Teaching essential digital skills step by step, from basic navigation to advanced online transactions.
-            </p>
-          </div>
-        </div>
-
-        {/* Problem Card 3 - Confusing Portals */}
-        <div className="problem-card" data-aos="fade-up" data-aos-delay="300">
-          <div className="problem-icon">
-            <img src="/images/confusing-portals.png" alt="Confusing Portals" />
-          </div>
-          <div className="problem-content">
-            <h3>Confusing Portals</h3>
-            <p>
-              Providing clear, numbered walkthroughs for complex government portals like NADRA, FBR, and Passports.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* Mission Section - Content on LEFT, Images on RIGHT (Diamond Grid) */}
-<section className="py-5 mission-section">
-  <div className="container-xl">
-    <div className="row align-items-center g-5">
-      {/* Mission Content - LEFT side (order 1) */}
-      <div className="col-lg-6 mission-content-col" data-aos="fade-right">
-        <h2 className="section-title mb-4">ہمارا مشن</h2>
-        <div className="card-elegant mb-3">
-          <p className="m-0">
-            Making digital Pakistan accessible to every citizen, removing language barriers that prevent millions from using digital tools.
-          </p>
-        </div>
-        <div className="card-elegant mb-3">
-          <p className="m-0">
-            Serving both urban users and rural communities who have never had proper digital guidance for government services.
-          </p>
-        </div>
-        <div className="card-elegant">
-          <p className="m-0">
-            A trusted digital companion for Karachi, Lahore, Peshawar, and every village in between. Apni Madad Aap.
-          </p>
-        </div>
-      </div>
-      
-      {/* Mission Images - RIGHT side with Diamond Grid */}
-      <div className="col-lg-6 mission-images-col" data-aos="fade-left">
-        <div className="mission-grid">
-          <div className="mission-piece">
-            <img src="/images/pic1.png" alt="Digital Pakistan" />
-          </div>
-          <div className="mission-piece">
-            <img src="/images/pic2.png" alt="Community" />
-          </div>
-          <div className="mission-piece">
-            <img src="/images/pic3.png" alt="Students" />
-          </div>
-          <div className="mission-piece">
-            <img src="/images/pic4.png" alt="Rural" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-      {/* How It Works Section */}
+      {/* How It Works — single row, smaller cards, arrows between */}
       <section className="py-5" style={{ background: 'var(--cream)' }}>
         <div className="container-xl">
           <div className="text-center mb-5" data-aos="fade-up">
             <h2 className="section-title">یہ کیسے کام کرتا ہے</h2>
             <p className="section-sub">Four simple steps to digital confidence</p>
           </div>
-          <div className="row g-4">
+          <div className="how-it-works-row">
             {[
               { num: 1, title: 'Ask a Question', desc: 'Type your problem in Urdu, Roman Urdu, or English.' },
-              { num: 2, title: 'We Process It', desc: 'Our system finds the most relevant guide or answer for you.' },
-              { num: 3, title: 'Get Your Answer', desc: 'Receive clear, numbered instructions without technical jargon.' },
+              { num: 2, title: 'We Process It', desc: 'Our system finds the most relevant guide for you.' },
+              { num: 3, title: 'Get Your Answer', desc: 'Receive clear, numbered instructions instantly.' },
               { num: 4, title: 'Take Action', desc: 'Follow the steps and complete your task confidently.' }
             ].map((step, i) => (
-              <div className="col-sm-6 col-lg-3" key={i} data-aos="fade-up" data-aos-delay={100 + i * 100}>
-                <div className="step-card">
+              <React.Fragment key={i}>
+                <div className="step-card-small" data-aos="fade-up" data-aos-delay={100 + i * 100}>
                   <div className="step-number">{step.num}</div>
                   <h3 className="fw-bold">{step.title}</h3>
                   <p>{step.desc}</p>
                 </div>
-              </div>
+                {i < 3 && (
+                  <div className="step-arrow" data-aos="fade-up" data-aos-delay={150 + i * 100}>
+                    <i className="fas fa-arrow-right"></i>
+                  </div>
+                )}
+              </React.Fragment>
             ))}
           </div>
         </div>
       </section>
 
-{/* Features Section - 2 Cards in One Row */}
-<section className="py-5 features-section">
-  <div className="container-xl">
-    <div className="text-center mb-5" data-aos="fade-up">
-      <h2 className="section-title">ہماری خصوصیات</h2>
-      <p className="section-sub">Everything you need in one place</p>
-    </div>
-    <div className="features-row">
-      {/* Feature Card 1 - Seekhna */}
-      <div className="feature-card" data-aos="fade-right" data-aos-delay="100">
-        <div className="urdu-feature-title" dir="rtl">کچھ سیکھنا ہے؟</div>
-        <p className="text-soft">
-          Step-by-step guides on Digital Basics, Government Services, and Job Applications. Written in plain English and Roman Urdu.
-        </p>
-        <Link to="/seekhna" className="btn-feature">Explore Seekhna →</Link>
-      </div>
-      
-      {/* Feature Card 2 - Poochna */}
-      <div className="feature-card" data-aos="fade-left" data-aos-delay="200">
-        <div className="urdu-feature-title" dir="rtl">کچھ پوچھنا ہے؟</div>
-        <p className="text-soft">
-          A safe space to get answers about CNIC, NADRA, JazzCash, and more. Get a clear answer instantly.
-        </p>
-        <Link to="/poochna" className="btn-feature">Ask on Poochna →</Link>
-      </div>
-    </div>
-  </div>
-</section>
+
     </>
   );
 };

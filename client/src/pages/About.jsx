@@ -48,7 +48,7 @@ const About = () => {
       <div className="about-mosaic-grid">
         {/* Cell 1: Tall photo - NOW Students & Learners */}
         <div className="mosaic-cell tall">
-          <img src="/images/pic10.png" alt="Students" />
+          <img src="/images/pic8.png" alt="Students" />
           <div className="mosaic-label" style={{ background: '#0a0a0a', color: '#fff' }}>
             Students & Learners
           </div>
@@ -62,7 +62,7 @@ const About = () => {
 
         {/* Cell 3: Photo */}
         <div className="mosaic-cell">
-          <img src="/images/pic6.png" alt="Community" />
+          <img src="/images/pic17.jpg" alt="Community" />
           <div className="mosaic-label" style={{ background: '#0a0a0a', color: '#fff' }}>
             Community
           </div>
@@ -84,7 +84,7 @@ const About = () => {
 
         {/* Cell 6: Wide photo - NOW Digital Access */}
         <div className="mosaic-cell wide">
-          <img src="/images/pic12.png" alt="Digital Pakistan" />
+          <img src="/images/pic1.png" alt="Digital Pakistan" />
           <div className="mosaic-label" style={{ background: 'var(--green)', color: '#fff' }}>
             Digital Access
           </div>
@@ -153,7 +153,7 @@ const About = () => {
     <div className="row align-items-center g-5">
       <div className="col-lg-5">
         <img 
-          src="/images/pic16.png" 
+          src="/images/pic14.png" 
           alt="Asaan Digital 2.0 Platform" 
           className="explore-image"
         />
