@@ -131,8 +131,8 @@ const Poochna = () => {
         <NetworkWeb />
         <div className="container text-center" data-aos="fade-up">
           <div className="hero-urdu-sub mb-4" dir="rtl">
-            کچھ <span className="hero-urdu-main">پوچھنا</span> ہے؟
-          </div>
+  کچھ <span style={{ color: '#3b82f6', fontWeight: '800' }}>پوچھنا</span> ہے؟
+</div>
           <h1 className="display-5 fw-bold mb-4">
             Kuch Poochna Hai?
           </h1>

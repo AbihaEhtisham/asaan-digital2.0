@@ -1,126 +1,6 @@
 /* Poochna.css - Professional Blue Theme */
-/* Add these styles to your existing Poochna.css */
-/* Add these styles to your existing Poochna.css */
 
-/* 1. Fix Popular Questions heading spacing - move it higher */
-.popular-questions-section {
-  margin-top: -1.5rem;
-  position: relative;
-  z-index: 2;
-}
-
-.popular-questions-section .section-title {
-  margin-bottom: 1rem;
-}
-
-/* 2. Center the buttons in Master Section */
-.master-section .d-flex {
-  justify-content: center !important;
-  display: flex !important;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.master-section .btn-pakistan,
-.master-section .btn-pakistan-outline {
-  margin: 0 !important;
-  display: inline-block;
-}
-
-.master-section .row.justify-content-center .col-lg-8 {
-  text-align: center;
-}
-.master-buttons {
-  justify-content: center !important;
-  display: flex !important;
-}
-
-/* 3. Safety Alert section - add margins and not full width */
-.safety-alert-section {
-  margin-top: 2rem;
-  margin-bottom: 3rem;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 1rem;
-}
-
-.safety-alert {
-  display: flex;
-  gap: 2rem;
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  position: relative;
-}
-
-/* Add bottom margin space before footer */
-.safety-alert-section {
-  margin-bottom: 4rem;
-}
-
-/* 4. Darker border 3D effect for Master Section */
-.master-section {
-  background: linear-gradient(160deg, #eff6ff, #e0eeff);
-  padding: 3rem;
-  border-radius: 24px;
-  border: none;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.master-section:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15), 0 8px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* Add a subtle border for depth */
-.master-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 24px;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  pointer-events: none;
-}
-
-/* 5. Remove bubbles/circles from NetworkWeb - hide canvas circles */
-.network-canvas canvas {
-  opacity: 0.7;
-}
-
-/* Hide the circle nodes but keep the lines */
-canvas {
-  filter: brightness(0.8);
-}
-
-/* Alternative: If you want to keep only lines and remove circles,
-   you need to modify NetworkWeb.jsx - remove the circle drawing part */
-/* Move Popular Questions heading higher */
-.popular-questions-section {
-  margin-top: -2rem;
-  position: relative;
-  z-index: 2;
-}
-
-.popular-questions-section .section-title {
-  margin-bottom: 1rem;
-}
-
-/* Add margin-top to create boundary between sections */
-.safety-alert-section {
-  margin-top: 3rem;
-  position: relative;
-  z-index: 2;
-}
-
-/* Star background animation for hero section (same as home page) */
+/* Hero Section */
 .poochna-hero {
   background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 30%, #f0f7ff 60%, #e8f4ff 100%);
   padding: 5rem 0 4rem;
@@ -128,6 +8,53 @@ canvas {
   position: relative;
   overflow: hidden;
   z-index: 1;
+}
+/* Fix for Urdu heading - keep it on one line */
+.hero-urdu-sub {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  color: #1e3a8a;
+  font-weight: 700;
+  text-align: center;
+  direction: rtl;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+/* For mobile screens - allow slight wrapping but keep compact */
+@media (max-width: 576px) {
+  .hero-urdu-sub {
+    white-space: normal;
+    font-size: 1.2rem;
+    gap: 0.1rem;
+  }
+  
+  .hero-urdu-sub br {
+    display: none;
+  }
+}
+
+/* Ensure the span inside doesn't break */
+.hero-urdu-main {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #3b82f6;
+  font-weight: 800;
+  display: inline-block;
+  white-space: nowrap;
+}
+/* Network Canvas for background animation */
+.poochna-hero .network-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Star field animation */
@@ -168,17 +95,7 @@ canvas {
   50% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
 }
 
-/* 3D Network Canvas */
-.poochna-hero .network-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Radial gradient orbs (same as home page) */
+/* Radial gradient orbs */
 .poochna-hero::before {
   content: '';
   position: absolute;
@@ -186,7 +103,7 @@ canvas {
   right: -80px;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -200,7 +117,7 @@ canvas {
   left: -80px;
   width: 380px;
   height: 380px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
@@ -210,160 +127,6 @@ canvas {
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 0.5; }
   50% { transform: scale(1.1); opacity: 1; }
-}
-
-/* WhatsApp card - center the button */
-.whatsapp-card .popular-card-content {
-  text-align: center;
-  align-items: center;
-}
-
-.whatsapp-btn {
-  display: inline-block;
-  background: #ffffff;
-  color: #075e54;
-  padding: 0.7rem 1.8rem;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 50px;
-  margin-top: 1rem;
-  transition: all 0.3s ease;
-  text-align: center;
-}
-
-.whatsapp-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  color: #075e54;
-}
-
-/* Blue themed warning message (replacing orange) */
-.warning-message {
-  background: #eff6ff;
-  border-left: 4px solid #3b82f6;
-  border-radius: 12px;
-  padding: 1rem;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #1e40af;
-}
-
-.warning-message i {
-  color: #3b82f6;
-}
-
-.warning-message strong {
-  color: #1e3a8a;
-}
-
-/* Safety Alert Section - add top boundary */
-.safety-alert {
-  display: flex;
-  gap: 2rem;
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-radius: 24px;
-  padding: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  margin-top: 2rem;
-  position: relative;
-}
-
-/* Add a subtle top border line to separate from upper section */
-.safety-alert::before {
-  content: '';
-  position: absolute;
-  top: -2rem;
-  left: 10%;
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #3b82f6, #93c5fd, #3b82f6, transparent);
-}
-
-/* Adjust Popular Questions heading spacing */
-.section-title {
-  font-family: 'Noto Nastaliq Urdu', serif !important;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  color: #1e3a8a;
-  line-height: 1.2;
-  text-align: center;
-  display: block;
-  width: 100%;
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e3a8a);
-  border-radius: 3px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .popular-questions-section {
-    margin-top: -1rem;
-  }
-  
-  .safety-alert::before {
-    top: -1rem;
-  }
-  
-  .warning-message {
-    font-size: 0.8rem;
-  }
-}
-/* Hero Section */
-.poochna-hero {
-  background: linear-gradient(160deg, #eff6ff 0%, #dbeafe 30%, #f0f7ff 60%, #e8f4ff 100%);
-  padding: 5rem 0 4rem;
-  border-bottom: none;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* Network Canvas for background animation (same as home page) */
-.poochna-hero .network-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.poochna-hero::before {
-  content: '';
-  position: absolute;
-  top: -80px;
-  right: -80px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.poochna-hero::after {
-  content: '';
-  position: absolute;
-  bottom: -100px;
-  left: -80px;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
 }
 
 .hero-urdu-main {
@@ -436,23 +199,6 @@ canvas {
   color: #1e293b;
 }
 
-/* Move Master Section heading higher */
-.master-section {
-  background: linear-gradient(160deg, #eff6ff, #e0eeff);
-  padding: 3rem;
-  border-radius: 24px;
-  border: none;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-top: -1rem;  /* ADD THIS - moves the whole section up */
-}
-
-/* Or alternatively, reduce the margin-bottom of the heading */
-.master-section .section-title {
-  margin-bottom: 0.5rem !important;  /* ADD THIS - reduces space below heading */
-  padding-top: 0;  /* ADD THIS */
-}
 .search-input::placeholder {
   color: #94a3b8;
   font-weight: 400;
@@ -560,7 +306,17 @@ canvas {
   display: none;
 }
 
-/* Popular Questions Grid - Alternating card layout */
+/* Popular Questions Section */
+.popular-questions-section {
+  margin-top: -1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.popular-questions-section .section-title {
+  margin-bottom: 1rem;
+}
+
 .popular-questions-grid {
   max-width: 900px;
   margin: 0 auto;
@@ -659,7 +415,7 @@ canvas {
   flex-direction: row-reverse;
 }
 
-/* WhatsApp Card - Full background, no image side */
+/* WhatsApp Card - Full background */
 .whatsapp-card {
   background: linear-gradient(135deg, #075e54, #128c7e);
   border-color: #075e54;
@@ -713,70 +469,160 @@ canvas {
   color: #075e54;
 }
 
-/* Video Card styling */
-.video-card .popular-card-content .card-link {
-  color: #2563eb;
+/* Results Section */
+.results-section {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Horizontal Card (Mobile Wallets) */
-.horizontal-card {
-  display: flex;
+.result-card {
   background: #ffffff;
   border: 2px solid #e2e8f0;
-  border-radius: 24px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 22px;
+  padding: 2.25rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
 }
 
-.horizontal-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.12);
+.result-card.success {
   border-color: #93c5fd;
 }
 
-.horizontal-card .horizontal-image {
-  flex: 0 0 35%;
-}
-
-.horizontal-card .horizontal-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.horizontal-card .quick-card-content {
-  flex: 1;
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Section Title */
-.section-title {
-  font-family: 'Noto Nastaliq Urdu', serif !important;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  color: #1e3a8a;
-  line-height: 1.2;
+.result-card.failed {
+  border-color: #fbbf24;
   text-align: center;
-  display: block;
-  width: 100%;
-  position: relative;
-  margin-bottom: 2rem;
 }
 
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e3a8a);
-  border-radius: 3px;
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.confidence-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 1.1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 50px;
+  border: 2px solid;
+}
+
+.confidence-badge.high-confidence {
+  background: #dbeafe;
+  color: #1e40af;
+  border-color: #93c5fd;
+}
+
+.confidence-badge.medium-confidence {
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #fbbf24;
+}
+
+.confidence-badge.low-confidence {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fca5a5;
+}
+
+.matched-keyword {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.result-title {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.result-subtitle {
+  font-size: 1.05rem;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+}
+
+.result-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.meta-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.meta-item i {
+  color: #3b82f6;
+  margin-right: 0.3rem;
+}
+
+.view-tutorial-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: #ffffff;
+  padding: 0.9rem 2.2rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  transition: all 0.3s ease;
+}
+
+.view-tutorial-btn:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.4);
+}
+
+.failed-icon {
+  font-size: 3rem;
+  color: #f59e0b;
+  margin-bottom: 1.5rem;
+}
+
+.suggestion-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.suggestion-pill {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  padding: 0.5rem 1.3rem;
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 50px;
+  color: #334155;
+}
+
+.suggestion-pill:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
 /* Trending Section */
@@ -837,13 +683,54 @@ canvas {
   font-size: 1rem;
 }
 
+.trend-direction {
+  margin-left: 0.3rem;
+}
+
+.trend-direction.rising i { color: #10b981; }
+.trend-direction.falling i { color: #ef4444; }
+.trend-direction.stable i { color: #6b7280; }
+
+.trending-item:hover .trend-direction i {
+  color: #ffffff;
+}
+
 /* Master Section */
 .master-section {
   background: linear-gradient(160deg, #eff6ff, #e0eeff);
   padding: 3rem;
   border-radius: 24px;
   border: none;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.master-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.15), 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.master-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  pointer-events: none;
+}
+
+/* Center the buttons in Master Section */
+.master-section .d-flex {
+  justify-content: center !important;
+}
+
+.master-section .btn-pakistan,
+.master-section .btn-pakistan-outline {
+  margin: 0 auto;
 }
 
 .steps-flow {
@@ -889,6 +776,32 @@ canvas {
 .flow-arrow {
   color: #3b82f6;
   font-size: 1.2rem;
+}
+
+/* Section Title */
+.section-title {
+  font-family: 'Noto Nastaliq Urdu', serif !important;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  color: #1e3a8a;
+  line-height: 1.2;
+  text-align: center;
+  display: block;
+  width: 100%;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, #1e3a8a, #3b82f6, #1e3a8a);
+  border-radius: 3px;
 }
 
 /* Buttons */
@@ -940,7 +853,16 @@ canvas {
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.25);
 }
 
-/* Safety Alert */
+/* Safety Alert Section */
+.safety-alert-section {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
 .safety-alert {
   display: flex;
   gap: 2rem;
@@ -949,6 +871,11 @@ canvas {
   border-radius: 24px;
   padding: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.safety-alert-section {
+  margin-bottom: 4rem;
 }
 
 .safety-icon {
@@ -963,36 +890,29 @@ canvas {
   margin-bottom: 0.5rem;
 }
 
+/* Blue themed warning message */
 .warning-message {
-  background: #fef3c7;
-  border-left: 4px solid #f59e0b;
+  background: #eff6ff;
+  border-left: 4px solid #3b82f6;
   border-radius: 12px;
   padding: 1rem;
   margin-top: 1rem;
   font-size: 0.9rem;
+  color: #1e40af;
 }
 
-/* Results Section */
-.results-section {
-  max-width: 800px;
-  margin: 0 auto;
+.warning-message i {
+  color: #3b82f6;
 }
 
-.result-card {
-  background: #ffffff;
-  border: 2px solid #e2e8f0;
-  border-radius: 22px;
-  padding: 2.25rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+.warning-message strong {
+  color: #1e3a8a;
 }
 
-.result-card.success {
-  border-color: #93c5fd;
-}
-
-.result-card.failed {
-  border-color: #fbbf24;
-  text-align: center;
+/* Text Utilities */
+.text-soft {
+  color: #64748b;
+  line-height: 1.6;
 }
 
 /* Responsive */
@@ -1022,14 +942,6 @@ canvas {
     flex: 0 0 180px;
   }
 
-  .horizontal-card {
-    flex-direction: column;
-  }
-
-  .horizontal-image {
-    flex: 0 0 150px;
-  }
-
   .steps-flow {
     flex-direction: column;
   }
@@ -1050,6 +962,10 @@ canvas {
   .section-title {
     font-size: 1.8rem;
   }
+  
+  .popular-questions-section {
+    margin-top: -1rem;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1063,5 +979,19 @@ canvas {
   
   .result-title {
     font-size: 1.4rem;
+  }
+  
+  .master-section {
+    padding: 1.5rem;
+  }
+  
+  .flow-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .safety-alert-section {
+    padding: 0 0.5rem;
   }
 }
